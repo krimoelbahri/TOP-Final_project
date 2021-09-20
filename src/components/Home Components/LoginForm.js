@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+// TODO: split components later
 const Form = styled.form`
   max-width: 350px;
   display: flex;
