@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Form Components/Button";
+import ButtonDiv from "./Form Components/ButtonDiv";
 import Form from "./Form Components/Form";
 import FormInput from "./Form Components/FormInput";
 import InputDiv from "./Form Components/InputDiv";
-
-// TODO: split components later
 
 const FormDiv = styled.div`
 	margin: 0 40px 6px;
@@ -22,8 +22,11 @@ const Label = styled.label`
 `;
 
 export default function LoginForm() {
+	function handleSubmit(e) {
+		e.preventDefault();
+	}
 	return (
-		<Form>
+		<Form onSubmit={handleSubmit}>
 			<h1 className='logo'>Fakegram</h1>
 			<FormDiv>
 				<InputDiv>
@@ -47,6 +50,9 @@ export default function LoginForm() {
 					</Label>
 				</InputDiv>
 			</FormDiv>
+			<ButtonDiv>
+				<Button type="submit"></Button>
+			</ButtonDiv>
 		</Form>
 	);
 }
