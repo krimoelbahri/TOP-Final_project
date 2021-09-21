@@ -3,10 +3,21 @@
 	font-style: normal;
 	font-weight: normal;
 	src: local("Instagram new"),
-		url("./instagram-new/Demo_Fonts/Fontspring-DEMO-blue_vinyl_regular_ps_ot.otf") format("woff");
+		url("./instagram-new/Demo_Fonts/Fontspring-DEMO-blue_vinyl_regular_ps_ot.otf")
+			format("woff");
 }
-.logo{
-    font-family: 'instagram new';
-    font-size: xxx-large;
-    font-weight: unset;
+body,
+button,
+input,
+textarea {
+	color: #262626;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+		Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+}
+.logo {
+	font-family: "instagram new";
+	font-size: xxx-large;
+	font-weight: unset;
 }
