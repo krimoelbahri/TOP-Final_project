@@ -8,6 +8,7 @@ const FormComponent = styled.form`
 	justify-content: space-evenly;
 	border: 1px solid black;
 `;
-export default function Form({ children }) {
-	return <FormComponent>{children}</FormComponent>;
+export default function Form(props) {
+	const { onSubmit ,children} = props ;
+	return <FormComponent onSubmit={onSubmit}>{children}</FormComponent>;
 }
