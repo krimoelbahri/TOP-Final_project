@@ -28,8 +28,8 @@ const Span = styled.span`
 	right: 0;
 	text-overflow: ellipsis;
 `;
-export default function FormInput(props, { children }) {
-	const { ariaLabel, type, inputID } = props;
+export default function FormInput(props) {
+	const { ariaLabel, type, inputID ,children} = props;
 	const [inputValue, setinputValue] = useState();
 	return (
 		<>
