@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormButton = styled.button`
+const Button = styled.button`
 	background: 0 0;
 	border: 0;
 	box-sizing: border-box;
@@ -10,4 +10,4 @@ const FormButton = styled.button`
 	text-align: center;
 	width: auto;
 `;
-export { FormButton }
+export { Button }
