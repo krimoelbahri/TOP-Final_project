@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {FormButton} from "./Form Components/Button";
 import ButtonDiv from "./Form Components/ButtonDiv";
 import Form from "./Form Components/Form";
 import FormInput from "./Form Components/FormInput";
 import InputDiv from "./Form Components/InputDiv";
+import LoginButton from "./Form Components/LoginButton";
 
 const FormDiv = styled.div`
 	margin: 0 40px 6px;
@@ -20,13 +20,7 @@ const Label = styled.label`
 	margin: 0;
 	min-width: 0;
 `;
-const LoginButton = styled(FormButton)`
-	border-radius: 4px;
-	color: #fff;
-	position: relative;
-	border: 1px solid transparent;
-	background-color: #0095f6;
-`;
+
 export default function LoginForm() {
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -57,7 +51,12 @@ export default function LoginForm() {
 				</InputDiv>
 			</FormDiv>
 			<ButtonDiv>
-				<LoginButton type='submit'>
+				<LoginButton
+					backgroundColor='#0095f6'
+					disabledBackgroundColor='rgba(0,149,246,.3)'
+					fontColor='#fff'
+					type='submit'
+					disabled='disabled'>
 					<div>Log In</div>
 				</LoginButton>
 			</ButtonDiv>
