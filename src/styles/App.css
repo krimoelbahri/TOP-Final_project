@@ -16,6 +16,10 @@ textarea {
 	font-size: 14px;
 	line-height: 18px;
 }
+body{
+	background-color: #fafafa;
+	display: flex;
+}
 .logo {
 	font-family: "instagram new";
 	font-size: xxx-large;
