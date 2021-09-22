@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import ButtonDiv from "./Form Components/ButtonDiv";
 import Form from "./Form Components/Form";
@@ -22,6 +22,16 @@ const Label = styled.label`
 `;
 
 export default function LoginForm() {
+	const [disabled, setDisabled] = useState("disabled")
+	const idRef = useRef();
+	const passwordRef = useRef();
+	function handleChange() {
+		if (idRef.current.value && passwordRef.current.value.length > 6) {
+			setDisabled(false);
+		} else {
+			setDisabled("disabled");
+		}
+	}
 	function handleSubmit(e) {
 		e.preventDefault();
 	}
@@ -32,6 +42,8 @@ export default function LoginForm() {
 				<InputDiv>
 					<Label htmlFor='loginId'>
 						<FormInput
+							onChange={handleChange}
+							inputRef={idRef}
 							inputID='loginId'
 							ariaLabel='Phone number, username, or email'
 							type='text'
@@ -43,6 +55,8 @@ export default function LoginForm() {
 				<InputDiv>
 					<Label htmlFor='loginPassword'>
 						<FormInput
+							onChange={handleChange}
+							inputRef={passwordRef}
 							inputID='loginPassword'
 							ariaLabel='password'
 							type='password'
@@ -56,7 +70,7 @@ export default function LoginForm() {
 					disabledBackgroundColor='rgba(0,149,246,.3)'
 					fontColor='#fff'
 					type='submit'
-					disabled='disabled'>
+					disabled={disabled}>
 					<div>Log In</div>
 				</SubmitButton>
 			</ButtonDiv>
