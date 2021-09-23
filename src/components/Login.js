@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "./Login Components/LoginForm";
+import LoginForm from "./Form Components/LoginForm";
 import styled from "styled-components";
 import Container from "./styledComponents/FormConatiner";
 const LoginContainer = styled.div`
@@ -14,7 +14,7 @@ const StyledLink = styled.a`
 	font-weight: 600;
 	line-height: 18px;
 `;
-export default function Home() {
+export default function Login() {
 	return (
 		<LoginContainer>
 			<LoginForm />
