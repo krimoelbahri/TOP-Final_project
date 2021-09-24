@@ -14,3 +14,14 @@ const Container = styled.div`
 	top: 0;
 `;
 
+const Wraper = styled.div`
+	min-width: 300px;
+	display: flex;
+	justify-content: ${(props) => props.justifyContent};
+`;
+const Icon = styled.div`
+	width: 20px;
+	height: 20px;
+	margin-left: 20px;
+`;
+
