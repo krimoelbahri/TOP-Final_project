@@ -36,23 +36,20 @@ export default function SignUpForm() {
 			<Div>
 				<p
 					style={{
-						" font-weight": "600",
+						fontWeight: "600",
 						color: "#8e8e8e",
-						"font-size": "17px",
-						"text-align": "center",
+						fontSize: "17px",
+						textAlign: "center",
 					}}>
 					Sign up to see photos and videos from your friends.
 				</p>
 			</Div>
 			<Div flexDirection='column'>
-				<SubmitButton
-					backgroundColor='#0095f6'
-					fontColor='#fff'
-					disabled=''>
+				<SubmitButton backgroundColor='#0095f6' fontColor='#fff' disabled=''>
 					<i
 						style={{
-							"margin-right": "10px",
-							"font-size": "large",
+							marginRight: "10px",
+							fontSize: "large",
 						}}
 						className='fab fa-facebook-square'></i>
 					<div>Log In with Facebook</div>
@@ -62,7 +59,7 @@ export default function SignUpForm() {
 				<LineDiv />
 				<h1
 					style={{
-						"font-size": "inherit",
+						fontSize: "inherit",
 						margin: "0 10px",
 					}}>
 					OR
@@ -135,8 +132,8 @@ export default function SignUpForm() {
 				<p
 					style={{
 						color: "#8e8e8e",
-						"font-size": "12px",
-						"text-align": "center",
+						fontSize: "12px",
+						textAlign: "center",
 					}}>
 					By signing up, you agree to our Terms , Data Policy and Cookies Policy
 					.
