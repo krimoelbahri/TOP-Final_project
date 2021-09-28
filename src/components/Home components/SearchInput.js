@@ -27,8 +27,9 @@ const Span = styled.span`
 	text-overflow: ellipsis;
 `;
 export default function SearchInput(props) {
-	const { type, placeHolder, children } = props;
+	const { children } = props;
 	const [searching, setSearching] = useState(false);
+	const [placeHolder, setPlaceHolder] = useState("Search");
 
 	return (
 		<>
@@ -40,7 +41,7 @@ export default function SearchInput(props) {
 			{searching && (
 				<Input
 					onBlur={() => setSearching(false)}
-					type={type}
+					type='text'
 					autoFocus
 					placeholder={placeHolder}>
 					{children}
