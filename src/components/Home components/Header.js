@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import SearchDiv from "../styledComponents/SearchDiv";
 import HeaderDiv from "../styledComponents/HederDiv";
+import SearchInput from "./SearchInput";
 
 const Container = styled.div`
 	display: flex;
@@ -32,11 +34,16 @@ export default function Header() {
 				<Wraper justifyContent='flex-start' className='header-logo'>
 					Fakegram
 				</Wraper>
-				<Wraper justifyContent='center' className='header-logo'>
-					<input type='text' placeholder='search'></input>
-				</Wraper>
-				<Wraper justifyContent='flex-end' className='header-logo'>
-					<div>
+				<SearchDiv>
+					<SearchInput type='text' placeHolder='Search'></SearchInput>
+				</SearchDiv>
+				<Wraper justifyContent='flex-end' className='header-icons'>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "center",
+						}}>
 						<Icon>
 							<i className='bi bi-house-door'></i>
 						</Icon>
@@ -54,7 +61,9 @@ export default function Header() {
 							style={{
 								border: "1px solid black",
 								borderRadius: "50%",
-							}}></Icon>
+							}}>
+							<i className='fas fa-user-circle'></i>
+						</Icon>
 					</div>
 				</Wraper>
 			</HeaderDiv>
