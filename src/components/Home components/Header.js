@@ -35,7 +35,7 @@ export default function Header() {
 					Fakegram
 				</Wraper>
 				<SearchDiv>
-					<SearchInput type='text' placeHolder='Search'></SearchInput>
+					<SearchInput />
 				</SearchDiv>
 				<Wraper justifyContent='flex-end' className='header-icons'>
 					<div
