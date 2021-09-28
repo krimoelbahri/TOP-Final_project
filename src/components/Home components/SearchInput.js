@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 const Input = styled.input`
 	background: rgba(250, 250, 250, 1);
@@ -29,21 +29,27 @@ const Span = styled.span`
 export default function SearchInput(props) {
 	const { children } = props;
 	const [searching, setSearching] = useState(false);
-	const [placeHolder, setPlaceHolder] = useState("Search");
-
+	const [inputvalue, setInputvalue] = useState("");
+	const inputRef = useRef();
+	function handleInputChange() {
+		setInputvalue(inputRef.current.value);
+	}
 	return (
 		<>
 			{!searching && (
 				<Span onClick={() => setSearching(true)}>
-					<i className='bi bi-search'></i> {placeHolder}
+					<i className='bi bi-search'></i> {!inputvalue ? "Search" : inputvalue}
 				</Span>
 			)}
 			{searching && (
 				<Input
 					onBlur={() => setSearching(false)}
+					onChange={handleInputChange}
 					type='text'
+					ref={inputRef}
+					value={inputvalue}
 					autoFocus
-					placeholder={placeHolder}>
+					placeholder='Search'>
 					{children}
 				</Input>
 			)}
