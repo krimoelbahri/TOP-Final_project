@@ -4,7 +4,7 @@ const Input = styled.input`
 	background: rgba(250, 250, 250, 1);
 	outline: 0;
 	overflow: hidden;
-	padding: 7px 5px 5px 26px;
+	padding: 5px 5px 5px 26px;
 	font-size: 16px;
 	text-overflow: ellipsis;
 	border: 1px solid #dbdbdb;
@@ -12,10 +12,13 @@ const Input = styled.input`
 	width: -webkit-fill-available;
 `;
 const Span = styled.span`
+	background: rgba(250, 250, 250, 1);
 	color: rgba(142, 142, 142, 1);
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
 	padding: 7px;
 	font-family: sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	width: -webkit-fill-available;
 	overflow: hidden;
 	cursor: text;
@@ -25,15 +28,24 @@ const Span = styled.span`
 `;
 export default function SearchInput(props) {
 	const { type, placeHolder, children } = props;
+	const [searching, setSearching] = useState(false);
 
 	return (
 		<>
-			<Span>
-				<i className='bi bi-search'></i> Search
-			</Span>
-			<Input type={type} placeholder={placeHolder}>
-				{children}
-			</Input>
+			{!searching && (
+				<Span onClick={() => setSearching(true)}>
+					<i className='bi bi-search'></i> {placeHolder}
+				</Span>
+			)}
+			{searching && (
+				<Input
+					onBlur={() => setSearching(false)}
+					type={type}
+					autoFocus
+					placeholder={placeHolder}>
+					{children}
+				</Input>
+			)}
 		</>
 	);
 }
