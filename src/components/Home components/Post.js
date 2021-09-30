@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PostHeader from "./PostHeader";
 import PostIcons from "./PostIcons";
 import PostImage from "./PostImage";
+import PostStats from "./PostStats";
+
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -19,6 +21,7 @@ export default function Post() {
 			<PostHeader />
 			<PostImage />
 			<PostIcons />
+			<PostStats />
 		</Container>
 	);
 }
