@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostHeader from "./PostHeader";
+import PostImage from "./PostImage";
 
 const Container = styled.div`
 	display: flex;
@@ -16,6 +17,7 @@ export default function Post() {
 	return (
 		<Container>
 			<PostHeader />
+			<PostImage />
 		</Container>
 	);
 }
