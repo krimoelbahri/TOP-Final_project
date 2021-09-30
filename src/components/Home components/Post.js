@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import PostHeader from "./PostHeader";
+import PostIcons from "./PostIcons";
 import PostImage from "./PostImage";
-
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -18,6 +18,7 @@ export default function Post() {
 		<Container>
 			<PostHeader />
 			<PostImage />
+			<PostIcons />
 		</Container>
 	);
 }
