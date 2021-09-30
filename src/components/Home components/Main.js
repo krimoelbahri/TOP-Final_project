@@ -1,12 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import PostComponent from "./PostComponent";
+import Post from "./Post";
 
-const Container = styled.div``;
+const Container = styled.div`
+	max-width: 600px;
+	position: relative;
+	top: 55px;
+	margin: 0 auto 100px;
+`;
+
 export default function Main() {
 	return (
 		<Container>
-			<PostComponent />
+			<Post />
+            <Post />
+			<Post />
 		</Container>
 	);
 }
