@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PostComments from "./PostComments";
 import PostHeader from "./PostHeader";
 import PostIcons from "./PostIcons";
 import PostImage from "./PostImage";
@@ -22,6 +23,7 @@ export default function Post() {
 			<PostImage />
 			<PostIcons />
 			<PostStats />
+			<PostComments />
 		</Container>
 	);
 }
