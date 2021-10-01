@@ -32,9 +32,9 @@ export default function PostIcons() {
 				</IconDiv>
 			</Div>
 			<Div style={{ margin: "0 20px 0 0" }}>
-				<diIconDivv>
+				<IconDiv>
 					<i className='bi bi-bookmark'></i>{" "}
-				</diIconDivv>
+				</IconDiv>
 			</Div>
 		</Container>
 	);
