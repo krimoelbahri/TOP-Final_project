@@ -47,7 +47,11 @@ export default function AddComment() {
 				</Icon>
 			</EmojiDiv>
 			<TextArea placeholder='Add a comment... ' />
-			<SubmitButton fontColor='#0095f6' fontOpacity='.3' disabled='disabled'>
+			<SubmitButton
+				type='submit'
+				fontColor='#0095f6'
+				fontOpacity='.3'
+				disabled='disabled'>
 				<h4>Post</h4>
 			</SubmitButton>
 		</Container>
