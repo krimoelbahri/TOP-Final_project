@@ -8,11 +8,15 @@ const Container = styled.div`
 `;
 
 export default function PostComments() {
+	let commentsNumber = 200;
 	return (
 		<Container>
 			<Comment />
-            <Comment />
-            <Comment />
+			<Comment />
+			<Comment />
+			<a href='/'>
+				<span>View all {commentsNumber} comments</span>
+			</a>
 		</Container>
 	);
 }
