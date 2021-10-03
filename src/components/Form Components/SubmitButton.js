@@ -9,6 +9,7 @@ const StyledSubmitButton = styled(Button)`
 	align-items: center;
 	border-radius: 4px;
 	color: ${(props) => props.fontColor};
+	opacity: ${(props) => props.fontOpacity};
 	position: relative;
 	border: 1px solid transparent;
 	background-color: ${(props) =>
@@ -18,6 +19,7 @@ const StyledSubmitButton = styled(Button)`
 export default function SubmitButton(props) {
 	const {
 		fontColor,
+		fontOpacity,
 		backgroundColor,
 		disabled,
 		type,
@@ -27,6 +29,7 @@ export default function SubmitButton(props) {
 	return (
 		<StyledSubmitButton
 			fontColor={fontColor}
+			fontOpacity={fontOpacity}
 			backgroundColor={backgroundColor}
 			disabledBackgroundColor={disabledBackgroundColor}
 			type={type}
