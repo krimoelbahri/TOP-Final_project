@@ -2,13 +2,15 @@ import React from "react";
 import SignUpForm from "./Form Components/SignUpForm";
 import styled from "styled-components";
 import Container from "./styledComponents/FormConatiner";
+import { Link } from "react-router-dom";
+
 const LoginContainer = styled.div`
 	max-width: 350px;
 	display: flex;
 	flex-direction: column;
 	margin: 50px auto 10px;
 `;
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
 	color: #0095f6;
 	font-size: 14px;
 	font-weight: 600;
@@ -24,7 +26,7 @@ export default function SignUp() {
 						style={{
 							margin: "15px",
 						}}>
-						Have an account? <StyledLink href='/'>Log in</StyledLink>
+						Have an account? <StyledLink to='/login'>Log in</StyledLink>
 					</p>
 				</div>
 			</Container>
