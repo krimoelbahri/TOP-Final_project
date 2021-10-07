@@ -2,11 +2,10 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Div from "../styledComponents/Div";
 import FormConatiner from "../styledComponents/FormConatiner";
-import {Logo,FormDiv,Label} from '../styledComponents/FormStyledComponents'
+import { Logo, FormDiv, Label } from "../styledComponents/FormStyledComponents";
 import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
-
 
 const OrDiv = styled(Div)`
 	color: #8e8e8e;
@@ -23,7 +22,8 @@ const StyledLink = styled.a`
 	margin-top: 12px;
 	text-align: center;
 `;
-export default function LoginForm() {
+export default function LoginForm(props) {
+	const { handleFacebookLogin } = props;
 	const [disabled, setDisabled] = useState("disabled");
 	const idRef = useRef();
 	const passwordRef = useRef();
@@ -80,7 +80,7 @@ export default function LoginForm() {
 				<LineDiv />
 				<h1
 					style={{
-						"font-size": "inherit",
+						fontSize: "inherit",
 						margin: "0 10px",
 					}}>
 					OR
@@ -88,11 +88,14 @@ export default function LoginForm() {
 				<LineDiv />
 			</OrDiv>
 			<Div flexDirection='column'>
-				<SubmitButton fontColor='#385185' disabled=''>
+				<SubmitButton
+					onClick={handleFacebookLogin}
+					fontColor='#385185'
+					disabled=''>
 					<i
 						style={{
-							"margin-right": "10px",
-							"font-size": "x-large",
+							marginRight: "10px",
+							fontSize: "x-large",
 						}}
 						className='fab fa-facebook-square'></i>
 					<div>Log In with Facebook</div>
