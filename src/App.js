@@ -5,13 +5,16 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import "./styles/reset.css";
 import "./styles/App.css";
-import { Fragment } from "react";
 
 function App() {
 	return (
-		<Fragment>
-			<Home />
-		</Fragment>
+		<HashRouter className='App'>
+			<Switch>
+				<Route exact path='/' component={Home} />
+				<Route exact path='/login' component={Login} />
+				<Route exact path='/signup' component={SignUp} />
+			</Switch>
+		</HashRouter>
 	);
 }
 
