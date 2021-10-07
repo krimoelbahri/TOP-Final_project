@@ -1,5 +1,7 @@
 import React from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch } from "react-router-dom";
+import { AuthPrivateRoute, HomePrivateRoute } from "./routes/PrivateRoute";
+import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Home from "./components/Home";
@@ -9,11 +11,13 @@ import "./styles/App.css";
 function App() {
 	return (
 		<HashRouter className='App'>
-			<Switch>
-				<Route exact path='/' component={Home} />
-				<Route exact path='/login' component={Login} />
-				<Route exact path='/signup' component={SignUp} />
-			</Switch>
+			<AuthProvider>
+				<Switch>
+					<HomePrivateRoute exact path='/' component={Home} />
+					<AuthPrivateRoute exact path='/login' component={Login} />
+					<AuthPrivateRoute exact path='/signup' component={SignUp} />
+				</Switch>
+			</AuthProvider>
 		</HashRouter>
 	);
 }
