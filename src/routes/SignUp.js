@@ -1,7 +1,7 @@
 import React from "react";
-import SignUpForm from "./Form Components/SignUpForm";
+import SignUpForm from "../components/Form Components/SignUpForm";
 import styled from "styled-components";
-import Container from "./Styled Components/FormConatiner";
+import Container from "../components/Styled Components/FormConatiner";
 import { Link } from "react-router-dom";
 
 const LoginContainer = styled.div`

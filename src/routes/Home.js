@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Home Components/Header";
-import Main from "./Home Components/Main";
+import Header from "../components/Home Components/Header";
+import Main from "../components/Home Components/Main";
 
 const Container = styled.div`
 	min-width: 100%;
