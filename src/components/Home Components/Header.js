@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import SearchDiv from "../styledComponents/SearchDiv";
-import HeaderDiv from "../styledComponents/HederDiv";
+import SearchDiv from "../Styled Components/SearchDiv";
+import HeaderDiv from "../Styled Components/HederDiv";
 import SearchInput from "./SearchInput";
+import { useAuth } from "../../context/AuthContext";
 
 const Container = styled.div`
 	display: flex;
@@ -13,7 +14,7 @@ const Container = styled.div`
 	border-bottom: 1px solid #dbdbdb;
 	background-color: white;
 	position: fixed;
-	z-index:10;
+	z-index: 10;
 	top: 0;
 `;
 
@@ -27,8 +28,14 @@ const Icon = styled.div`
 	height: 20px;
 	margin-left: 20px;
 `;
+const Img = styled.img`
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+`;
 
 export default function Header() {
+	const { currentUser } = useAuth();
 	return (
 		<Container>
 			<HeaderDiv>
@@ -63,7 +70,7 @@ export default function Header() {
 								border: "1px solid black",
 								borderRadius: "50%",
 							}}>
-							<i className='fas fa-user-circle'></i>
+							<Img src={currentUser.photoURL} alt='PP' />
 						</Icon>
 					</div>
 				</Wraper>

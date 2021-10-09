@@ -1,7 +1,8 @@
 import React from "react";
+import { FacebookAuthProvider } from "firebase/auth";
 import LoginForm from "./Form Components/LoginForm";
 import styled from "styled-components";
-import Container from "./styledComponents/FormConatiner";
+import Container from "./Styled Components/FormConatiner";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -19,9 +20,20 @@ const StyledLink = styled(Link)`
 `;
 export default function Login() {
 	const { loginWithFacebook } = useAuth();
-	function handleFacebookLogin() {
-		console.log("yes");
-		loginWithFacebook();
+	async function handleFacebookLogin() {
+		try {
+			let result = await loginWithFacebook();
+			const user = result.user;
+			const credential = FacebookAuthProvider.credentialFromResult(result);
+			const accessToken = credential.accessToken;
+			console.log({ user, credential, accessToken });
+		} catch (error) {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			const email = error.email;
+			const credential = FacebookAuthProvider.credentialFromError(error);
+			console.log({ errorCode, errorMessage, email, credential });
+		}
 	}
 	return (
 		<LoginContainer>
@@ -32,8 +44,7 @@ export default function Login() {
 						style={{
 							margin: "15px",
 						}}>
-						Don't have an account?{" "}
-						<StyledLink to='/signup'>Sign up</StyledLink>
+						Don't have an account? <StyledLink to='/signup'>Sign up</StyledLink>
 					</p>
 				</div>
 			</Container>
