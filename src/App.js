@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
+import Messages from "./routes/Messages";
 import "./styles/reset.css";
 import "./styles/App.css";
 
@@ -14,6 +15,7 @@ function App() {
 			<AuthProvider>
 				<Switch>
 					<HomePrivateRoute exact path='/' component={Home} />
+					<HomePrivateRoute exact path='/inbox' component={Messages} />
 					<AuthPrivateRoute exact path='/login' component={Login} />
 					<AuthPrivateRoute exact path='/signup' component={SignUp} />
 				</Switch>
