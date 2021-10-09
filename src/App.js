@@ -2,9 +2,9 @@ import React from "react";
 import { HashRouter, Switch } from "react-router-dom";
 import { AuthPrivateRoute, HomePrivateRoute } from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
-import Home from "./components/Home";
+import SignUp from "./routes/SignUp";
+import Login from "./routes/Login";
+import Home from "./routes/Home";
 import "./styles/reset.css";
 import "./styles/App.css";
 
