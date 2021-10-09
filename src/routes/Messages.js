@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Home Components/Header";
-import Main from "../components/Home Components/Main";
+import NavBar from "../components/NavBar";
 
 const Container = styled.div`
 	min-width: 100%;
@@ -10,8 +9,7 @@ const Container = styled.div`
 export default function Messages() {
 	return (
 		<Container>
-			<Header />
-			<Main />
+			<NavBar />
 		</Container>
 	);
 }

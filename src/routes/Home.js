@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Home Components/Header";
+import NavBar from "../components/NavBar";
 import Main from "../components/Home Components/Main";
 
 const Container = styled.div`
@@ -10,7 +10,7 @@ const Container = styled.div`
 export default function Home() {
 	return (
 		<Container>
-			<Header />
+			<NavBar />
 			<Main />
 		</Container>
 	);
