@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import SearchDiv from "../Styled Components/SearchDiv";
-import HeaderDiv from "../Styled Components/HederDiv";
+import SearchDiv from "./Styled Components/SearchDiv";
+import HeaderDiv from "./Styled Components/HederDiv";
 import SearchInput from "./SearchInput";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 const Container = styled.div`
 	display: flex;
@@ -34,7 +34,7 @@ const Img = styled.img`
 	border-radius: 50%;
 `;
 
-export default function Header() {
+export default function NavBar() {
 	const { currentUser } = useAuth();
 	return (
 		<Container>
