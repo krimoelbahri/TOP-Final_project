@@ -12,7 +12,8 @@ const Container = styled.div`
 `;
 const ContactHeader = styled.div`
 	width: 100%;
-	height: 55px;
+	height: 70px;
+	min-height: 70px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -28,6 +29,7 @@ const ContactBody = styled.div`
 	align-items: flex-start;
 	justify-content: flex-start;
 	border-right: 1px solid #dbdbdb;
+	overflow: auto;
 `;
 export default function Contacts() {
 	const { currentUser } = useAuth();
@@ -37,7 +39,7 @@ export default function Contacts() {
 				<h4>{currentUser.displayName}</h4>
 			</ContactHeader>
 			<ContactBody>
-				<ContactsProfiles/>
+				<ContactsProfiles />
 			</ContactBody>
 		</Container>
 	);
