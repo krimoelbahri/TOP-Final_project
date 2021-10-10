@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../../context/AuthContext";
+import ContactsProfiles from "./ContactsProfiles";
 
 const Container = styled.div`
 	height: 100%;
@@ -35,7 +36,9 @@ export default function Contacts() {
 			<ContactHeader>
 				<h4>{currentUser.displayName}</h4>
 			</ContactHeader>
-			<ContactBody></ContactBody>
+			<ContactBody>
+				<ContactsProfiles/>
+			</ContactBody>
 		</Container>
 	);
 }
