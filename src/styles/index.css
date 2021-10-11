@@ -1,12 +1,8 @@
-html {
-	width: 100%;
-	height: 100%;
-}
-body {
-	width: 100%;
-	height: 100%;
-}
-#root{
-	width: 100%;
-	height: 100%;
+@font-face {
+	font-family: "Instagram new";
+	font-style: normal;
+	font-weight: normal;
+	src: local("Instagram new"),
+		url("./instagram-new/Demo_Fonts/Fontspring-DEMO-blue_vinyl_regular_ps_ot.otf")
+			format("woff");
 }
