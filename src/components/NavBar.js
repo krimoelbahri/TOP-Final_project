@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import SearchDiv from "./Styled Components/SearchDiv";
-import HeaderDiv from "./Styled Components/HederDiv";
+import SearchDiv from "./Styled/SearchDiv";
+import HeaderDiv from "./Styled/HederDiv";
 import SearchInput from "./SearchInput";
 import { useAuth } from "../context/AuthContext";
 

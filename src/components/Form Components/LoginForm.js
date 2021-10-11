@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Div from "../Styled Components/Div";
-import FormConatiner from "../Styled Components/FormConatiner";
-import { Logo, FormDiv, Label } from "../Styled Components/FormStyledComponents";
+import Div from "../Styled/Div";
+import FormConatiner from "../Styled/FormConatiner";
+import { Logo, FormDiv, Label } from "../Styled/FormStyledComponents";
 import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";

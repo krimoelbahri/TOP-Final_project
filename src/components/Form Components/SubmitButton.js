@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../Styled Components/Button";
+import { Button } from "../Styled/Button";
 
 const StyledSubmitButton = styled(Button)`
 	display: flex;

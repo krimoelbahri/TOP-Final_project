@@ -2,7 +2,7 @@ import React from "react";
 import { FacebookAuthProvider } from "firebase/auth";
 import LoginForm from "../components/Form Components/LoginForm";
 import styled from "styled-components";
-import Container from "../components/Styled Components/FormConatiner";
+import Container from "../components/Styled/FormConatiner";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
