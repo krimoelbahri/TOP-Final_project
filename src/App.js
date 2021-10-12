@@ -1,4 +1,5 @@
 import React from "react";
+import GlobalStyling from "./components/Styled/General.styling";
 import { HashRouter, Switch } from "react-router-dom";
 import { AuthPrivateRoute, HomePrivateRoute } from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -7,19 +8,21 @@ import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Messages from "./routes/Messages";
 import "./styles/reset.css";
-import "./styles/App.css";
 
 function App() {
 	return (
 		<HashRouter className='App'>
-			<AuthProvider>
-				<Switch>
-					<HomePrivateRoute exact path='/' component={Home} />
-					<HomePrivateRoute exact path='/inbox' component={Messages} />
-					<AuthPrivateRoute exact path='/login' component={Login} />
-					<AuthPrivateRoute exact path='/signup' component={SignUp} />
-				</Switch>
-			</AuthProvider>
+			<>
+				<AuthProvider>
+					<Switch>
+						<HomePrivateRoute exact path='/' component={Home} />
+						<HomePrivateRoute exact path='/inbox' component={Messages} />
+						<AuthPrivateRoute exact path='/login' component={Login} />
+						<AuthPrivateRoute exact path='/signup' component={SignUp} />
+					</Switch>
+				</AuthProvider>
+				<GlobalStyling />
+			</>
 		</HashRouter>
 	);
 }
