@@ -1,80 +1,45 @@
 import React from "react";
-import styled from "styled-components";
-import SearchDiv from "./Styled/SearchDiv";
-import HeaderDiv from "./Styled/HederDiv";
 import SearchInput from "./SearchInput";
 import { useAuth } from "../context/AuthContext";
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	min-width: 100%;
-	height: 55px;
-	border-bottom: 1px solid #dbdbdb;
-	background-color: white;
-	position: fixed;
-	z-index: 10;
-	top: 0;
-`;
-
-const Wraper = styled.div`
-	min-width: 300px;
-	display: flex;
-	justify-content: ${(props) => props.justifyContent};
-`;
-const Icon = styled.div`
-	width: 20px;
-	height: 20px;
-	margin-left: 20px;
-`;
-const Img = styled.img`
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-`;
+import {
+	Container,
+	StyledNavBar,
+	StyledSearch,
+	Wraper,
+} from "./Styled/NavBar.styled";
 
 export default function NavBar() {
 	const { currentUser } = useAuth();
 	return (
 		<Container>
-			<HeaderDiv>
+			<StyledNavBar>
 				<Wraper justifyContent='flex-start' className='header-logo'>
 					Fakegram
 				</Wraper>
-				<SearchDiv>
+				<StyledSearch>
 					<SearchInput />
-				</SearchDiv>
+				</StyledSearch>
 				<Wraper justifyContent='flex-end' className='header-icons'>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							alignItems: "center",
-						}}>
-						<Icon>
+					<div>
+						<span>
 							<i className='bi bi-house-door'></i>
-						</Icon>
-						<Icon>
+						</span>
+						<span>
 							<i className='bi bi-chat'></i>
-						</Icon>
-						<Icon>
+						</span>
+						<span>
 							<i className='far fa-compass'></i>
-						</Icon>
-						<Icon>
+						</span>
+						<span>
 							<i className='bi bi-heart'></i>
-						</Icon>
+						</span>
 
-						<Icon
-							style={{
-								border: "1px solid black",
-								borderRadius: "50%",
-							}}>
-							<Img src={currentUser.photoURL} alt='PP' />
-						</Icon>
+						<span>
+							<img src={currentUser.photoURL} alt='PP' />
+						</span>
 					</div>
 				</Wraper>
-			</HeaderDiv>
+			</StyledNavBar>
 		</Container>
 	);
 }
