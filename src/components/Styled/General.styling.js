@@ -46,7 +46,7 @@ body {
 	font-weight: unset;
 }
 .header-icons {
-	font-size: 21px;;
+	font-size: 22px;;
 }
 `;
 
