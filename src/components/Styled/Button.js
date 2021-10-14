@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
 	background: 0 0;
 	border: 0;
 	box-sizing: border-box;
@@ -10,4 +10,17 @@ const Button = styled.button`
 	text-align: center;
 	width: auto;
 `;
-export { Button }
+export const StyledSubmitButton = styled(Button)`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 4px;
+	color: ${(props) => props.fontColor};
+	opacity: ${(props) => props.fontOpacity};
+	position: relative;
+	border: 1px solid transparent;
+	background-color: ${(props) =>
+		props.disabled ? props.disabledBackgroundColor : props.backgroundColor};
+	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+`;
