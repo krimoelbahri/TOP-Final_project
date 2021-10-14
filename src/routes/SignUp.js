@@ -1,7 +1,7 @@
 import React from "react";
 import SignUpForm from "../components/Form Components/SignUpForm";
 import styled from "styled-components";
-import Container from "../components/Styled/FormConatiner";
+import { FormConatiner } from "../components/Styled/Form.styled";
 import { Link } from "react-router-dom";
 
 const LoginContainer = styled.div`
@@ -20,16 +20,13 @@ export default function SignUp() {
 	return (
 		<LoginContainer>
 			<SignUpForm />
-			<Container>
+			<FormConatiner>
 				<div>
-					<p
-						style={{
-							margin: "15px",
-						}}>
+					<p>
 						Have an account? <StyledLink to='/login'>Log in</StyledLink>
 					</p>
 				</div>
-			</Container>
+			</FormConatiner>
 		</LoginContainer>
 	);
 }

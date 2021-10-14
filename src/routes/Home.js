@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import Main from "../components/Home Components/Main";
+import Main from "../components/Main Home Components/Main";
 import { Container } from "../components/Styled/Home.styled";
 
 

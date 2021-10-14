@@ -2,7 +2,7 @@ import React from "react";
 import { FacebookAuthProvider } from "firebase/auth";
 import LoginForm from "../components/Form Components/LoginForm";
 import styled from "styled-components";
-import Container from "../components/Styled/FormConatiner";
+import { FormConatiner } from "../components/Styled/Form.styled";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -38,7 +38,7 @@ export default function Login() {
 	return (
 		<LoginContainer>
 			<LoginForm handleFacebookLogin={handleFacebookLogin} />
-			<Container>
+			<FormConatiner>
 				<div>
 					<p
 						style={{
@@ -47,7 +47,7 @@ export default function Login() {
 						Don't have an account? <StyledLink to='/signup'>Sign up</StyledLink>
 					</p>
 				</div>
-			</Container>
+			</FormConatiner>
 		</LoginContainer>
 	);
 }
