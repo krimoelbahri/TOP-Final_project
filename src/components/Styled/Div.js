@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Div = styled.div`
 	margin: 8px 40px;
 	width: 75%;
-	display: flex;
 	flex-direction: ${(props) => props.flexDirection};
 	padding: 0;
 `;
