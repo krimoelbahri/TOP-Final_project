@@ -9,6 +9,10 @@ const Container = styled.div`
 	min-width: 350px;
 	display: flex;
 	flex-direction: column;
+	border-right: 1px solid #dbdbdb;
+	overflow: hidden;
+
+
 `;
 const ContactHeader = styled.div`
 	width: 100%;
@@ -18,7 +22,6 @@ const ContactHeader = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	border-right: 1px solid #dbdbdb;
 	border-bottom: 1px solid #dbdbdb;
 `;
 const ContactBody = styled.div`
@@ -28,7 +31,6 @@ const ContactBody = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	border-right: 1px solid #dbdbdb;
 	overflow: auto;
 `;
 export default function Contacts() {
