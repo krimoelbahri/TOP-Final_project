@@ -1,27 +1,18 @@
 import React, { useState, useRef } from "react";
-import styled from "styled-components";
 import Div from "../Styled/Div";
-import FormConatiner from "../Styled/FormConatiner";
-import { Logo, FormDiv, Label } from "../Styled/FormStyledComponents";
+import {
+	FormConatiner,
+	Logo,
+	FormDiv,
+	Label,
+	OrDiv,
+	LineDiv,
+	StyledLink,
+} from "../Styled/Form.styled";
 import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
 
-const OrDiv = styled(Div)`
-	color: #8e8e8e;
-	align-items: center;
-`;
-const LineDiv = styled(Div)`
-	margin: 0;
-	border-top: 0.5pt solid #8e8e8e;
-`;
-const StyledLink = styled.a`
-	color: #00376b;
-	font-size: 12px;
-	line-height: 14px;
-	margin-top: 12px;
-	text-align: center;
-`;
 export default function LoginForm(props) {
 	const { handleFacebookLogin } = props;
 	const [disabled, setDisabled] = useState("disabled");

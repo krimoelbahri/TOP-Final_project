@@ -1,20 +1,16 @@
 import React, { useState, useRef } from "react";
-import styled from "styled-components";
 import Div from "../Styled/Div";
-import FormConatiner from "../Styled/FormConatiner";
-import { Logo, FormDiv, Label } from "../Styled/FormStyledComponents";
+import {
+	FormConatiner,
+	Logo,
+	FormDiv,
+	Label,
+	OrDiv,
+	LineDiv,
+} from "../Styled/Form.styled";
 import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
-
-const OrDiv = styled(Div)`
-	color: #8e8e8e;
-	align-items: center;
-`;
-const LineDiv = styled(Div)`
-	margin: 0;
-	border-top: 0.5pt solid #8e8e8e;
-`;
 
 export default function SignUpForm() {
 	const [disabled, setDisabled] = useState("disabled");
