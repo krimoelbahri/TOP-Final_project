@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { InboxContainer } from "../Styled/Inbox.styled";
+import InboxConversation from "./InboxConversation";
+import InboxDefault from "./InboxDefault";
 
-const Container = styled.div`
-	height: 100%;
-	width: 60%;
-	min-width: 350px;
-	display: flex;
-	flex-direction: row;
-`;
 export default function Inbox() {
-	return <Container></Container>;
+	const [defaultInbox, setDefaultInbox] = useState(false);
+	return (
+		<InboxContainer>
+			{defaultInbox && <InboxDefault />}
+			{!defaultInbox && <InboxConversation />}
+		</InboxContainer>
+	);
 }
