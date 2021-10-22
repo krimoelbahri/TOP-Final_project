@@ -7,9 +7,8 @@ import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Messages from "./routes/Messages";
-
-import "./styles/reset.css";
 import Profile from "./routes/Profile";
+import "./styles/reset.css";
 
 function App() {
 	return (
