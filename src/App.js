@@ -7,7 +7,9 @@ import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
 import Home from "./routes/Home";
 import Messages from "./routes/Messages";
+
 import "./styles/reset.css";
+import Profile from "./routes/Profile";
 
 function App() {
 	return (
@@ -17,6 +19,7 @@ function App() {
 					<Switch>
 						<HomePrivateRoute exact path='/' component={Home} />
 						<HomePrivateRoute exact path='/inbox' component={Messages} />
+						<HomePrivateRoute exact path='/profile' component={Profile} />
 						<AuthPrivateRoute exact path='/login' component={Login} />
 						<AuthPrivateRoute exact path='/signup' component={SignUp} />
 					</Switch>
