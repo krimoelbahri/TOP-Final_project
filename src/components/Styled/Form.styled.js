@@ -82,4 +82,5 @@ export const OrDiv = styled(Div)`
 export const LineDiv = styled(Div)`
 	margin: 0;
 	border-top: 0.5pt solid #8e8e8e;
+	width: 42%;
 `;
