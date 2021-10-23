@@ -13,6 +13,7 @@ export const StyledNavBar = styled.div`
 	max-width: 950px;
 	width: 90%;
 	height: 55px;
+	justify-content: space-between;
 	align-items: center;
 	flex-direction: row;
 	padding: 0 15px;
