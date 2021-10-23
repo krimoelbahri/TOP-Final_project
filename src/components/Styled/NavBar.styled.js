@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 export const StyledNavBar = styled.div`
 	max-width: 950px;
+	width: 90%;
 	height: 55px;
 	align-items: center;
 	flex-direction: row;
@@ -18,15 +19,17 @@ export const StyledNavBar = styled.div`
 `;
 export const StyledSearch = styled.div`
 	font-size: 16px;
-	min-width: 150px;
-	width: 200px;
+	min-width: 200px;
 	height: 28px;
 	line-height: 0;
 	flex-direction: row;
 	align-items: center;
+	@media (max-width: 700px) {
+		display: none;
+	}
 `;
 export const Wraper = styled.div`
-	min-width: 300px;
+	width: calc(100% / 3);
 	justify-content: ${(props) => props.justifyContent};
 	div {
 		flex-direction: row;
@@ -38,9 +41,12 @@ export const Wraper = styled.div`
 		height: 22px;
 		margin-left: 20px;
 		img {
-			width: 100%;
 			height: 100%;
 			border-radius: 50%;
 		}
+	}
+	@media (max-width: 700px) {
+		width: calc(100% / 2);
+		justify-content: space-evenly;
 	}
 `;
