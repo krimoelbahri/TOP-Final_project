@@ -32,11 +32,7 @@ export const StyledSearch = styled.div`
 export const Wraper = styled.div`
 	width: calc(100% / 3);
 	justify-content: ${(props) => props.justifyContent};
-	div {
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-end;
-	}
+
 	span {
 		width: 22px;
 		height: 22px;
@@ -50,4 +46,9 @@ export const Wraper = styled.div`
 		width: calc(100% / 2);
 		justify-content: space-evenly;
 	}
+`;
+export const WrapperChild = styled.div`
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
 `;
