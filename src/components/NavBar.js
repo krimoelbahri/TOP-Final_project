@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import Overlay from "./Overlay";
 import styled from "styled-components";
-import Activity from "./Activity";
+import { Activity, Profile } from "./DropDown";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -19,14 +19,25 @@ export const StyledLink = styled(Link)`
 `;
 export default function NavBar() {
 	const [heart, setHeart] = useState(false);
-	const [show, setShow] = useState(false);
+	const [showActivity, setShowActivity] = useState(false);
+	const [showProfile, setShowProfile] = useState(false);
 
 	const location = useLocation();
 	const { currentUser } = useAuth();
 
 	const handleHeart = () => {
 		setHeart(!heart);
-		setShow(!show);
+		setShowActivity(!showActivity);
+		if (showProfile) {
+			setShowProfile(!showProfile);
+		}
+	};
+	const handleProfile = () => {
+		setShowProfile(!showProfile);
+		if (showActivity) {
+			setShowActivity(!showActivity);
+			setHeart(!heart);
+		}
 	};
 	return (
 		<Container>
@@ -64,15 +75,22 @@ export default function NavBar() {
 								<i onClick={handleHeart} className='bi bi-heart'></i>
 							)}
 							<div style={{ marginLeft: "-310px", top: "10px" }}>
-								<Overlay arrowLeft='314px' arrowTop='-6px' show={show}>
+								<Overlay arrowLeft='314px' arrowTop='-6px' show={showActivity}>
 									<Activity />
 								</Overlay>
 							</div>
 						</span>
 						<span>
-							<StyledLink to='/profile'>
-								<img src={currentUser.photoURL} alt='PP' />
-							</StyledLink>
+							<img
+								onClick={handleProfile}
+								src={currentUser.photoURL}
+								alt='PP'
+							/>
+							<div style={{ marginLeft: "-150px", top: "10px" }}>
+								<Overlay arrowLeft='155px' arrowTop='-6px' show={showProfile}>
+									<Profile />
+								</Overlay>
+							</div>
 						</span>
 					</WrapperChild>
 				</Wraper>
