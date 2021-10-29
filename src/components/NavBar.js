@@ -62,7 +62,7 @@ export default function NavBar() {
 						<span>
 							<StyledLink to='/inbox'>
 								{location.pathname === "/inbox" && !heart ? (
-									<i class='bi bi-chat-fill'></i>
+									<i className='bi bi-chat-fill'></i>
 								) : (
 									<i className='bi bi-chat'></i>
 								)}
