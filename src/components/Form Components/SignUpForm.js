@@ -12,7 +12,8 @@ import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
+	const { handleFacebookLogin, handleEmailSignup } = props;
 	const [disabled, setDisabled] = useState("disabled");
 	const idRef = useRef();
 	const passwordRef = useRef();
@@ -25,6 +26,7 @@ export default function SignUpForm() {
 	}
 	function handleSubmit(e) {
 		e.preventDefault();
+		handleEmailSignup(idRef.current.value, passwordRef.current.value);
 	}
 	return (
 		<FormConatiner onSubmit={handleSubmit}>
@@ -41,7 +43,11 @@ export default function SignUpForm() {
 				</p>
 			</Div>
 			<Div flexDirection='column'>
-				<SubmitButton backgroundColor='#0095f6' fontColor='#fff' disabled=''>
+				<SubmitButton
+					onClick={handleFacebookLogin}
+					backgroundColor='#0095f6'
+					fontColor='#fff'
+					disabled=''>
 					<i
 						style={{
 							marginRight: "10px",
@@ -69,7 +75,7 @@ export default function SignUpForm() {
 							onChange={handleChange}
 							inputRef={idRef}
 							inputID='signUpId'
-							ariaLabel='Mobile Number or Email'
+							ariaLabel='Email'
 							type='text'
 						/>
 					</Label>
@@ -78,13 +84,7 @@ export default function SignUpForm() {
 			<FormDiv>
 				<InputDiv>
 					<Label htmlFor='SignUpName'>
-						<FormInput
-							onChange={handleChange}
-							inputRef={passwordRef}
-							inputID='SignUpName'
-							ariaLabel='Full Name'
-							type='text'
-						/>
+						<FormInput inputID='SignUpName' ariaLabel='Full Name' type='text' />
 					</Label>
 				</InputDiv>
 			</FormDiv>
@@ -92,8 +92,6 @@ export default function SignUpForm() {
 				<InputDiv>
 					<Label htmlFor='SignUpUsername'>
 						<FormInput
-							onChange={handleChange}
-							inputRef={passwordRef}
 							inputID='SignUpUsername'
 							ariaLabel='Username'
 							type='text'
@@ -108,7 +106,7 @@ export default function SignUpForm() {
 							onChange={handleChange}
 							inputRef={passwordRef}
 							inputID='signUpPassword'
-							ariaLabel='password'
+							ariaLabel='Password'
 							type='password'
 						/>
 					</Label>
@@ -116,6 +114,7 @@ export default function SignUpForm() {
 			</FormDiv>
 			<Div flexDirection='column'>
 				<SubmitButton
+					onClick={handleSubmit}
 					backgroundColor='#0095f6'
 					disabledBackgroundColor='rgba(0,149,246,.3)'
 					fontColor='#fff'
