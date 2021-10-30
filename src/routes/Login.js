@@ -1,30 +1,31 @@
 import React from "react";
 import LoginForm from "../components/Form Components/LoginForm";
 import { Container, StyledLink } from "../components/Styled/Auth.styled";
-import { FacebookAuthProvider } from "firebase/auth";
 import { FormConatiner } from "../components/Styled/Form.styled";
 import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
-	const { loginWithFacebook } = useAuth();
+	const { loginWithFacebook, login } = useAuth();
 	async function handleFacebookLogin() {
 		try {
-			let result = await loginWithFacebook();
-			const user = result.user;
-			const credential = FacebookAuthProvider.credentialFromResult(result);
-			const accessToken = credential.accessToken;
-			console.log({ user, credential, accessToken });
+			await loginWithFacebook();
 		} catch (error) {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			const email = error.email;
-			const credential = FacebookAuthProvider.credentialFromError(error);
-			console.log({ errorCode, errorMessage, email, credential });
+			console.log(error);
+		}
+	}
+	async function handleEmailLogin(email, password) {
+		try {
+			await login(email, password);
+		} catch (error) {
+			console.log(error);
 		}
 	}
 	return (
 		<Container>
-			<LoginForm handleFacebookLogin={handleFacebookLogin} />
+			<LoginForm
+				handleFacebookLogin={handleFacebookLogin}
+				handleEmailLogin={handleEmailLogin}
+			/>
 			<FormConatiner>
 				<div>
 					<p>
