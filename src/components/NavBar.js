@@ -12,6 +12,7 @@ import {
 	StyledSearch,
 	Wraper,
 	WrapperChild,
+	Span,
 } from "./Styled/NavBar.styled";
 
 export const StyledLink = styled(Link)`
@@ -23,8 +24,10 @@ export default function NavBar() {
 	const [showProfile, setShowProfile] = useState(false);
 
 	const location = useLocation();
-	const { currentUser } = useAuth();
-
+	const { currentUser, logout } = useAuth();
+	const handleLogOut = () => {
+		logout();
+	};
 	const handleHeart = () => {
 		setHeart(!heart);
 		setShowActivity(!showActivity);
@@ -50,7 +53,7 @@ export default function NavBar() {
 				</StyledSearch>
 				<Wraper justifyContent='flex-end' className='header-icons'>
 					<WrapperChild>
-						<span>
+						<Span>
 							<StyledLink to='/'>
 								{location.pathname === "/" && !heart ? (
 									<i className='bi bi-house-door-fill'></i>
@@ -58,8 +61,8 @@ export default function NavBar() {
 									<i className='bi bi-house-door'></i>
 								)}
 							</StyledLink>
-						</span>
-						<span>
+						</Span>
+						<Span>
 							<StyledLink to='/inbox'>
 								{location.pathname === "/inbox" && !heart ? (
 									<i className='bi bi-chat-fill'></i>
@@ -67,8 +70,8 @@ export default function NavBar() {
 									<i className='bi bi-chat'></i>
 								)}
 							</StyledLink>
-						</span>
-						<span>
+						</Span>
+						<Span>
 							{heart ? (
 								<i onClick={handleHeart} className='bi bi-heart-fill'></i>
 							) : (
@@ -79,8 +82,8 @@ export default function NavBar() {
 									<Activity />
 								</Overlay>
 							</div>
-						</span>
-						<span>
+						</Span>
+						<Span show={showProfile}>
 							<img
 								onClick={handleProfile}
 								src={currentUser.photoURL}
@@ -88,10 +91,10 @@ export default function NavBar() {
 							/>
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
 								<Overlay arrowLeft='155px' arrowTop='-6px' show={showProfile}>
-									<Profile />
+									<Profile handleLogOut={handleLogOut} />
 								</Overlay>
 							</div>
-						</span>
+						</Span>
 					</WrapperChild>
 				</Wraper>
 			</StyledNavBar>
