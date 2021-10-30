@@ -14,7 +14,7 @@ import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
 
 export default function LoginForm(props) {
-	const { handleFacebookLogin } = props;
+	const { handleFacebookLogin, handleEmailLogin } = props;
 	const [disabled, setDisabled] = useState("disabled");
 	const idRef = useRef();
 	const passwordRef = useRef();
@@ -25,11 +25,11 @@ export default function LoginForm(props) {
 			setDisabled("disabled");
 		}
 	}
-	function handleSubmit(e) {
-		e.preventDefault();
+	function handleSubmit() {
+		handleEmailLogin(idRef.current.value, passwordRef.current.value);
 	}
 	return (
-		<FormConatiner onSubmit={handleSubmit}>
+		<FormConatiner>
 			<Logo className='logo'>Fakegram</Logo>
 			<FormDiv>
 				<InputDiv>
@@ -38,7 +38,7 @@ export default function LoginForm(props) {
 							onChange={handleChange}
 							inputRef={idRef}
 							inputID='loginId'
-							ariaLabel='Phone number, username, or email'
+							ariaLabel='Email'
 							type='text'
 						/>
 					</Label>
@@ -51,7 +51,7 @@ export default function LoginForm(props) {
 							onChange={handleChange}
 							inputRef={passwordRef}
 							inputID='loginPassword'
-							ariaLabel='password'
+							ariaLabel='Password'
 							type='password'
 						/>
 					</Label>
@@ -59,6 +59,7 @@ export default function LoginForm(props) {
 			</FormDiv>
 			<Div flexDirection='column'>
 				<SubmitButton
+					onClick={handleSubmit}
 					backgroundColor='#0095f6'
 					disabledBackgroundColor='rgba(0,149,246,.3)'
 					fontColor='#fff'
