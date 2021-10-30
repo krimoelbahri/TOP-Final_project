@@ -33,20 +33,25 @@ export const Wraper = styled.div`
 	width: calc(100% / 3);
 	justify-content: ${(props) => props.justifyContent};
 
-	span {
-		width: 22px;
-		height: 22px;
-		margin-left: 20px;
-		img {
-			height: 100%;
-			border-radius: 50%;
-		}
-	}
 	@media (max-width: 700px) {
 		width: calc(100% / 2);
 		justify-content: space-evenly;
 	}
 `;
+export const Span = styled.span`
+	text-align: center;
+	width: 25px;
+	height: 25px;
+	margin-left: 20px;
+	border-radius: 50%;
+	border: ${({ show }) => (show ? "1px solid black" : "none")};
+	img {
+		margin: 8% 0;
+		height: 82%;
+		border-radius: 50%;
+	}
+`;
+
 export const WrapperChild = styled.div`
 	flex-direction: row;
 	align-items: center;
