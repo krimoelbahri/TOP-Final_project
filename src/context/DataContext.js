@@ -23,16 +23,12 @@ export function DataProvider({ children }) {
 		const data = await getDoc(doc(db, collectionName, document));
 		return data;
 	}
-	
+
 	async function setData(collectionName, data) {
 		await setDoc(doc(collection(db, collectionName)), data);
 	}
 
 	const value = { getData, setData };
 
-	return (
-		<DataContext.Provider value={value}>
-			{children}
-		</DataContext.Provider>
-	);
+	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
