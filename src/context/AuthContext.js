@@ -3,9 +3,9 @@ import {
 	FacebookAuthProvider,
 	signInWithPopup,
 	updateProfile,
+	updateEmail,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
-	signInAnonymously,
 	signOut,
 } from "firebase/auth";
 import React, { useContext, useState, useEffect } from "react";
@@ -29,17 +29,20 @@ export function AuthProvider({ children }) {
 	function login(email, password) {
 		return signInWithEmailAndPassword(auth, email, password);
 	}
+	function logout() {
+		return signOut(auth);
+	}
 	function loginWithFacebook() {
 		return signInWithPopup(auth, provider);
 	}
-	function updateProfileName(name) {
-		return updateProfile(auth.currentUser, { displayName: name });
+	function updateProfileNameAndImage(name, Url) {
+		return updateProfile(auth.currentUser, {
+			displayName: name,
+			photoURL: Url,
+		});
 	}
-	function guestLogin() {
-		return signInAnonymously(auth);
-	}
-	function logout() {
-		return signOut(auth);
+	function updateProfileEmail(email) {
+		return updateEmail(auth.currentUser, email);
 	}
 
 	useEffect(() => {
@@ -59,8 +62,8 @@ export function AuthProvider({ children }) {
 		setCurrentName,
 		login,
 		loginWithFacebook,
-		updateProfileName,
-		guestLogin,
+		updateProfileNameAndImage,
+		updateProfileEmail,
 		signup,
 		logout,
 	};
