@@ -28,6 +28,8 @@ export default function NavBar() {
 	const handleLogOut = () => {
 		logout();
 	};
+
+	//this will handle filling heart icon and showing activity dropdown
 	const handleHeart = () => {
 		setHeart(!heart);
 		setShowActivity(!showActivity);
@@ -35,6 +37,8 @@ export default function NavBar() {
 			setShowProfile(!showProfile);
 		}
 	};
+
+	//this will handle showing profile dropdown
 	const handleProfile = () => {
 		setShowProfile(!showProfile);
 		if (showActivity) {
