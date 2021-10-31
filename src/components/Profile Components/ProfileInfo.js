@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileInfoContainer, ProfileBio } from "../Styled/Profile.styled";
 import { useAuth } from "../../context/AuthContext";
+import { StyledLink } from "../Styled/DropDown.styled";
 
 export default function ProfileInfo() {
 	const { currentUser } = useAuth();
@@ -9,7 +10,9 @@ export default function ProfileInfo() {
 		<ProfileInfoContainer>
 			<div>
 				<h3> {currentUser.displayName} </h3>
-				<button>Edit profile</button>
+				<StyledLink to='/profile/edit'>
+					<button>Edit profile</button>
+				</StyledLink>
 			</div>
 			<ul>
 				<li>
