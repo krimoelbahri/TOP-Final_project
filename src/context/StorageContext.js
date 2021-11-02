@@ -10,8 +10,8 @@ export function useStorage() {
 export function StorageProvider({ children }) {
 	const storage = getStorage();
 
-	function uploadImages(reference) {
-		return uploadBytes(ref(storage, reference), File);
+	function uploadImages(reference, file) {
+		return uploadBytes(ref(storage, reference), file);
 	}
 	function DownloadImages(reference) {
 		return getDownloadURL(ref(storage, reference));
