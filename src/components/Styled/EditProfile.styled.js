@@ -15,18 +15,23 @@ export const MainContainer = styled.div`
 `;
 export const EditForm = styled.form`
 	display: flex;
-	padding: 20px;
+	flex-direction: column;
+	padding: 20px 20px 20px 100px;
 	width: 100%;
 	max-width: 600px;
 	background-color: #fff;
 	border: 1px solid #dbdbdb;
 	border-radius: 5px;
 `;
-export const EditImage = styled.div`
+export const EditImageContainer = styled.div`
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
 	height: 60px;
+`;
+export const EditInfoContainer = styled.div`
+	width: 100%;
+	margin: 20px 0;
 `;
 export const UploadImageContainer = styled.div`
 	height: 100%;
@@ -38,7 +43,10 @@ export const ProfilePictureContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-right: 30px;
-
+	div {
+		width: 100%;
+		height: 100%;
+	}
 	img {
 		width: 100%;
 		height: 100%;
