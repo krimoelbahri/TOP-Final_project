@@ -40,14 +40,14 @@ export const Wraper = styled.div`
 `;
 export const Span = styled.span`
 	text-align: center;
-	width: 25px;
-	height: 25px;
+	width: 22px;
+	height: 22px;
 	margin-left: 20px;
 	border-radius: 50%;
 	border: ${({ show }) => (show ? "1px solid black" : "none")};
 	img {
-		margin: 8% 0;
-		height: 82%;
+		height: 90%;
+		width: 90%;
 		border-radius: 50%;
 	}
 `;
