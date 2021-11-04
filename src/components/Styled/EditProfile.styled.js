@@ -32,6 +32,33 @@ export const EditImageContainer = styled.div`
 export const EditInfoContainer = styled.div`
 	width: 100%;
 	margin: 20px 0;
+	label {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		width: 80%;
+		line-height: 28px;
+		margin: 10px 0;
+		span {
+			display: flex;
+			width: 25%;
+			margin-right: 30px;
+			flex-direction: row;
+			justify-content: flex-end;
+			font-size: 16px;
+		}
+		input,
+		textarea {
+			border: 1px solid #dbdbdb;
+			border-radius: 3px;
+			padding: 0 15px;
+			flex: 1 0 auto;
+			height: 32px;
+			margin: 0;
+			overflow: hidden;
+			resize: vertical;
+		}
+	}
 `;
 export const UploadImageContainer = styled.div`
 	height: 100%;
@@ -43,6 +70,7 @@ export const ProfilePictureContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-right: 30px;
+	margin-left: 14%;
 	div {
 		width: 100%;
 		height: 100%;
