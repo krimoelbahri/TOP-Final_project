@@ -21,9 +21,9 @@ export default function EditImage() {
 		let image = fileInput.current.files[0];
 		setLoading(true);
 		try {
-			uploadImages(`profilepic/${currentUser.uid}/profile-pic.jpg`, image).then(
+			uploadImages(`profilepic/${currentUser.uid}/profile-pic`, image).then(
 				() => {
-					DownloadImages(`profilepic/${currentUser.uid}/profile-pic.jpg`).then(
+					DownloadImages(`profilepic/${currentUser.uid}/profile-pic`).then(
 						(url) => {
 							updateProfileNameAndImage(currentUser.displayName, url).then(
 								() => {
