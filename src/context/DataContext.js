@@ -24,11 +24,14 @@ export function DataProvider({ children }) {
 		return data;
 	}
 
-	async function setData(collectionName, data) {
-		await setDoc(doc(collection(db, collectionName)), data);
+	async function setData(collectionName, document, data) {
+		await setDoc(doc(db, collectionName, document), data);
+	}
+	function userData(name, userName, photoUrl, Bio, website) {
+		return { name, userName, photoUrl, Bio, website };
 	}
 
-	const value = { getData, setData };
+	const value = { getData, setData, userData };
 
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
