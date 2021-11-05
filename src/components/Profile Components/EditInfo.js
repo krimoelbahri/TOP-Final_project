@@ -1,17 +1,54 @@
 import React from "react";
-import { useAuth } from "../../context/AuthContext";
+import { StyledSubmitButton } from "../Styled/Button";
 import { EditInfoContainer } from "../Styled/EditProfile.styled";
 
-export default function EditInfo() {
-	const { currentUser } = useAuth();
+export default function EditInfo(props) {
+	const { handleSubmit, handleChange, data } = props;
+
 	return (
 		<EditInfoContainer>
-			<InfoInput type='text' info='Name' value='Name' />
-			<InfoInput type='text' info='Username' value={currentUser.displayName} />
-			<InfoInput type='text' info='Website' value='Website' />
-			<InfoTextarea info='Bio' value='Bio' />
-			<InfoInput type='text' info='Email' value='Email' />
-			<InfoInput type='text' info='Phone Number' value='Phone Number' />
+			<InfoInput
+				onChange={handleChange}
+				type='text'
+				info='Name'
+				value={data.Name}
+			/>
+			<InfoInput
+				onChange={handleChange}
+				type='text'
+				info='Username'
+				value={data.Username}
+			/>
+			<InfoInput
+				onChange={handleChange}
+				type='text'
+				info='Website'
+				value={data.Website}
+			/>
+			<InfoTextarea onChange={handleChange} info='Bio' value={data.Bio} />
+			<InfoInput
+				onChange={handleChange}
+				type='text'
+				info='Email'
+				value={data.Email}
+			/>
+			<InfoInput
+				onChange={handleChange}
+				type='text'
+				info='PhoneNumber'
+				value={data.PhoneNumber}
+			/>
+			<StyledSubmitButton
+				backgroundColor='#0095f6'
+				onClick={handleSubmit}
+				fontColor='#fff'
+				style={{
+					width: "fit-content",
+					alignSelf: "center",
+				}}
+				type='submit'>
+				Submit
+			</StyledSubmitButton>
 		</EditInfoContainer>
 	);
 }
@@ -22,7 +59,11 @@ function InfoInput(props) {
 			<span>
 				<strong>{info}</strong>
 			</span>
-			<input type={type} defaultValue={value} onChange={onChange}></input>
+			<input
+				id={info}
+				type={type}
+				defaultValue={value}
+				onChange={onChange}></input>
 		</label>
 	);
 }
@@ -34,6 +75,7 @@ function InfoTextarea(props) {
 				<strong>{info}</strong>
 			</span>
 			<textarea
+				id={info}
 				style={{ height: "70px", padding: "5px 10px" }}
 				defaultValue={value}
 				onChange={onChange}></textarea>
