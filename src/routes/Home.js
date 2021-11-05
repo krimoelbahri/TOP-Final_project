@@ -5,33 +5,38 @@ import { Container } from "../components/Styled/Home.styled";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 
-export default function Home(props) {
-	const { userName, name, url } = props;
+export default function Home() {
 	const { getData, setData, userData } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
+		console.log("i am at the top");
 		if (!currentUser.displayName) {
-			updateProfileNameAndImage(userName, url).then(() => {
+			updateProfileNameAndImage("User", "/").then(() => {
 				setLoading(false);
 			});
 		}
 		setLoading(false);
+		console.log("i am getting out of effect1");
 	}, []);
 	useEffect(() => {
+		console.log("i am at the top of effect 2");
+
 		getData(currentUser.uid, "User").then((result) => {
 			if (!result.exists()) {
 				setData(
 					currentUser.uid,
 					"User",
 					userData(
-						"name",
+						"",
 						currentUser.displayName,
 						currentUser.photoURL,
+						currentUser.email,
+						"",
 						"",
 						""
 					)
-				);
+				).then(() => console.log("i am getting out of effect2"));
 			}
 		});
 	}, []);
