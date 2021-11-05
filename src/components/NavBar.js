@@ -6,6 +6,7 @@ import { Activity, Profile } from "./DropDown";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useData } from "../context/DataContext";
 import {
 	Container,
 	StyledNavBar,
@@ -25,6 +26,8 @@ export default function NavBar() {
 
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
+	const { userPic } = useData();
+
 	const handleLogOut = () => {
 		logout();
 	};
@@ -90,7 +93,7 @@ export default function NavBar() {
 						<Span show={showProfile}>
 							<img
 								onClick={handleProfile}
-								src={currentUser.photoURL}
+								src={currentUser.photoURL ? currentUser.photoURL : userPic}
 								alt='PP'
 							/>
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
