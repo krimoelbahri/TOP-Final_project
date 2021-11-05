@@ -1,10 +1,12 @@
 import React from "react";
 import { ProfileInfoContainer, ProfileBio } from "../Styled/Profile.styled";
 import { useAuth } from "../../context/AuthContext";
+import { useData } from "../../context/DataContext";
 import { StyledLink } from "../Styled/DropDown.styled";
 
 export default function ProfileInfo() {
 	const { currentUser } = useAuth();
+	const { currentUserData } = useData();
 
 	return (
 		<ProfileInfoContainer>
@@ -26,9 +28,9 @@ export default function ProfileInfo() {
 				</li>
 			</ul>
 			<ProfileBio>
-				<span>Elbahri</span>
+				<span>{currentUserData.Name}</span>
 				<br />
-				<p>Lorem ipsum jaajjds</p>
+				<p>{currentUserData.Bio}</p>
 			</ProfileBio>
 		</ProfileInfoContainer>
 	);
