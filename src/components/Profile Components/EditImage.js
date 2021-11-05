@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useStorage } from "../../context/StorageContext";
+import { useData } from "../../context/DataContext";
 import {
 	EditImageContainer,
 	ProfilePictureContainer,
@@ -8,11 +9,15 @@ import {
 } from "../Styled/EditProfile.styled";
 import { StyledSubmitButton } from "../Styled/Button";
 
-export default function EditImage() {
-	const [loading, setLoading] = useState(false);
+export default function EditImage(props) {
+	const { data } = props;
+	//using costum Hooks
+	const { setData } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const { uploadImages, DownloadImages } = useStorage();
+	//using react Hooks
 	const fileInput = useRef();
+	const [loading, setLoading] = useState(false);
 
 	function handleImageUpload() {
 		fileInput.current.click();
@@ -27,8 +32,8 @@ export default function EditImage() {
 						(url) => {
 							updateProfileNameAndImage(currentUser.displayName, url).then(
 								() => {
-									console.log(currentUser);
 									setLoading(false);
+									setData(currentUser.uid, "User", { ...data, photoUrl: url });
 								}
 							);
 						}
