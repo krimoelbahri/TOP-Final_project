@@ -48,6 +48,7 @@ export const Span = styled.span`
 	img {
 		height: 90%;
 		width: 90%;
+		margin: 7% 0;
 		border-radius: 50%;
 	}
 `;
