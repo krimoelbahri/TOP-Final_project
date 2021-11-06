@@ -1,15 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-	doc,
-	getDoc,
-	getDocs,
-	setDoc,
-	where,
-	orderBy,
-	limit,
-	collection,
-	query,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import userPic from "../assets/user.png";
 
