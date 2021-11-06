@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import Overlay from "./Overlay";
+import Modal from "./Modal";
 import styled from "styled-components";
 import { Activity, Profile } from "./DropDown";
 import { useLocation } from "react-router";
@@ -23,7 +24,7 @@ export default function NavBar() {
 	const [heart, setHeart] = useState(false);
 	const [showActivity, setShowActivity] = useState(false);
 	const [showProfile, setShowProfile] = useState(false);
-
+	const [isModalVisible, setIsModalVisible] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
 	const { userPic } = useData();
@@ -48,6 +49,9 @@ export default function NavBar() {
 			setShowActivity(!showActivity);
 			setHeart(!heart);
 		}
+	};
+	const handleAddPost = () => {
+		setIsModalVisible(true);
 	};
 	return (
 		<Container>
@@ -78,6 +82,9 @@ export default function NavBar() {
 								)}
 							</StyledLink>
 						</Span>
+						<Span onClick={handleAddPost}>
+							<i className='bi bi-plus-square'></i>
+						</Span>
 						<Span>
 							{heart ? (
 								<i onClick={handleHeart} className='bi bi-heart-fill'></i>
@@ -105,6 +112,7 @@ export default function NavBar() {
 					</WrapperChild>
 				</Wraper>
 			</StyledNavBar>
+			<Modal isModalVisible={isModalVisible}></Modal>
 		</Container>
 	);
 }
