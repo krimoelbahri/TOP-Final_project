@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import userPic from "../assets/user.png";
 
@@ -31,11 +31,16 @@ export function DataProvider({ children }) {
 	) {
 		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl };
 	}
+	function userPost(title, photoUrl, likes, comments) {
+		let date = Timestamp.fromDate(new Date());
+		return { title, photoUrl, likes, comments, date };
+	}
 
 	const value = {
 		getData,
 		setData,
 		userData,
+		userPost,
 		currentUserData,
 		setCurrentUserData,
 		userPic,
