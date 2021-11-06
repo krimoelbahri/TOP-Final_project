@@ -30,7 +30,16 @@ export default function ProfileInfo() {
 			<ProfileBio>
 				<span>{currentUserData.Name}</span>
 				<br />
-				<p>{currentUserData.Bio}</p>
+				<p>
+					{currentUserData.Bio}
+					<br />
+					<a
+						style={{ color: "black" }}
+						href={currentUserData.Website}
+						target='_blank'>
+						<em>{currentUserData.Website}</em>
+					</a>
+				</p>
 			</ProfileBio>
 		</ProfileInfoContainer>
 	);
