@@ -16,7 +16,7 @@ export default function Home() {
 			});
 		}
 		setLoading(false);
-	}, []);
+	}, [currentUser.displayName, updateProfileNameAndImage]);
 	useEffect(() => {
 		getData(currentUser.uid, "User").then((result) => {
 			if (!result.exists()) {
@@ -35,7 +35,15 @@ export default function Home() {
 				);
 			}
 		});
-	}, []);
+	}, [
+		currentUser.uid,
+		currentUser.displayName,
+		currentUser.photoURL,
+		currentUser.email,
+		getData,
+		setData,
+		userData,
+	]);
 	return (
 		<Container>
 			<NavBar loading={loading} />
