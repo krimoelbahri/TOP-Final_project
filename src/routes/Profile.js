@@ -30,12 +30,10 @@ export default function Profile() {
 	return (
 		<Container>
 			<NavBar />
-			{!loading && (
-				<ProfilesContainer>
-					<ProfileHeader />
-					<ProfilePosts />
-				</ProfilesContainer>
-			)}
+			<ProfilesContainer>
+				{!loading && <ProfileHeader />}
+				<ProfilePosts />
+			</ProfilesContainer>
 		</Container>
 	);
 }
