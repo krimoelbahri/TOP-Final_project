@@ -10,18 +10,14 @@ export default function Home() {
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		console.log("i am at the top");
 		if (!currentUser.displayName) {
 			updateProfileNameAndImage("User", "/").then(() => {
 				setLoading(false);
 			});
 		}
 		setLoading(false);
-		console.log("i am getting out of effect1");
 	}, []);
 	useEffect(() => {
-		console.log("i am at the top of effect 2");
-
 		getData(currentUser.uid, "User").then((result) => {
 			if (!result.exists()) {
 				setData(
@@ -36,7 +32,7 @@ export default function Home() {
 						"",
 						""
 					)
-				).then(() => console.log("i am getting out of effect2"));
+				);
 			}
 		});
 	}, []);
