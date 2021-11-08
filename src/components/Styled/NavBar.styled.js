@@ -45,6 +45,7 @@ export const Span = styled.span`
 	margin-left: 20px;
 	border-radius: 50%;
 	border: ${({ show }) => (show ? "1px solid black" : "none")};
+	cursor: pointer;
 	img {
 		height: 90%;
 		width: 90%;
