@@ -11,6 +11,7 @@ import Home from "./routes/Home";
 import Messages from "./routes/Messages";
 import Profile from "./routes/Profile";
 import EditProfile from "./routes/EditProfile";
+import PostModal from "./components/PostModal";
 import "./styles/reset.css";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
 								<AuthPrivateRoute exact path='/login' component={Login} />
 								<AuthPrivateRoute exact path='/signup' component={SignUp} />
 							</Switch>
+							<PostModal />
 						</StorageProvider>
 					</DataProvider>
 				</AuthProvider>
