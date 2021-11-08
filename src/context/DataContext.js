@@ -11,6 +11,7 @@ export function useData() {
 
 export function DataProvider({ children }) {
 	const [currentUserData, setCurrentUserData] = useState({});
+	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	async function getData(collectionName, document) {
 		const data = await getDoc(doc(db, collectionName, document));
@@ -35,7 +36,14 @@ export function DataProvider({ children }) {
 		let date = Timestamp.fromDate(new Date());
 		return { title, photoUrl, likes, comments, date };
 	}
-
+	function toggleBodyOverflosw() {
+		let bodyStyle = document.getElementsByTagName("body")[0].style.overflow;
+		if (!bodyStyle) {
+			document.getElementsByTagName("body")[0].style.overflow = "hidden";
+		} else {
+			document.getElementsByTagName("body")[0].style = "";
+		}
+	}
 	const value = {
 		getData,
 		setData,
@@ -43,7 +51,10 @@ export function DataProvider({ children }) {
 		userPost,
 		currentUserData,
 		setCurrentUserData,
+		isModalVisible,
+		setIsModalVisible,
 		userPic,
+		toggleBodyOverflosw,
 	};
 
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
