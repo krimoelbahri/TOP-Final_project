@@ -2,7 +2,7 @@ import React from "react";
 import {
 	ModalContainer,
 	ModalChildContainer,
-	ClosModal,
+	CloseModal,
 } from "./Styled/Modal.styled";
 
 export default function Modal(props) {
@@ -10,7 +10,7 @@ export default function Modal(props) {
 
 	return (
 		<ModalContainer isModalVisible={isModalVisible}>
-			<ClosModal onClick={handleClose}>+</ClosModal>
+			<CloseModal onClick={handleClose}>+</CloseModal>
 			<ModalChildContainer>{children}</ModalChildContainer>
 		</ModalContainer>
 	);
