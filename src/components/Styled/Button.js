@@ -11,7 +11,7 @@ export const Button = styled.button`
 	width: auto;
 `;
 export const StyledSubmitButton = styled(Button)`
-	display: flex;
+	display: ${(props) => props.display};
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
