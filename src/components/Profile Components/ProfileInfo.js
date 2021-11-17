@@ -36,7 +36,8 @@ export default function ProfileInfo() {
 					<a
 						style={{ color: "black" }}
 						href={currentUserData.Website}
-						target='_blank'>
+						target='_blank'
+						rel='noopener noreferrer'>
 						<em>{currentUserData.Website}</em>
 					</a>
 				</p>
