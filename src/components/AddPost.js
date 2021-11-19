@@ -1,5 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useData } from "../context/DataContext";
+import { useHistory } from "react-router";
+import { useStorage } from "../context/StorageContext";
+import { usePosts } from "../context/PostContaxt";
 import { StyledSubmitButton } from "./Styled/Button";
 import {
 	AddPostHeader,
@@ -9,15 +13,31 @@ import {
 	CaptionContainer,
 	CaptionProfile,
 } from "./Styled/Modal.styled";
-export default function AddPost() {
-	const [display, setDisplay] = useState("none");
-	const [sharing, setSharing] = useState(false);
-	const [image, setImage] = useState("");
+
+export default function AddPost(props) {
+	const [file, setFile] = useState("");
+	const {
+		display,
+		setDisplay,
+		image,
+		setImage,
+		sharing,
+		setSharing,
+		setIsModalVisible,
+	} = props;
 	return (
 		<div>
-			<PostHeader display={display} />
+			<PostHeader
+				display={display}
+				file={file}
+				image={image}
+				setFile={setFile}
+				setImage={setImage}
+				setIsModalVisible={setIsModalVisible}
+			/>
 			{!sharing && (
 				<PostBody
+					setFile={setFile}
 					setImage={setImage}
 					setSharing={setSharing}
 					setDisplay={setDisplay}
@@ -28,17 +48,36 @@ export default function AddPost() {
 	);
 }
 
-function PostHeader({ display }) {
+function PostHeader({ display, file, setIsModalVisible }) {
+	const { setData, toggleBodyOverflow } = useData();
+	const { currentUser } = useAuth();
+	const { currentUserPosts, userPost } = usePosts();
+	const { uploadImages, DownloadImages } = useStorage();
+	const history = useHistory();
+
+	async function handleSubmit() {
+		await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
+		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
+		let posts = currentUserPosts;
+		posts.posts.push(userPost("", url, 0, 0));
+		await setData(currentUser.uid, "Posts", posts);
+		history.push("/");
+		setIsModalVisible(false);
+		toggleBodyOverflow();
+	}
 	return (
 		<AddPostHeader>
 			<h3>Create new post</h3>
-			<StyledSubmitButton display={display} fontColor='#0095f6'>
+			<StyledSubmitButton
+				onClick={handleSubmit}
+				display={display}
+				fontColor='#0095f6'>
 				Share
 			</StyledSubmitButton>
 		</AddPostHeader>
 	);
 }
-function PostBody({ setImage, setSharing, setDisplay }) {
+function PostBody({ setImage, setSharing, setDisplay, setFile }) {
 	const fileInput = useRef();
 
 	function handleImageUpload() {
@@ -46,6 +85,7 @@ function PostBody({ setImage, setSharing, setDisplay }) {
 	}
 	function handleInputClick() {
 		let image = fileInput.current.files[0];
+		setFile(image);
 		let imageUrl = URL.createObjectURL(image);
 		setImage(imageUrl);
 		setSharing(true);
