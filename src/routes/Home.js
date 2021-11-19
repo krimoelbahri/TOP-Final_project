@@ -4,10 +4,12 @@ import Main from "../components/Main Home Components/Main";
 import { Container } from "../components/Styled/Home.styled";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
+import { usePosts } from "../context/PostContaxt";
 
 export default function Home() {
 	const { getData, setData, userData } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
+	const { postsLoading } = usePosts();
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		if (!currentUser.displayName) {
@@ -44,10 +46,11 @@ export default function Home() {
 		setData,
 		userData,
 	]);
+
 	return (
 		<Container>
 			<NavBar loading={loading} />
-			<Main loading={loading} />
+			{!postsLoading && <Main loading={loading} />}
 		</Container>
 	);
 }
