@@ -1,25 +1,18 @@
 import React from "react";
 import { PostsContainer } from "../Styled/Profile.styled";
-import sample from "../../assets/sample-img.jpg";
+import { usePosts } from "../../context/PostContaxt";
 
 export default function Posts() {
+	const { currentUserPosts } = usePosts();
 	return (
 		<PostsContainer>
-			<div>
-				<img src={sample} alt='sample-img'></img>
-			</div>
-			<div>
-				<img src={sample} alt='sample-img'></img>
-			</div>
-			<div>
-				<img src={sample} alt='sample-img'></img>
-			</div>
-			<div>
-				<img src={sample} alt='sample-img'></img>
-			</div>
-			<div>
-				<img src={sample} alt='sample-img'></img>
-			</div>
+			{currentUserPosts.posts.map((post, index) => {
+				return (
+					<div key={`image ${index}`}>
+						<img src={post.photoUrl} alt='sample-img'></img>
+					</div>
+				);
+			})}
 		</PostsContainer>
 	);
 }
