@@ -25,7 +25,7 @@ export default function NavBar() {
 	const [showProfile, setShowProfile] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
-	const { userPic, setIsModalVisible, toggleBodyOverflosw } = useData();
+	const { userPic, setIsModalVisible, toggleBodyOverflow } = useData();
 
 	const handleLogOut = () => {
 		logout();
@@ -50,7 +50,7 @@ export default function NavBar() {
 	};
 	const handleAddPost = () => {
 		setIsModalVisible(true);
-		toggleBodyOverflosw();
+		toggleBodyOverflow();
 	};
 	return (
 		<Container>
