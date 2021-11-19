@@ -73,9 +73,11 @@ export const ImageContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 50%;
+	height: 100%;
 	img {
 		width: 100%;
-		border-radius: 15px;
+		height: 100%;
+		border-radius: 0 0 0 9px;
 	}
 `;
 export const CaptionContainer = styled.div`
