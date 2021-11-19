@@ -4,6 +4,7 @@ import { HashRouter, Switch } from "react-router-dom";
 import { AuthPrivateRoute, HomePrivateRoute } from "./routes/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { DataProvider } from "./context/DataContext";
+import { PostsProvider } from "./context/PostContaxt";
 import { StorageProvider } from "./context/StorageContext";
 import SignUp from "./routes/SignUp";
 import Login from "./routes/Login";
@@ -20,21 +21,23 @@ function App() {
 			<>
 				<AuthProvider>
 					<DataProvider>
-						<StorageProvider>
-							<Switch>
-								<HomePrivateRoute exact path='/' component={Home} />
-								<HomePrivateRoute exact path='/inbox' component={Messages} />
-								<HomePrivateRoute exact path='/profile' component={Profile} />
-								<HomePrivateRoute
-									exact
-									path='/profile/edit'
-									component={EditProfile}
-								/>
-								<AuthPrivateRoute exact path='/login' component={Login} />
-								<AuthPrivateRoute exact path='/signup' component={SignUp} />
-							</Switch>
-							<PostModal />
-						</StorageProvider>
+						<PostsProvider>
+							<StorageProvider>
+								<Switch>
+									<HomePrivateRoute exact path='/' component={Home} />
+									<HomePrivateRoute exact path='/inbox' component={Messages} />
+									<HomePrivateRoute exact path='/profile' component={Profile} />
+									<HomePrivateRoute
+										exact
+										path='/profile/edit'
+										component={EditProfile}
+									/>
+									<AuthPrivateRoute exact path='/login' component={Login} />
+									<AuthPrivateRoute exact path='/signup' component={SignUp} />
+								</Switch>
+								<PostModal />
+							</StorageProvider>
+						</PostsProvider>
 					</DataProvider>
 				</AuthProvider>
 				<GlobalStyling />
