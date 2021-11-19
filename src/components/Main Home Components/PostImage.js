@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import sample from "../../assets/sample-img.jpg";
 const Container = styled.div`
 	width: 100%;
 	min-height: 300px;
@@ -8,12 +7,13 @@ const Container = styled.div`
 const Image = styled.img`
 	width: 100%;
 	height: 100%;
+	//max-height: 600px;
 `;
 
-export default function PostImage() {
+export default function PostImage({ postImgUrl }) {
 	return (
 		<Container>
-			<Image src={sample} alt='sample-img'></Image>
+			<Image src={postImgUrl} alt='sample-img'></Image>
 		</Container>
 	);
 }
