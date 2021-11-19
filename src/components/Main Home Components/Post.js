@@ -6,11 +6,11 @@ import PostIcons from "./PostIcons";
 import PostImage from "./PostImage";
 import PostStats from "./PostStats";
 
-export default function Post() {
+export default function Post({ data }) {
 	return (
 		<PostContainer>
 			<PostHeader />
-			<PostImage />
+			<PostImage postImgUrl={data.photoUrl} />
 			<PostIcons />
 			<PostStats />
 			<PostComments />
