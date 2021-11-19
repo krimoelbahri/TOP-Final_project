@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import React, { useContext, useState, useEffect } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import userPic from "../assets/user.png";
-
+import { useAuth } from "./AuthContext";
 const DataContext = React.createContext();
 
 export function useData() {
@@ -10,6 +10,9 @@ export function useData() {
 }
 
 export function DataProvider({ children }) {
+	const { currentUser } = useAuth();
+	const [profileLoading, setProfileLoading] = useState(true);
+
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -32,11 +35,8 @@ export function DataProvider({ children }) {
 	) {
 		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl };
 	}
-	function userPost(title, photoUrl, likes, comments) {
-		let date = Timestamp.fromDate(new Date());
-		return { title, photoUrl, likes, comments, date };
-	}
-	function toggleBodyOverflosw() {
+
+	function toggleBodyOverflow() {
 		let bodyStyle = document.getElementsByTagName("body")[0].style.overflow;
 		if (!bodyStyle) {
 			document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -48,14 +48,27 @@ export function DataProvider({ children }) {
 		getData,
 		setData,
 		userData,
-		userPost,
 		currentUserData,
 		setCurrentUserData,
 		isModalVisible,
 		setIsModalVisible,
 		userPic,
-		toggleBodyOverflosw,
+		toggleBodyOverflow,
+		profileLoading,
 	};
-
+	useEffect(() => {
+		console.log("fetching userData");
+		if (currentUser) {
+			getData(currentUser.uid, "User")
+				.then((result) => {
+					setCurrentUserData(result.data());
+					setProfileLoading(false);
+				})
+				.catch((error) => {
+					console.log(error);
+					setProfileLoading(false);
+				});
+		}
+	}, [currentUser]);
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
