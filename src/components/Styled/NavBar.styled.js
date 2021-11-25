@@ -20,8 +20,8 @@ export const StyledNavBar = styled.div`
 `;
 export const StyledSearch = styled.div`
 	font-size: 16px;
-	min-width: 200px;
-	height: 28px;
+	min-width: 250px;
+	height: 36px;
 	line-height: 0;
 	flex-direction: row;
 	align-items: center;
