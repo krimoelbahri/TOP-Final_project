@@ -1,20 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import userPic from "../assets/user.png";
-import { useAuth } from "./AuthContext";
-const DataContext = React.createContext();
 
+const DataContext = React.createContext();
 export function useData() {
 	return useContext(DataContext);
 }
 
 export function DataProvider({ children }) {
-	const { currentUser } = useAuth();
 	const [profileLoading, setProfileLoading] = useState(true);
-
+	const [editedData, setEditedData] = useState({});
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [navBarLoading, setNavBarLoading] = useState(true);
 
 	async function getData(collectionName, document) {
 		const data = await getDoc(doc(db, collectionName, document));
@@ -31,7 +30,7 @@ export function DataProvider({ children }) {
 		Email,
 		Bio,
 		PhoneNumber,
-		Website
+		Website,
 	) {
 		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl };
 	}
@@ -44,6 +43,7 @@ export function DataProvider({ children }) {
 			document.getElementsByTagName("body")[0].style = "";
 		}
 	}
+
 	const value = {
 		getData,
 		setData,
@@ -55,20 +55,14 @@ export function DataProvider({ children }) {
 		userPic,
 		toggleBodyOverflow,
 		profileLoading,
+		editedData,
+		setEditedData,
+		setProfileLoading,
+		navBarLoading,
+		setNavBarLoading,
 	};
-	useEffect(() => {
-		console.log("fetching userData");
-		if (currentUser) {
-			getData(currentUser.uid, "User")
-				.then((result) => {
-					setCurrentUserData(result.data());
-					setProfileLoading(false);
-				})
-				.catch((error) => {
-					console.log(error);
-					setProfileLoading(false);
-				});
-		}
-	}, [currentUser]);
-	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
+
+	return (
+		<DataContext.Provider value={value}>{children}</DataContext.Provider>
+	);
 }
