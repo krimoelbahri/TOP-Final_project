@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import EditImage from "../components/Profile Components/EditImage";
 import EditInfo from "../components/Profile Components/EditInfo";
@@ -13,11 +13,10 @@ import {
 
 export default function EditProfile() {
 	//using Custom Hooks
-	const { setData, currentUserData } = useData();
+	const { setData, currentUserData,editedData ,setEditedData} = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const history = useHistory();
 	//using react Hooks
-	const [editedData, setEditedData] = useState({});
 
 	function handleChange(e) {
 		setEditedData({ ...editedData, [e.target.id]: e.target.value });
