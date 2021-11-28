@@ -7,6 +7,7 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useData } from "../context/DataContext";
+import { usePosts } from "../context/PostContaxt";
 import {
 	Container,
 	StyledNavBar,
@@ -26,8 +27,11 @@ export default function NavBar() {
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
 	const { userPic, setIsModalVisible, toggleBodyOverflow } = useData();
+	const { setPostsLoading, setCurrentUserPosts } = usePosts();
 
 	const handleLogOut = () => {
+		setPostsLoading(true);
+		setCurrentUserPosts({ posts: [] });
 		logout();
 	};
 
@@ -86,12 +90,22 @@ export default function NavBar() {
 						</Span>
 						<Span>
 							{heart ? (
-								<i onClick={handleHeart} className='bi bi-heart-fill'></i>
+								<i
+									onClick={handleHeart}
+									className='bi bi-heart-fill'
+								></i>
 							) : (
-								<i onClick={handleHeart} className='bi bi-heart'></i>
+								<i
+									onClick={handleHeart}
+									className='bi bi-heart'
+								></i>
 							)}
 							<div style={{ marginLeft: "-310px", top: "10px" }}>
-								<Overlay arrowLeft='314px' arrowTop='-6px' show={showActivity}>
+								<Overlay
+									arrowLeft='314px'
+									arrowTop='-6px'
+									show={showActivity}
+								>
 									<Activity />
 								</Overlay>
 							</div>
@@ -99,11 +113,19 @@ export default function NavBar() {
 						<Span show={showProfile}>
 							<img
 								onClick={handleProfile}
-								src={currentUser.photoURL ? currentUser.photoURL : userPic}
+								src={
+									currentUser.photoURL
+										? currentUser.photoURL
+										: userPic
+								}
 								alt='PP'
 							/>
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
-								<Overlay arrowLeft='155px' arrowTop='-6px' show={showProfile}>
+								<Overlay
+									arrowLeft='155px'
+									arrowTop='-6px'
+									show={showProfile}
+								>
 									<Profile handleLogOut={handleLogOut} />
 								</Overlay>
 							</div>
