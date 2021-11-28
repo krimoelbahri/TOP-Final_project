@@ -17,7 +17,6 @@ export function useAuth() {
 }
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState();
-	const [currentName, setCurrentName] = useState();
 	const [loading, setLoading] = useState(true);
 
 	const provider = new FacebookAuthProvider();
@@ -47,19 +46,15 @@ export function AuthProvider({ children }) {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
-			if (user) {
-				updateProfile(user, { displayName: currentName });
-			}
 			setCurrentUser(user);
 			setLoading(false);
 		});
 
 		return unsubscribe;
-	}, [currentName]);
+	}, []);
 
 	const value = {
 		currentUser,
-		setCurrentName,
 		login,
 		loginWithFacebook,
 		updateProfileNameAndImage,
