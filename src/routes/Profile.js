@@ -13,8 +13,13 @@ import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
 
 export default function Profile() {
-	const { profileLoading, getData, setCurrentUserData, setProfileLoading } =
-		useData();
+	const {
+		profileLoading,
+		getData,
+		setCurrentUserData,
+		setEditedData,
+		setProfileLoading,
+	} = useData();
 	const { currentUser } = useAuth();
 	const { setCurrentUserPosts } = usePosts();
 
@@ -23,6 +28,7 @@ export default function Profile() {
 		getData(currentUser.uid, "User")
 			.then((result) => {
 				setCurrentUserData(result.data());
+				setEditedData(result.data());
 				setProfileLoading(false);
 			})
 			.catch((error) => {
