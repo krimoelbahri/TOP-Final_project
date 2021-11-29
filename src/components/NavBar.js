@@ -26,7 +26,7 @@ export default function NavBar() {
 	const [showProfile, setShowProfile] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
-	const { userPic, setIsModalVisible, toggleBodyOverflow } = useData();
+	const { setIsModalVisible, toggleBodyOverflow } = useData();
 	const { setPostsLoading, setCurrentUserPosts } = usePosts();
 
 	const handleLogOut = () => {
@@ -113,11 +113,7 @@ export default function NavBar() {
 						<Span show={showProfile}>
 							<img
 								onClick={handleProfile}
-								src={
-									currentUser.photoURL
-										? currentUser.photoURL
-										: userPic
-								}
+								src={currentUser.photoURL}
 								alt='PP'
 							/>
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
