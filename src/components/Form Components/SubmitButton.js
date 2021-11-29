@@ -11,6 +11,7 @@ export default function SubmitButton(props) {
 		disabledBackgroundColor,
 		children,
 		onClick,
+		display,
 	} = props;
 	return (
 		<StyledSubmitButton
@@ -20,7 +21,9 @@ export default function SubmitButton(props) {
 			backgroundColor={backgroundColor}
 			disabledBackgroundColor={disabledBackgroundColor}
 			type={type}
-			disabled={disabled}>
+			display={display}
+			disabled={disabled}
+		>
 			{children}
 		</StyledSubmitButton>
 	);
