@@ -38,22 +38,26 @@ export default function SignUpForm(props) {
 						color: "#8e8e8e",
 						fontSize: "17px",
 						textAlign: "center",
-					}}>
+					}}
+				>
 					Sign up to see photos and videos from your friends.
 				</p>
 			</Div>
 			<Div flexDirection='column'>
 				<SubmitButton
 					onClick={handleFacebookLogin}
+					display='flex'
 					backgroundColor='#0095f6'
 					fontColor='#fff'
-					disabled=''>
+					disabled=''
+				>
 					<i
 						style={{
 							marginRight: "10px",
 							fontSize: "large",
 						}}
-						className='fab fa-facebook-square'></i>
+						className='fab fa-facebook-square'
+					></i>
 					<div>Log In with Facebook</div>
 				</SubmitButton>
 			</Div>
@@ -63,7 +67,8 @@ export default function SignUpForm(props) {
 					style={{
 						fontSize: "inherit",
 						margin: "0 10px",
-					}}>
+					}}
+				>
 					OR
 				</h1>
 				<LineDiv />
@@ -76,24 +81,6 @@ export default function SignUpForm(props) {
 							inputRef={idRef}
 							inputID='signUpId'
 							ariaLabel='Email'
-							type='text'
-						/>
-					</Label>
-				</InputDiv>
-			</FormDiv>
-			<FormDiv>
-				<InputDiv>
-					<Label htmlFor='SignUpName'>
-						<FormInput inputID='SignUpName' ariaLabel='Full Name' type='text' />
-					</Label>
-				</InputDiv>
-			</FormDiv>
-			<FormDiv>
-				<InputDiv>
-					<Label htmlFor='SignUpUsername'>
-						<FormInput
-							inputID='SignUpUsername'
-							ariaLabel='Username'
 							type='text'
 						/>
 					</Label>
@@ -115,11 +102,13 @@ export default function SignUpForm(props) {
 			<Div flexDirection='column'>
 				<SubmitButton
 					onClick={handleSubmit}
+					display='flex'
 					backgroundColor='#0095f6'
 					disabledBackgroundColor='rgba(0,149,246,.3)'
 					fontColor='#fff'
 					type='submit'
-					disabled={disabled}>
+					disabled={disabled}
+				>
 					<div>Sign up</div>
 				</SubmitButton>
 			</Div>
@@ -129,9 +118,10 @@ export default function SignUpForm(props) {
 						color: "#8e8e8e",
 						fontSize: "12px",
 						textAlign: "center",
-					}}>
-					By signing up, you agree to our Terms , Data Policy and Cookies Policy
-					.
+					}}
+				>
+					By signing up, you agree to our Terms , Data Policy and
+					Cookies Policy .
 				</p>
 			</Div>
 		</FormConatiner>
