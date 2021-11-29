@@ -29,10 +29,8 @@ export default function AddPost(props) {
 		<div>
 			<PostHeader
 				display={display}
+				setSharing={setSharing}
 				file={file}
-				image={image}
-				setFile={setFile}
-				setImage={setImage}
 				setIsModalVisible={setIsModalVisible}
 			/>
 			{!sharing && (
@@ -48,7 +46,7 @@ export default function AddPost(props) {
 	);
 }
 
-function PostHeader({ display, file, setIsModalVisible }) {
+function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	const { setData, toggleBodyOverflow } = useData();
 	const { currentUser } = useAuth();
 	const { currentUserPosts, userPost } = usePosts();
@@ -57,11 +55,14 @@ function PostHeader({ display, file, setIsModalVisible }) {
 
 	async function handleSubmit() {
 		await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
-		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
+		let url = await DownloadImages(
+			`postepic/${currentUser.uid}/${file.name}`,
+		);
 		let posts = currentUserPosts;
-		posts.posts.push(userPost("", url, 0, 0));
+		posts.posts.push(userPost(currentUser.uid, "", url, 0, 0));
 		await setData(currentUser.uid, "Posts", posts);
 		history.push("/");
+		setSharing(false);
 		setIsModalVisible(false);
 		toggleBodyOverflow();
 	}
@@ -71,7 +72,8 @@ function PostHeader({ display, file, setIsModalVisible }) {
 			<StyledSubmitButton
 				onClick={handleSubmit}
 				display={display}
-				fontColor='#0095f6'>
+				fontColor='#0095f6'
+			>
 				Share
 			</StyledSubmitButton>
 		</AddPostHeader>
@@ -102,7 +104,8 @@ function PostBody({ setImage, setSharing, setDisplay, setFile }) {
 					<StyledSubmitButton
 						onClick={handleImageUpload}
 						fontColor='#fff'
-						backgroundColor='#0095f6'>
+						backgroundColor='#0095f6'
+					>
 						Select from computer
 					</StyledSubmitButton>
 					<input
