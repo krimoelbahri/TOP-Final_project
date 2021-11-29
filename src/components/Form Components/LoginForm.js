@@ -64,7 +64,8 @@ export default function LoginForm(props) {
 					disabledBackgroundColor='rgba(0,149,246,.3)'
 					fontColor='#fff'
 					type='submit'
-					disabled={disabled}>
+					disabled={disabled}
+				>
 					<div>Log In</div>
 				</SubmitButton>
 			</Div>
@@ -74,7 +75,8 @@ export default function LoginForm(props) {
 					style={{
 						fontSize: "inherit",
 						margin: "0 10px",
-					}}>
+					}}
+				>
 					OR
 				</h1>
 				<LineDiv />
@@ -82,14 +84,17 @@ export default function LoginForm(props) {
 			<Div flexDirection='column'>
 				<SubmitButton
 					onClick={handleFacebookLogin}
+					display='flex'
 					fontColor='#385185'
-					disabled=''>
+					disabled=''
+				>
 					<i
 						style={{
 							marginRight: "10px",
 							fontSize: "x-large",
 						}}
-						className='fab fa-facebook-square'></i>
+						className='fab fa-facebook-square'
+					></i>
 					<div>Log In with Facebook</div>
 				</SubmitButton>
 			</Div>
