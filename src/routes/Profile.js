@@ -6,15 +6,17 @@ import {
 } from "../components/Styled/Profile.styled";
 import { MyLoader } from "../components/Loaders";
 import { useData } from "../context/DataContext";
+import { useAuth } from "../context/AuthContext";
+import { usePosts } from "../context/PostContaxt";
 import NavBar from "../components/NavBar";
 import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
-import { useAuth } from "../context/AuthContext";
 
 export default function Profile() {
 	const { profileLoading, getData, setCurrentUserData, setProfileLoading } =
 		useData();
 	const { currentUser } = useAuth();
+	const { setCurrentUserPosts } = usePosts();
 
 	useEffect(() => {
 		console.log("fetching userData");
@@ -28,6 +30,20 @@ export default function Profile() {
 				setProfileLoading(false);
 			});
 	}, [currentUser, setCurrentUserData, setProfileLoading]);
+	useEffect(() => {
+		console.log("fetching userPosts profile");
+		getData(currentUser.uid, "Posts")
+			.then((result) => {
+				if (result.exists()) {
+					setCurrentUserPosts(result.data());
+				} else {
+					setCurrentUserPosts({ posts: [] });
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [getData, setCurrentUserPosts, currentUser]);
 	return (
 		<Container>
 			<NavBar />
