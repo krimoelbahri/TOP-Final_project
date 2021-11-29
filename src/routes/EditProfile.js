@@ -13,7 +13,7 @@ import {
 
 export default function EditProfile() {
 	//using Custom Hooks
-	const { setData, currentUserData,editedData ,setEditedData} = useData();
+	const { setData, currentUserData, editedData, setEditedData } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const history = useHistory();
 	//using react Hooks
@@ -22,7 +22,10 @@ export default function EditProfile() {
 		setEditedData({ ...editedData, [e.target.id]: e.target.value });
 	}
 	async function handleSubmit() {
-		await updateProfileNameAndImage(editedData.Username, currentUser.photoURL);
+		await updateProfileNameAndImage(
+			editedData.Username,
+			currentUser.photoURL,
+		);
 		await setData(currentUser.uid, "User", {
 			...currentUserData,
 			...editedData,
