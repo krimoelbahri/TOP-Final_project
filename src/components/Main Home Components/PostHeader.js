@@ -4,14 +4,14 @@ import {
 	ProfileDiv,
 	PostHeaderIcon,
 } from "../Styled/MainHome.styled";
-export default function PostHeader() {
+export default function PostHeader({ userPhoto, userName }) {
 	return (
 		<PostHeaderContainer>
 			<ProfileDiv>
 				<PostHeaderIcon>
-					<i className='fas fa-user-circle'></i>
+					<img src={userPhoto} alt='pp' />
 				</PostHeaderIcon>
-				<p>Profil Name</p>
+				<p>{userName}</p>
 			</ProfileDiv>
 			<div style={{ margin: "0 20px 0 0" }}>
 				<i className='fas fa-ellipsis-h'></i>
