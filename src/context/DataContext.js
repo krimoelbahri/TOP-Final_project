@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import userPic from "../assets/user.png";
+import { useStorage } from "./StorageContext";
 
 const DataContext = React.createContext();
 export function useData() {
@@ -15,6 +15,8 @@ export function DataProvider({ children }) {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [navBarLoading, setNavBarLoading] = useState(true);
 
+	const { DownloadImages } = useStorage();
+	const userPic = useRef();
 	async function getData(collectionName, document) {
 		const data = await getDoc(doc(db, collectionName, document));
 		return data;
@@ -43,7 +45,12 @@ export function DataProvider({ children }) {
 			document.getElementsByTagName("body")[0].style = "";
 		}
 	}
-
+	useEffect(() => {
+		async function getUserPic() {
+			userPic.current = await DownloadImages(`profilepic/user/user.png`);
+		}
+		getUserPic();
+	}, [DownloadImages]);
 	const value = {
 		getData,
 		setData,
