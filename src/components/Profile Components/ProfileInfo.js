@@ -3,10 +3,12 @@ import { ProfileInfoContainer, ProfileBio } from "../Styled/Profile.styled";
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
 import { StyledLink } from "../Styled/DropDown.styled";
+import { usePosts } from "../../context/PostContaxt";
 
 export default function ProfileInfo() {
 	const { currentUser } = useAuth();
 	const { currentUserData } = useData();
+	const { currentUserPosts } = usePosts();
 
 	return (
 		<ProfileInfoContainer>
@@ -18,7 +20,7 @@ export default function ProfileInfo() {
 			</div>
 			<ul>
 				<li>
-					<span>8</span> Posts
+					<span>{currentUserPosts.posts.length}</span> Posts
 				</li>
 				<li>
 					<span>77</span> followers
@@ -37,7 +39,8 @@ export default function ProfileInfo() {
 						style={{ color: "black" }}
 						href={currentUserData.Website}
 						target='_blank'
-						rel='noopener noreferrer'>
+						rel='noopener noreferrer'
+					>
 						<em>{currentUserData.Website}</em>
 					</a>
 				</p>
