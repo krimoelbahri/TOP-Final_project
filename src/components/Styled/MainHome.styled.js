@@ -36,6 +36,9 @@ export const PostHeaderIcon = styled.div`
 	margin: 0 10px;
 	border: 1px solid #dbdbdb;
 	border-radius: 50%;
+	img {
+		border-radius: 50%;
+	}
 `;
 //Styling the Icons area
 export const IconsContainer = styled.div`
