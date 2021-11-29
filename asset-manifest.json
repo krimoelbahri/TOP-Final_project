@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/TOP-Final_project/static/css/main.92837435.chunk.css",
-    "main.js": "/TOP-Final_project/static/js/main.836d87da.chunk.js",
-    "main.js.map": "/TOP-Final_project/static/js/main.836d87da.chunk.js.map",
-    "runtime-main.js": "/TOP-Final_project/static/js/runtime-main.a58d61c0.js",
-    "runtime-main.js.map": "/TOP-Final_project/static/js/runtime-main.a58d61c0.js.map",
-    "static/js/2.48dc94e8.chunk.js": "/TOP-Final_project/static/js/2.48dc94e8.chunk.js",
-    "static/js/2.48dc94e8.chunk.js.map": "/TOP-Final_project/static/js/2.48dc94e8.chunk.js.map",
-    "index.html": "/TOP-Final_project/index.html",
-    "precache-manifest.77bdc86c9d311bd68ca2b558e8690831.js": "/TOP-Final_project/precache-manifest.77bdc86c9d311bd68ca2b558e8690831.js",
-    "service-worker.js": "/TOP-Final_project/service-worker.js",
-    "static/css/main.92837435.chunk.css.map": "/TOP-Final_project/static/css/main.92837435.chunk.css.map",
-    "static/js/2.48dc94e8.chunk.js.LICENSE.txt": "/TOP-Final_project/static/js/2.48dc94e8.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/TOP-Final_project/static/media/Fontspring-DEMO-blue_vinyl_regular_ps_ot.ba6c16ea.otf"
+    "main.css": "/instagram_clone/static/css/main.41b8f288.chunk.css",
+    "main.js": "/instagram_clone/static/js/main.22d82a5b.chunk.js",
+    "main.js.map": "/instagram_clone/static/js/main.22d82a5b.chunk.js.map",
+    "runtime-main.js": "/instagram_clone/static/js/runtime-main.8259a904.js",
+    "runtime-main.js.map": "/instagram_clone/static/js/runtime-main.8259a904.js.map",
+    "static/js/2.51547146.chunk.js": "/instagram_clone/static/js/2.51547146.chunk.js",
+    "static/js/2.51547146.chunk.js.map": "/instagram_clone/static/js/2.51547146.chunk.js.map",
+    "index.html": "/instagram_clone/index.html",
+    "precache-manifest.fb058d68d8a8a7e469f2119990f405bb.js": "/instagram_clone/precache-manifest.fb058d68d8a8a7e469f2119990f405bb.js",
+    "service-worker.js": "/instagram_clone/service-worker.js",
+    "static/css/main.41b8f288.chunk.css.map": "/instagram_clone/static/css/main.41b8f288.chunk.css.map",
+    "static/js/2.51547146.chunk.js.LICENSE.txt": "/instagram_clone/static/js/2.51547146.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/instagram_clone/static/media/Fontspring-DEMO-blue_vinyl_regular_ps_ot.ba6c16ea.otf"
   },
   "entrypoints": [
-    "static/js/runtime-main.a58d61c0.js",
-    "static/js/2.48dc94e8.chunk.js",
-    "static/css/main.92837435.chunk.css",
-    "static/js/main.836d87da.chunk.js"
+    "static/js/runtime-main.8259a904.js",
+    "static/js/2.51547146.chunk.js",
+    "static/css/main.41b8f288.chunk.css",
+    "static/js/main.22d82a5b.chunk.js"
   ]
 }
