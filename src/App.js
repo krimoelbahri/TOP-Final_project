@@ -20,25 +20,45 @@ function App() {
 		<HashRouter className='App'>
 			<>
 				<AuthProvider>
-					<DataProvider>
-						<PostsProvider>
-							<StorageProvider>
+					<StorageProvider>
+						<DataProvider>
+							<PostsProvider>
 								<Switch>
-									<HomePrivateRoute exact path='/' component={Home} />
-									<HomePrivateRoute exact path='/inbox' component={Messages} />
-									<HomePrivateRoute exact path='/profile' component={Profile} />
+									<HomePrivateRoute
+										exact
+										path='/'
+										component={Home}
+									/>
+									<HomePrivateRoute
+										exact
+										path='/inbox'
+										component={Messages}
+									/>
+									<HomePrivateRoute
+										exact
+										path='/profile'
+										component={Profile}
+									/>
 									<HomePrivateRoute
 										exact
 										path='/profile/edit'
 										component={EditProfile}
 									/>
-									<AuthPrivateRoute exact path='/login' component={Login} />
-									<AuthPrivateRoute exact path='/signup' component={SignUp} />
+									<AuthPrivateRoute
+										exact
+										path='/login'
+										component={Login}
+									/>
+									<AuthPrivateRoute
+										exact
+										path='/signup'
+										component={SignUp}
+									/>
 								</Switch>
 								<PostModal />
-							</StorageProvider>
-						</PostsProvider>
-					</DataProvider>
+							</PostsProvider>
+						</DataProvider>
+					</StorageProvider>
 				</AuthProvider>
 				<GlobalStyling />
 			</>
