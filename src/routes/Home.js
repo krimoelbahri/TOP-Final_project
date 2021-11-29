@@ -7,15 +7,21 @@ import { useAuth } from "../context/AuthContext";
 import { usePosts } from "../context/PostContaxt";
 
 export default function Home() {
-	const { navBarLoading, getData, setData, userData, setNavBarLoading } =
-		useData();
+	const {
+		userPic,
+		navBarLoading,
+		getData,
+		setData,
+		userData,
+		setNavBarLoading,
+	} = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const { postsLoading, setCurrentUserPosts, setPostsLoading } = usePosts();
 	useEffect(() => {
 		if (!currentUser.displayName) {
-			updateProfileNameAndImage("User", "/").then(() => {});
+			updateProfileNameAndImage("User", userPic.current).then(() => {});
 		}
-	}, [currentUser.displayName, updateProfileNameAndImage]);
+	}, [userPic, currentUser, updateProfileNameAndImage]);
 	useEffect(() => {
 		console.log("user data check");
 		getData(currentUser.uid, "User").then((result) => {
