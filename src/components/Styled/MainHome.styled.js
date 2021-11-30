@@ -59,6 +59,12 @@ export const IconsWraper = styled.div`
 	div {
 		margin-right: 20px;
 	}
+	i {
+		cursor: pointer;
+	}
+	i:hover {
+		opacity: 0.5;
+	}
 `;
 
 //Styling the comments area
