@@ -9,12 +9,10 @@ const Container = styled.div`
 	padding-left: 20px;
 `;
 
-export default function PostStats() {
+export default function PostStats({ likes }) {
 	return (
 		<Container>
-			<a href='/'>
-				<span>200</span> {` Likes`}
-			</a>
+			<span>{likes.length}</span> {` Likes`}
 		</Container>
 	);
 }
