@@ -59,7 +59,16 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 			`postepic/${currentUser.uid}/${file.name}`,
 		);
 		let posts = currentUserPosts;
-		posts.posts.push(userPost(currentUser.uid, "", url, 0, 0));
+		posts.posts.push(
+			userPost(
+				currentUserPosts.posts.length,
+				currentUser.uid,
+				"",
+				url,
+				[],
+				[],
+			),
+		);
 		await setData(currentUser.uid, "Posts", posts);
 		history.push("/");
 		setSharing(false);
