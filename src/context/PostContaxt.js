@@ -10,9 +10,10 @@ export function PostsProvider({ children }) {
 	const [currentUserPosts, setCurrentUserPosts] = useState({ posts: [] });
 	const [postsLoading, setPostsLoading] = useState(true);
 
-	function userPost(userId, title, photoUrl, likes, comments) {
+	function userPost(postId, userId, title, photoUrl, likes, comments) {
 		let date = Timestamp.fromDate(new Date());
 		return {
+			postId,
 			userId,
 			title,
 			photoUrl,
