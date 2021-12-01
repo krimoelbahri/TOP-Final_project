@@ -22,6 +22,15 @@ export function PostsProvider({ children }) {
 			date,
 		};
 	}
+	function userComment(CommentId, userId, comment) {
+		let date = Timestamp.fromDate(new Date());
+		return {
+			CommentId,
+			userId,
+			comment,
+			date,
+		};
+	}
 
 	const value = {
 		setPostsLoading,
@@ -29,6 +38,7 @@ export function PostsProvider({ children }) {
 		currentUserPosts,
 		setCurrentUserPosts,
 		userPost,
+		userComment,
 	};
 
 	return (
