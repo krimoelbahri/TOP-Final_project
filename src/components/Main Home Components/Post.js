@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
+import { usePosts } from "../../context/PostContaxt";
 import { PostContainer } from "../Styled/MainHome.styled";
 import PostComments from "./PostComments";
 import PostHeader from "./PostHeader";
@@ -12,10 +13,12 @@ export default function Post({ data }) {
 	const [loading, setLoading] = useState(true);
 	const [userInfo, setUserInfo] = useState({ photoUrl: "", Username: "" });
 	const [likes, setLikes] = useState([]);
+	const [comments, setComments] = useState([]);
 	const [fillHeart, setfillHeart] = useState(false);
 
 	const { getData, setData } = useData();
 	const { currentUser } = useAuth();
+	const { userComment } = usePosts();
 
 	async function handleLikes() {
 		setfillHeart(!fillHeart);
@@ -34,7 +37,22 @@ export default function Post({ data }) {
 			[data.postId]: editedPost,
 		});
 		let posts = { posts: newArray };
-		console.log(posts);
+		await setData(data.userId, "Posts", posts);
+	}
+	async function handleSubmitComment(comment) {
+		let result = await getData(data.userId, "Posts");
+		let editedPost = result.data().posts[data.postId];
+		let commentObj = userComment(
+			editedPost.comments.length,
+			currentUser.uid,
+			comment,
+		);
+		editedPost.comments.push(commentObj);
+		setComments(editedPost.comments);
+		const newArray = Object.assign([], result.data().posts, {
+			[data.postId]: editedPost,
+		});
+		let posts = { posts: newArray };
 		await setData(data.userId, "Posts", posts);
 	}
 	useEffect(() => {
@@ -51,6 +69,7 @@ export default function Post({ data }) {
 		getData(data.userId, "Posts")
 			.then((result) => {
 				setLikes(result.data().posts[data.postId].likes);
+				setComments(result.data().posts[data.postId].comments);
 				if (
 					result
 						.data()
@@ -78,7 +97,11 @@ export default function Post({ data }) {
 						fillHeart={fillHeart}
 					/>
 					<PostStats likes={likes} />
-					<PostComments />
+					<PostComments
+						comments={comments}
+						post={data}
+						handleSubmitComment={handleSubmitComment}
+					/>
 				</PostContainer>
 			)}
 		</>
