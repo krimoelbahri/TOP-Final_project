@@ -21,7 +21,8 @@ export default function EditProfile() {
 	function handleChange(e) {
 		setEditedData({ ...editedData, [e.target.id]: e.target.value });
 	}
-	async function handleSubmit() {
+	async function handleSubmit(e) {
+		e.preventDefault();
 		await updateProfileNameAndImage(
 			editedData.Username,
 			currentUser.photoURL,
