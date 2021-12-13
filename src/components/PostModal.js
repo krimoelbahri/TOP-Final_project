@@ -11,8 +11,8 @@ const PostModal = () => {
 
 	function handleClose() {
 		if (image) {
-			let T = global.confirm("do you want to continue");
-			if (T) {
+			let confirm = global.confirm("do you want to continue");
+			if (confirm) {
 				setIsModalVisible(false);
 				setImage("");
 				setSharing(false);
