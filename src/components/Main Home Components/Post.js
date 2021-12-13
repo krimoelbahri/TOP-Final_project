@@ -15,12 +15,13 @@ export default function Post({ data }) {
 	const [likes, setLikes] = useState([]);
 	const [comments, setComments] = useState([]);
 	const [fillHeart, setfillHeart] = useState(false);
-
+	const [disabled, setDisabled] = useState(false);
 	const { getData, setData } = useData();
 	const { currentUser } = useAuth();
 	const { userComment } = usePosts();
 
 	async function handleLikes() {
+		setDisabled(true);
 		setfillHeart(!fillHeart);
 		let result = await getData(data.userId, "Posts");
 		let editedPost = result.data().posts[data.postId];
@@ -38,6 +39,7 @@ export default function Post({ data }) {
 		});
 		let posts = { posts: newArray };
 		await setData(data.userId, "Posts", posts);
+		setDisabled(false);
 	}
 	async function handleSubmitComment(comment) {
 		let result = await getData(data.userId, "Posts");
@@ -95,6 +97,7 @@ export default function Post({ data }) {
 					<PostIcons
 						handleLikes={handleLikes}
 						fillHeart={fillHeart}
+						disabled={disabled}
 					/>
 					<PostStats likes={likes} />
 					<PostComments
