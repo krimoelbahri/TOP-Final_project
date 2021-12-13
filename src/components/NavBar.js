@@ -99,6 +99,7 @@ export default function NavBar() {
 									arrowLeft='314px'
 									arrowTop='-6px'
 									show={showActivity}
+									handleClick={handleHeart}
 								>
 									<Activity />
 								</Overlay>
@@ -115,8 +116,12 @@ export default function NavBar() {
 									arrowLeft='155px'
 									arrowTop='-6px'
 									show={showProfile}
+									handleClick={handleProfile}
 								>
-									<Profile handleLogOut={handleLogOut} />
+									<Profile
+										handleProfile={handleProfile}
+										handleLogOut={handleLogOut}
+									/>
 								</Overlay>
 							</div>
 						</Span>
