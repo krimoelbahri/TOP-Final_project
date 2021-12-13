@@ -4,7 +4,7 @@ import EditImage from "../components/Profile Components/EditImage";
 import EditInfo from "../components/Profile Components/EditInfo";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import {
 	Container,
 	MainContainer,
@@ -15,7 +15,7 @@ export default function EditProfile() {
 	//using Custom Hooks
 	const { setData, currentUserData, editedData, setEditedData } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
-	const history = useHistory();
+	const navigate = useNavigate();
 	//using react Hooks
 
 	function handleChange(e) {
@@ -32,7 +32,7 @@ export default function EditProfile() {
 			...editedData,
 			photoUrl: currentUser.photoURL,
 		});
-		history.push("/profile");
+		navigate("/profile");
 	}
 
 	return (
