@@ -59,6 +59,11 @@ export const IconsWraper = styled.div`
 	div {
 		margin-right: 20px;
 	}
+	button {
+		margin-right: 20px;
+		border: none;
+		font-size: 22px;
+	}
 	i {
 		cursor: pointer;
 	}
