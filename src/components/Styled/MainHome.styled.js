@@ -4,7 +4,6 @@ export const MainContainer = styled.div`
 	max-width: 600px;
 	position: relative;
 	padding-top: 60px;
-	top: 55px;
 	margin: 0 auto 100px;
 `;
 //Post styling
