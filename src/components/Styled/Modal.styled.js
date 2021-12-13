@@ -19,8 +19,17 @@ export const ModalContainer = styled.div`
 	align-items: center;
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 50;
+	z-index: 10;
 	top: 0;
+`;
+export const ModalDiv = styled.div`
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	cursor: auto;
+	z-index: 15;
 `;
 export const ModalChildContainer = styled.div`
 	min-width: 100px;
@@ -28,7 +37,7 @@ export const ModalChildContainer = styled.div`
 	animation: ${fade} 200ms;
 	background-color: #fff;
 	border-radius: 10px;
-	z-index: 100;
+	z-index: 20;
 `;
 export const CloseModal = styled.div`
 	position: absolute;
@@ -38,6 +47,7 @@ export const CloseModal = styled.div`
 	right: 20px;
 	transform: rotate(45deg);
 	cursor: pointer;
+	z-index: 16;
 `;
 export const AddPostHeader = styled.div`
 	align-items: center;
