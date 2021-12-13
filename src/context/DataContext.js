@@ -25,15 +25,7 @@ export function DataProvider({ children }) {
 	async function setData(collectionName, document, data) {
 		await setDoc(doc(db, collectionName, document), data);
 	}
-	function userData(
-		Name,
-		Username,
-		photoUrl,
-		Email,
-		Bio,
-		PhoneNumber,
-		Website,
-	) {
+	function userData(Name, Username, photoUrl, Email, Bio, PhoneNumber, Website) {
 		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl };
 	}
 
@@ -69,7 +61,5 @@ export function DataProvider({ children }) {
 		setNavBarLoading,
 	};
 
-	return (
-		<DataContext.Provider value={value}>{children}</DataContext.Provider>
-	);
+	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }

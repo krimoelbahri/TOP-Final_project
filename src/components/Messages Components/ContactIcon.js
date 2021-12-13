@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	ContactIconContainer,
-	ProfileDiv,
-	Icon,
-} from "../Styled/Message.styled";
+import { ContactIconContainer, ProfileDiv, Icon } from "../Styled/Message.styled";
 export default function ContactIcon() {
 	return (
 		<ContactIconContainer>

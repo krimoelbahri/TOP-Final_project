@@ -46,7 +46,8 @@ export default function EditInfo(props) {
 					width: "fit-content",
 					alignSelf: "center",
 				}}
-				type='submit'>
+				type='submit'
+			>
 				Submit
 			</StyledSubmitButton>
 		</EditInfoContainer>
@@ -59,11 +60,7 @@ function InfoInput(props) {
 			<span>
 				<strong>{info}</strong>
 			</span>
-			<input
-				id={info}
-				type={type}
-				defaultValue={value}
-				onChange={onChange}></input>
+			<input id={info} type={type} defaultValue={value} onChange={onChange}></input>
 		</label>
 	);
 }
@@ -78,7 +75,8 @@ function InfoTextarea(props) {
 				id={info}
 				style={{ height: "70px", padding: "5px 10px" }}
 				defaultValue={value}
-				onChange={onChange}></textarea>
+				onChange={onChange}
+			></textarea>
 		</label>
 	);
 }

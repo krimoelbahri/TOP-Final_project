@@ -1,8 +1,5 @@
 import React from "react";
-import {
-	InboxDefaultContainer,
-	InboxDefaultIcon,
-} from "../Styled/Inbox.styled";
+import { InboxDefaultContainer, InboxDefaultIcon } from "../Styled/Inbox.styled";
 
 function InboxDefault() {
 	return (

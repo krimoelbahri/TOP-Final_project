@@ -16,7 +16,8 @@ export default function FormInput(props) {
 					setinputValue(e.target.value);
 					onChange();
 				}}
-				aria-label={ariaLabel}>
+				aria-label={ariaLabel}
+			>
 				{children}
 			</Input>
 		</>

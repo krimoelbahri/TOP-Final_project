@@ -12,7 +12,8 @@ export default function InputDiv({ children }) {
 			onBlur={() => {
 				setFocus(false);
 			}}
-			divFocus={focus}>
+			divFocus={focus}
+		>
 			{children}
 		</InputContainer>
 	);

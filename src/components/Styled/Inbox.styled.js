@@ -103,4 +103,3 @@ export const MessageWrapper = styled.div`
 	padding: 15px;
 	margin-bottom: 10px;
 `;
-

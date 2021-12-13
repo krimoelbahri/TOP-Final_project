@@ -29,7 +29,7 @@ export const Span = styled.span`
 	cursor: text;
 	position: absolute;
 	text-overflow: ellipsis;
-	i{
+	i {
 		font-size: 10px;
 		padding: 5px;
 	}

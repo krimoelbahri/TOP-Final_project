@@ -17,7 +17,8 @@ export default function Overlay(props) {
 				top={arrowTop}
 				bottom={arrowBottom}
 				left={arrowLeft}
-				right={arrowRight}></Arrow>
+				right={arrowRight}
+			></Arrow>
 			{children}
 		</OverlayContainer>
 	);

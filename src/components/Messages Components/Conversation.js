@@ -28,7 +28,8 @@ export default function Conversation() {
 					type='submit'
 					fontColor='#0095f6'
 					fontOpacity='.3'
-					disabled='disabled'>
+					disabled='disabled'
+				>
 					<h4>Send</h4>
 				</SubmitButton>
 			</SendMessageForm>

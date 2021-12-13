@@ -90,15 +90,9 @@ export default function NavBar() {
 						</Span>
 						<Span>
 							{heart ? (
-								<i
-									onClick={handleHeart}
-									className='bi bi-heart-fill'
-								></i>
+								<i onClick={handleHeart} className='bi bi-heart-fill'></i>
 							) : (
-								<i
-									onClick={handleHeart}
-									className='bi bi-heart'
-								></i>
+								<i onClick={handleHeart} className='bi bi-heart'></i>
 							)}
 							<div style={{ marginLeft: "-310px", top: "10px" }}>
 								<Overlay

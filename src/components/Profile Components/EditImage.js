@@ -26,20 +26,21 @@ export default function EditImage(props) {
 		let image = fileInput.current.files[0];
 		setLoading(true);
 		try {
-			uploadImages(`profilepic/${currentUser.uid}/profile-pic`, image).then(
-				() => {
-					DownloadImages(`profilepic/${currentUser.uid}/profile-pic`).then(
-						(url) => {
-							updateProfileNameAndImage(currentUser.displayName, url).then(
-								() => {
-									setLoading(false);
-									setData(currentUser.uid, "User", { ...data, photoUrl: url });
-								}
-							);
-						}
-					);
-				}
-			);
+			uploadImages(`profilepic/${currentUser.uid}/profile-pic`, image).then(() => {
+				DownloadImages(`profilepic/${currentUser.uid}/profile-pic`).then(
+					(url) => {
+						updateProfileNameAndImage(currentUser.displayName, url).then(
+							() => {
+								setLoading(false);
+								setData(currentUser.uid, "User", {
+									...data,
+									photoUrl: url,
+								});
+							},
+						);
+					},
+				);
+			});
 		} catch (error) {
 			setLoading(false);
 			console.log(error);
@@ -64,7 +65,8 @@ export default function EditImage(props) {
 					<StyledSubmitButton
 						onClick={handleImageUpload}
 						style={{ padding: 0 }}
-						fontColor='#0095f6'>
+						fontColor='#0095f6'
+					>
 						Change Profile Photo
 					</StyledSubmitButton>
 					<input

@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-	CommentForm,
-	EmojiDiv,
-	FormPostIcon,
-	TextArea,
-} from "../Styled/MainHome.styled";
+import { CommentForm, EmojiDiv, FormPostIcon, TextArea } from "../Styled/MainHome.styled";
 import SubmitButton from "../Form Components/SubmitButton";
 
 export default function AddComment({ handleSubmitComment }) {

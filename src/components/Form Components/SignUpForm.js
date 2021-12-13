@@ -120,8 +120,8 @@ export default function SignUpForm(props) {
 						textAlign: "center",
 					}}
 				>
-					By signing up, you agree to our Terms , Data Policy and
-					Cookies Policy .
+					By signing up, you agree to our Terms , Data Policy and Cookies Policy
+					.
 				</p>
 			</Div>
 		</FormConatiner>

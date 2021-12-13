@@ -24,7 +24,8 @@ export default function SearchInput(props) {
 					ref={inputRef}
 					value={inputvalue}
 					autoFocus
-					placeholder='Search'>
+					placeholder='Search'
+				>
 					{children}
 				</Input>
 			)}

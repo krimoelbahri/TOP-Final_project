@@ -72,11 +72,7 @@ export default function Post({ data }) {
 			.then((result) => {
 				setLikes(result.data().posts[data.postId].likes);
 				setComments(result.data().posts[data.postId].comments);
-				if (
-					result
-						.data()
-						.posts[data.postId].likes.includes(currentUser.uid)
-				) {
+				if (result.data().posts[data.postId].likes.includes(currentUser.uid)) {
 					setfillHeart(true);
 				}
 			})

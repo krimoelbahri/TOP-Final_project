@@ -18,7 +18,5 @@ export function StorageProvider({ children }) {
 	}
 	const value = { uploadImages, DownloadImages };
 
-	return (
-		<StorageContext.Provider value={value}>{children}</StorageContext.Provider>
-	);
+	return <StorageContext.Provider value={value}>{children}</StorageContext.Provider>;
 }

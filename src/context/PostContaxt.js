@@ -41,7 +41,5 @@ export function PostsProvider({ children }) {
 		userComment,
 	};
 
-	return (
-		<PostContext.Provider value={value}>{children}</PostContext.Provider>
-	);
+	return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }

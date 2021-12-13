@@ -23,10 +23,7 @@ export default function EditProfile() {
 	}
 	async function handleSubmit(e) {
 		e.preventDefault();
-		await updateProfileNameAndImage(
-			editedData.Username,
-			currentUser.photoURL,
-		);
+		await updateProfileNameAndImage(editedData.Username, currentUser.photoURL);
 		await setData(currentUser.uid, "User", {
 			...currentUserData,
 			...editedData,

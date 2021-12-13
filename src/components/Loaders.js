@@ -9,7 +9,8 @@ export const ProfileShow = (props) => (
 		viewBox='0 0 400 170'
 		backgroundColor='#f3f3f3'
 		foregroundColor='#ecebeb'
-		{...props}>
+		{...props}
+	>
 		<circle cx='248' cy='59' r='49' />
 		<circle cx='263' cy='66' r='8' />
 		<rect x='175' y='120' rx='0' ry='0' width='156' height='8' />
@@ -27,7 +28,8 @@ export const MyLoader = (props) => (
 		viewBox='0 0 400 160'
 		backgroundColor='#f3f3f3'
 		foregroundColor='#ecebeb'
-		{...props}>
+		{...props}
+	>
 		<rect x='48' y='8' rx='3' ry='3' width='88' height='6' />
 		<rect x='0' y='56' rx='3' ry='3' width='410' height='6' />
 		<rect x='0' y='72' rx='3' ry='3' width='380' height='6' />
