@@ -1,5 +1,5 @@
 import React from "react";
-import { Arrow, OverlayContainer } from "./Styled/Overlay.styled";
+import { Arrow, OverlayContainer, OverlayDiv } from "./Styled/Overlay.styled";
 
 export default function Overlay(props) {
 	const {
@@ -10,16 +10,20 @@ export default function Overlay(props) {
 		show,
 		transitionEnd,
 		children,
+		handleClick,
 	} = props;
 	return (
-		<OverlayContainer onTransitionEnd={transitionEnd} show={show}>
-			<Arrow
-				top={arrowTop}
-				bottom={arrowBottom}
-				left={arrowLeft}
-				right={arrowRight}
-			></Arrow>
-			{children}
-		</OverlayContainer>
+		<>
+			<OverlayDiv onClick={handleClick} show={show} />
+			<OverlayContainer onTransitionEnd={transitionEnd} show={show}>
+				<Arrow
+					top={arrowTop}
+					bottom={arrowBottom}
+					left={arrowLeft}
+					right={arrowRight}
+				></Arrow>
+				{children}
+			</OverlayContainer>
+		</>
 	);
 }
