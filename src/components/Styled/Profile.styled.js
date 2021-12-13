@@ -106,10 +106,9 @@ export const PostsContainer = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	div {
-		width: calc(100% / 3 - 25px);
-		height: calc(900px / 3 - 25px);
-		margin-right: 25px;
-		margin-bottom: 25px;
+		width: calc(100% / 3 - 10px);
+		height: calc(900px / 3 - 10px);
+		margin: 5px;
 		@media (max-width: 930px) {
 			height: calc(850px / 3 - 25px);
 		}
