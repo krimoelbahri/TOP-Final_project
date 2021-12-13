@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useData } from "../context/DataContext";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { useStorage } from "../context/StorageContext";
 import { usePosts } from "../context/PostContaxt";
 import { StyledSubmitButton } from "./Styled/Button";
@@ -51,26 +51,17 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	const { currentUser } = useAuth();
 	const { currentUserPosts, userPost } = usePosts();
 	const { uploadImages, DownloadImages } = useStorage();
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	async function handleSubmit() {
 		await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
-		let url = await DownloadImages(
-			`postepic/${currentUser.uid}/${file.name}`,
-		);
+		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
 		let posts = currentUserPosts;
 		posts.posts.push(
-			userPost(
-				currentUserPosts.posts.length,
-				currentUser.uid,
-				"",
-				url,
-				[],
-				[],
-			),
+			userPost(currentUserPosts.posts.length, currentUser.uid, "", url, [], []),
 		);
 		await setData(currentUser.uid, "Posts", posts);
-		history.push("/");
+		navigate("/");
 		setSharing(false);
 		setIsModalVisible(false);
 		toggleBodyOverflow();
