@@ -1,21 +1,20 @@
 import React from "react";
 import { IconsContainer, IconsWraper } from "../Styled/MainHome.styled";
 
-export default function PostIcons({ handleLikes, fillHeart }) {
+export default function PostIcons({ handleLikes, fillHeart, disabled }) {
 	return (
 		<IconsContainer>
 			<IconsWraper>
-				<div>
+				<button disabled={disabled} onClick={handleLikes}>
 					{fillHeart ? (
 						<i
-							onClick={handleLikes}
 							className='fas fa-heart'
 							style={{ color: "red", opacity: " 0.8" }}
 						></i>
 					) : (
-						<i onClick={handleLikes} className='far fa-heart'></i>
+						<i className='far fa-heart'></i>
 					)}
-				</div>
+				</button>
 				<div>
 					<i className='bi bi-chat-right'></i>
 				</div>
