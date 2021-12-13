@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Layout from "./Layout";
 
 export default function MyRoutes() {
 	const { currentUser } = useAuth();
@@ -15,20 +16,26 @@ export default function MyRoutes() {
 		<Routes>
 			<Route
 				path='/'
-				element={currentUser ? <Home /> : <Navigate to={"/login"} />}
-			/>
-			<Route
-				path='/inbox'
-				element={currentUser ? <Messages /> : <Navigate to={"/login"} />}
-			/>
-			<Route
-				path='/profile'
-				element={currentUser ? <Profile /> : <Navigate to={"/login"} />}
-			/>
-			<Route
-				path='/profile/edit'
-				element={currentUser ? <EditProfile /> : <Navigate to={"/login"} />}
-			/>
+				element={currentUser ? <Layout /> : <Navigate to={"/login"} />}
+			>
+				<Route
+					path='/'
+					element={currentUser ? <Home /> : <Navigate to={"/login"} />}
+				/>
+				<Route
+					path='/inbox'
+					element={currentUser ? <Messages /> : <Navigate to={"/login"} />}
+				/>
+				<Route
+					path='/profile'
+					element={currentUser ? <Profile /> : <Navigate to={"/login"} />}
+				/>
+				<Route
+					path='/profile/edit'
+					element={currentUser ? <EditProfile /> : <Navigate to={"/login"} />}
+				/>
+			</Route>
+
 			<Route
 				path='/login'
 				element={!currentUser ? <Login /> : <Navigate to={"/"} />}
