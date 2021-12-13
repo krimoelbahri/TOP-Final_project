@@ -9,11 +9,11 @@ export function Activity() {
 	return <ActivityContainer></ActivityContainer>;
 }
 export function Profile(props) {
-	const { handleLogOut } = props;
+	const { handleLogOut, handleProfile } = props;
 	return (
 		<ProfileContainer>
 			<div>
-				<StyledLink to='/profile'>
+				<StyledLink onClick={handleProfile} to='/profile'>
 					<i className='bi bi-person-circle'></i>
 					<p>profile</p>
 				</StyledLink>
