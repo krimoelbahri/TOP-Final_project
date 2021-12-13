@@ -36,6 +36,16 @@ export const OverlayContainer = styled.div`
 	position: absolute;
 	z-index: 3;
 `;
+export const OverlayDiv = styled.div`
+	display: ${({ show }) => (show ? "block" : "none")};
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	cursor: auto;
+	z-index: 2;
+`;
 export const Arrow = styled.div`
 	top: ${({ top }) => top};
 	bottom: ${({ bottom }) => bottom};
