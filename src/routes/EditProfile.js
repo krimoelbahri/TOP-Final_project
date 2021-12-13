@@ -1,15 +1,10 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 import EditImage from "../components/Profile Components/EditImage";
 import EditInfo from "../components/Profile Components/EditInfo";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router";
-import {
-	Container,
-	MainContainer,
-	EditForm,
-} from "../components/Styled/EditProfile.styled";
+import { MainContainer, EditForm } from "../components/Styled/EditProfile.styled";
 
 export default function EditProfile() {
 	//using Custom Hooks
@@ -33,19 +28,15 @@ export default function EditProfile() {
 	}
 
 	return (
-		<Container>
-			<NavBar />
-
-			<MainContainer>
-				<EditForm>
-					<EditImage data={currentUserData} />
-					<EditInfo
-						data={currentUserData}
-						handleSubmit={handleSubmit}
-						handleChange={handleChange}
-					/>
-				</EditForm>
-			</MainContainer>
-		</Container>
+		<MainContainer>
+			<EditForm>
+				<EditImage data={currentUserData} />
+				<EditInfo
+					data={currentUserData}
+					handleSubmit={handleSubmit}
+					handleChange={handleChange}
+				/>
+			</EditForm>
+		</MainContainer>
 	);
 }

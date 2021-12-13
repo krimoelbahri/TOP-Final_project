@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-	Container,
 	ProfileHeaderContainer,
 	ProfilesContainer,
 } from "../components/Styled/Profile.styled";
@@ -8,7 +7,6 @@ import { MyLoader } from "../components/Loaders";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 import { usePosts } from "../context/PostContaxt";
-import NavBar from "../components/NavBar";
 import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
 
@@ -35,7 +33,7 @@ export default function Profile() {
 				console.log(error);
 				setProfileLoading(false);
 			});
-	}, [currentUser, setCurrentUserData, setProfileLoading]);
+	}, [currentUser, setEditedData, setCurrentUserData, setProfileLoading]);
 	useEffect(() => {
 		console.log("fetching userPosts profile");
 		getData(currentUser.uid, "Posts")
@@ -51,18 +49,15 @@ export default function Profile() {
 			});
 	}, [getData, setCurrentUserPosts, currentUser]);
 	return (
-		<Container>
-			<NavBar />
-			<ProfilesContainer>
-				{profileLoading ? (
-					<ProfileHeaderContainer>
-						<MyLoader style={{ margin: "0 auto" }} />
-					</ProfileHeaderContainer>
-				) : (
-					<ProfileHeader />
-				)}
-				<ProfilePosts />
-			</ProfilesContainer>
-		</Container>
+		<ProfilesContainer>
+			{profileLoading ? (
+				<ProfileHeaderContainer>
+					<MyLoader style={{ margin: "0 auto" }} />
+				</ProfileHeaderContainer>
+			) : (
+				<ProfileHeader />
+			)}
+			<ProfilePosts />
+		</ProfilesContainer>
 	);
 }

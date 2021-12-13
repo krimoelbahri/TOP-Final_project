@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
-import NavBar from "../components/NavBar";
 import Main from "../components/Main Home Components/Main";
-import { Container } from "../components/Styled/Home.styled";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 import { usePosts } from "../context/PostContaxt";
 
 export default function Home() {
-	const { userPic, navBarLoading, getData, setData, userData, setNavBarLoading } =
-		useData();
+	const { userPic, getData, setData, userData, setNavBarLoading } = useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 	const { postsLoading, setCurrentUserPosts, setPostsLoading } = usePosts();
+
 	useEffect(() => {
 		if (!currentUser.displayName) {
 			updateProfileNameAndImage("User", userPic.current).then(() => {});
@@ -53,10 +51,5 @@ export default function Home() {
 
 		setPostsLoading(false);
 	}, [getData, setCurrentUserPosts, currentUser, setPostsLoading]);
-	return (
-		<Container>
-			<NavBar loading={navBarLoading} />
-			<Main loading={postsLoading} />
-		</Container>
-	);
+	return <Main loading={postsLoading} />;
 }
