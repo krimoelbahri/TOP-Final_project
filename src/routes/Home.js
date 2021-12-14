@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Main from "../components/Main Home Components/Main";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 import { usePosts } from "../context/PostContaxt";
 
 export default function Home() {
-	const { userPic, getData, setData, userData, setNavBarLoading } = useData();
+	const { userPic, getData, setData, userData, setNavBarLoading, following } =
+		useData();
 	const { currentUser, updateProfileNameAndImage } = useAuth();
-	const { postsLoading, setCurrentUserPosts, setPostsLoading } = usePosts();
+	const { postsLoading, setPostsLoading } = usePosts();
+	const [posts, setPosts] = useState({ posts: [] });
 
 	useEffect(() => {
 		if (!currentUser.displayName) {
@@ -15,7 +17,6 @@ export default function Home() {
 		}
 	}, [userPic, currentUser, updateProfileNameAndImage]);
 	useEffect(() => {
-		console.log("user data check");
 		getData(currentUser.uid, "User").then((result) => {
 			if (!result.exists()) {
 				setData(
@@ -29,6 +30,8 @@ export default function Home() {
 						"",
 						"",
 						"",
+						[],
+						[],
 					),
 				);
 			}
@@ -36,20 +39,31 @@ export default function Home() {
 		setNavBarLoading(false);
 	}, [currentUser, getData, setData, userData, setNavBarLoading]);
 	useEffect(() => {
-		console.log("fetching userPosts");
-		getData(currentUser.uid, "Posts")
-			.then((result) => {
-				if (result.exists()) {
-					setCurrentUserPosts(result.data());
-				} else {
-					setCurrentUserPosts({ posts: [] });
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		getData("Users", currentUser.uid).then((result) => {
+			if (!result.exists()) {
+				setData("Users", currentUser.uid, { id: currentUser.uid });
+			}
+		});
+	}, [currentUser, getData, setData]);
+	useEffect(() => {
+		let arr = [];
+		following.forEach((id) => {
+			getData(id, "Posts")
+				.then((result) => {
+					if (result.exists()) {
+						result.data().posts.forEach((post) => arr.push(post));
+						setPosts({ posts: arr });
+					} else {
+						setPosts({ posts: [] });
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		});
 
 		setPostsLoading(false);
-	}, [getData, setCurrentUserPosts, currentUser, setPostsLoading]);
-	return <Main loading={postsLoading} />;
+	}, [getData, currentUser, setPostsLoading, following]);
+
+	return <Main posts={posts} loading={postsLoading} />;
 }
