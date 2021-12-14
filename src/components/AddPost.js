@@ -47,7 +47,7 @@ export default function AddPost(props) {
 }
 
 function PostHeader({ display, file, setIsModalVisible, setSharing }) {
-	const { setData, toggleBodyOverflow } = useData();
+	const { setData, getData, toggleBodyOverflow } = useData();
 	const { currentUser } = useAuth();
 	const { currentUserPosts, userPost } = usePosts();
 	const { uploadImages, DownloadImages } = useStorage();
@@ -56,7 +56,8 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	async function handleSubmit() {
 		await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
 		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
-		let posts = currentUserPosts;
+		let result = await getData(currentUser.uid, "Posts");
+		let posts = result.data();
 		posts.posts.push(
 			userPost(currentUserPosts.posts.length, currentUser.uid, "", url, [], []),
 		);
