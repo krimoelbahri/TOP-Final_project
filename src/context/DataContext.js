@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useStorage } from "./StorageContext";
 
@@ -14,6 +14,8 @@ export function DataProvider({ children }) {
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [navBarLoading, setNavBarLoading] = useState(true);
+	const [following, setFollowing] = useState([]);
+	const [followers, setFollowers] = useState([]);
 
 	const { DownloadImages } = useStorage();
 	const userPic = useRef();
@@ -21,12 +23,36 @@ export function DataProvider({ children }) {
 		const data = await getDoc(doc(db, collectionName, document));
 		return data;
 	}
+	async function getDocuments(collectionName) {
+		const data = await getDocs(collection(db, collectionName));
+		return data;
+	}
 
 	async function setData(collectionName, document, data) {
 		await setDoc(doc(db, collectionName, document), data);
 	}
-	function userData(Name, Username, photoUrl, Email, Bio, PhoneNumber, Website) {
-		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl };
+	function userData(
+		Name,
+		Username,
+		photoUrl,
+		Email,
+		Bio,
+		PhoneNumber,
+		Website,
+		Following,
+		Followers,
+	) {
+		return {
+			Bio,
+			Email,
+			Name,
+			PhoneNumber,
+			Username,
+			Website,
+			photoUrl,
+			Following,
+			Followers,
+		};
 	}
 
 	function toggleBodyOverflow() {
@@ -43,8 +69,10 @@ export function DataProvider({ children }) {
 		}
 		getUserPic();
 	}, [DownloadImages]);
+
 	const value = {
 		getData,
+		getDocuments,
 		setData,
 		userData,
 		currentUserData,
@@ -59,6 +87,10 @@ export function DataProvider({ children }) {
 		setProfileLoading,
 		navBarLoading,
 		setNavBarLoading,
+		following,
+		setFollowing,
+		followers,
+		setFollowers,
 	};
 
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
