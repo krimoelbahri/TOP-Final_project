@@ -27,7 +27,7 @@ export default function MyRoutes() {
 					element={currentUser ? <Messages /> : <Navigate to={"/login"} />}
 				/>
 				<Route
-					path='/profile'
+					path='/profile/:userid'
 					element={currentUser ? <Profile /> : <Navigate to={"/login"} />}
 				/>
 				<Route
