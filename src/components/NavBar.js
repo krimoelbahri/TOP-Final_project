@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchInput from "./SearchInput";
 import Overlay from "./Overlay";
 import styled from "styled-components";
-import { Activity, Profile } from "./DropDown";
+import { PeopleSuggestion, NavBarProfile } from "./DropDown";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -22,11 +22,19 @@ export const StyledLink = styled(Link)`
 `;
 export default function NavBar() {
 	const [heart, setHeart] = useState(false);
-	const [showActivity, setShowActivity] = useState(false);
+	const [showSuggestions, setShowSuggestions] = useState(false);
 	const [showProfile, setShowProfile] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
-	const { setIsModalVisible, toggleBodyOverflow } = useData();
+	const {
+		setIsModalVisible,
+		toggleBodyOverflow,
+		setData,
+		getData,
+		following,
+		setFollowing,
+		setFollowers,
+	} = useData();
 	const { setPostsLoading, setCurrentUserPosts } = usePosts();
 
 	const handleLogOut = () => {
@@ -35,10 +43,10 @@ export default function NavBar() {
 		logout();
 	};
 
-	//this will handle filling heart icon and showing activity dropdown
+	//this will handle filling heart icon and showing suggestion dropdown
 	const handleHeart = () => {
 		setHeart(!heart);
-		setShowActivity(!showActivity);
+		setShowSuggestions(!showSuggestions);
 		if (showProfile) {
 			setShowProfile(!showProfile);
 		}
@@ -47,8 +55,8 @@ export default function NavBar() {
 	//this will handle showing profile dropdown
 	const handleProfile = () => {
 		setShowProfile(!showProfile);
-		if (showActivity) {
-			setShowActivity(!showActivity);
+		if (showSuggestions) {
+			setShowSuggestions(!showSuggestions);
 			setHeart(!heart);
 		}
 	};
@@ -56,6 +64,36 @@ export default function NavBar() {
 		setIsModalVisible(true);
 		toggleBodyOverflow();
 	};
+	const handleFollow = async function (id) {
+		handleHeart();
+		let arr = following;
+		if (!arr.includes(id)) {
+			arr.push(id);
+		}
+		setFollowing(arr);
+		let userResult = await getData(currentUser.uid, "User");
+		await setData(currentUser.uid, "User", {
+			...userResult.data(),
+			Following: arr,
+		});
+		let result = await getData(id, "User");
+		let userFollowers = result.data().Followers;
+		if (!userFollowers.includes(currentUser.uid)) {
+			userFollowers.push(currentUser.uid);
+		}
+		await setData(id, "User", {
+			...result.data(),
+			Followers: userFollowers,
+		});
+	};
+	useEffect(() => {
+		getData(currentUser.uid, "User").then((result) => {
+			if (result.exists()) {
+				setFollowing(result.data().Following);
+				setFollowers(result.data().Followers);
+			}
+		});
+	}, [currentUser, setFollowing, setFollowers]);
 	return (
 		<Container>
 			<StyledNavBar>
@@ -98,10 +136,12 @@ export default function NavBar() {
 								<Overlay
 									arrowLeft='314px'
 									arrowTop='-6px'
-									show={showActivity}
+									show={showSuggestions}
 									handleClick={handleHeart}
 								>
-									<Activity />
+									{showSuggestions && (
+										<PeopleSuggestion handleFollow={handleFollow} />
+									)}
 								</Overlay>
 							</div>
 						</Span>
@@ -118,7 +158,7 @@ export default function NavBar() {
 									show={showProfile}
 									handleClick={handleProfile}
 								>
-									<Profile
+									<NavBarProfile
 										handleProfile={handleProfile}
 										handleLogOut={handleLogOut}
 									/>
