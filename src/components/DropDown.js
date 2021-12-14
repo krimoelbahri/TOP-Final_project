@@ -9,6 +9,7 @@ import {
 } from "./Styled/DropDown.styled";
 import { StyledSubmitButton } from "./Styled/Button";
 import { useData } from "../context/DataContext";
+import { useAuth } from "../context/AuthContext";
 
 export function PeopleSuggestion({ handleFollow }) {
 	const [users, setUsers] = useState([]);
@@ -57,10 +58,16 @@ export function PeopleSuggestion({ handleFollow }) {
 }
 export function NavBarProfile(props) {
 	const { handleLogOut, handleProfile } = props;
+	const { currentUser } = useAuth();
 	return (
 		<ProfileContainer>
 			<div>
-				<StyledLink onClick={handleProfile} to='/profile'>
+				<StyledLink
+					onClick={() => {
+						handleProfile();
+					}}
+					to={`/profile/${currentUser.uid}`}
+				>
 					<i className='bi bi-person-circle'></i>
 					<p>profile</p>
 				</StyledLink>
