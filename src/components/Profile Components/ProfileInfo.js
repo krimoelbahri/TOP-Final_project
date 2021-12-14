@@ -7,7 +7,7 @@ import { usePosts } from "../../context/PostContaxt";
 
 export default function ProfileInfo() {
 	const { currentUser } = useAuth();
-	const { currentUserData } = useData();
+	const { currentUserData, following, followers } = useData();
 	const { currentUserPosts } = usePosts();
 
 	return (
@@ -23,10 +23,10 @@ export default function ProfileInfo() {
 					<span>{currentUserPosts.posts.length}</span> Posts
 				</li>
 				<li>
-					<span>77</span> followers
+					<span>{followers.length}</span> followers
 				</li>
 				<li>
-					<span>120</span> following{" "}
+					<span>{following.length}</span> following
 				</li>
 			</ul>
 			<ProfileBio>
