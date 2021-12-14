@@ -65,7 +65,6 @@ export default function Post({ data }) {
 			.catch((error) => {
 				console.log(error);
 			});
-		setLoading(false);
 	}, [data, getData]);
 	useEffect(() => {
 		getData(data.userId, "Posts")
@@ -88,6 +87,7 @@ export default function Post({ data }) {
 					<PostHeader
 						userPhoto={userInfo.photoUrl}
 						userName={userInfo.Username}
+						userid={data.userId}
 					/>
 					<PostImage postImgUrl={data.photoUrl} />
 					<PostIcons
