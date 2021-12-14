@@ -5,18 +5,21 @@ import { useData } from "../../context/DataContext";
 import { StyledLink } from "../Styled/DropDown.styled";
 import { usePosts } from "../../context/PostContaxt";
 
-export default function ProfileInfo() {
-	const { currentUser } = useAuth();
+export default function ProfileInfo({ isCurrentUser }) {
 	const { currentUserData, following, followers } = useData();
 	const { currentUserPosts } = usePosts();
 
 	return (
 		<ProfileInfoContainer>
 			<div>
-				<h3> {currentUser.displayName} </h3>
-				<StyledLink to='/profile/edit'>
-					<button>Edit profile</button>
-				</StyledLink>
+				<h3> {currentUserData.Username} </h3>
+				{isCurrentUser ? (
+					<StyledLink to='/profile/edit'>
+						<button>Edit profile</button>
+					</StyledLink>
+				) : (
+					<></>
+				)}
 			</div>
 			<ul>
 				<li>
