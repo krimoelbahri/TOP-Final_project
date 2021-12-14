@@ -17,25 +17,37 @@ export default function Profile() {
 		setCurrentUserData,
 		setEditedData,
 		setProfileLoading,
+		setFollowing,
+		setFollowers,
 	} = useData();
 	const { currentUser } = useAuth();
 	const { setCurrentUserPosts } = usePosts();
 
 	useEffect(() => {
-		console.log("fetching userData");
-		getData(currentUser.uid, "User")
-			.then((result) => {
-				setCurrentUserData(result.data());
-				setEditedData(result.data());
-				setProfileLoading(false);
-			})
-			.catch((error) => {
-				console.log(error);
-				setProfileLoading(false);
-			});
-	}, [currentUser, setEditedData, setCurrentUserData, setProfileLoading]);
+		function fetching() {
+			getData(currentUser.uid, "User")
+				.then((result) => {
+					setCurrentUserData(result.data());
+					setEditedData(result.data());
+					setFollowing(result.data().Following);
+					setFollowers(result.data().Followers);
+					setProfileLoading(false);
+				})
+				.catch((error) => {
+					console.log(error);
+					setProfileLoading(false);
+				});
+		}
+		fetching();
+	}, [
+		currentUser,
+		setEditedData,
+		setCurrentUserData,
+		setProfileLoading,
+		setFollowers,
+		setFollowing,
+	]);
 	useEffect(() => {
-		console.log("fetching userPosts profile");
 		getData(currentUser.uid, "Posts")
 			.then((result) => {
 				if (result.exists()) {
@@ -48,6 +60,7 @@ export default function Profile() {
 				console.log(error);
 			});
 	}, [getData, setCurrentUserPosts, currentUser]);
+
 	return (
 		<ProfilesContainer>
 			{profileLoading ? (
