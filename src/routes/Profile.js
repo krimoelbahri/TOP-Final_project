@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	ProfileHeaderContainer,
 	ProfilesContainer,
@@ -9,8 +9,10 @@ import { useAuth } from "../context/AuthContext";
 import { usePosts } from "../context/PostContaxt";
 import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
+	const [isCurrentUser, setIsCurrentUser] = useState(false);
 	const {
 		profileLoading,
 		getData,
@@ -19,18 +21,23 @@ export default function Profile() {
 		setProfileLoading,
 		setFollowing,
 		setFollowers,
+		currentUserData,
 	} = useData();
 	const { currentUser } = useAuth();
 	const { setCurrentUserPosts } = usePosts();
+	const params = useParams();
 
 	useEffect(() => {
 		function fetching() {
-			getData(currentUser.uid, "User")
+			getData(params.userid, "User")
 				.then((result) => {
 					setCurrentUserData(result.data());
-					setEditedData(result.data());
-					setFollowing(result.data().Following);
-					setFollowers(result.data().Followers);
+					if (params.userid === currentUser.uid) {
+						setEditedData(result.data());
+						setIsCurrentUser(true);
+					}
+					/*setFollowing(result.data().Following);
+					setFollowers(result.data().Followers);*/
 					setProfileLoading(false);
 				})
 				.catch((error) => {
@@ -40,15 +47,15 @@ export default function Profile() {
 		}
 		fetching();
 	}, [
-		currentUser,
 		setEditedData,
 		setCurrentUserData,
 		setProfileLoading,
 		setFollowers,
 		setFollowing,
+		params,
 	]);
 	useEffect(() => {
-		getData(currentUser.uid, "Posts")
+		getData(params.userid, "Posts")
 			.then((result) => {
 				if (result.exists()) {
 					setCurrentUserPosts(result.data());
@@ -59,7 +66,7 @@ export default function Profile() {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [getData, setCurrentUserPosts, currentUser]);
+	}, [getData, setCurrentUserPosts, params]);
 
 	return (
 		<ProfilesContainer>
@@ -68,7 +75,10 @@ export default function Profile() {
 					<MyLoader style={{ margin: "0 auto" }} />
 				</ProfileHeaderContainer>
 			) : (
-				<ProfileHeader />
+				<ProfileHeader
+					profilePic={currentUserData.photoUrl}
+					isCurrentUser={isCurrentUser}
+				/>
 			)}
 			<ProfilePosts />
 		</ProfilesContainer>
