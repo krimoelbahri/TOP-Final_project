@@ -5,7 +5,6 @@ import { MyLoader } from "../Loaders";
 import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 
 export default function Main({ loading, posts }) {
-	console.log(posts.posts);
 	return (
 		<MainContainer>
 			{loading ? (
