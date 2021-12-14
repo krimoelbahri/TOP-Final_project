@@ -1,12 +1,11 @@
 import React from "react";
 import Post from "./Post";
 import { MainContainer } from "../Styled/MainHome.styled";
-import { usePosts } from "../../context/PostContaxt";
 import { MyLoader } from "../Loaders";
 import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 
-export default function Main({ loading }) {
-	const { currentUserPosts } = usePosts();
+export default function Main({ loading, posts }) {
+	console.log(posts.posts);
 	return (
 		<MainContainer>
 			{loading ? (
@@ -14,7 +13,7 @@ export default function Main({ loading }) {
 					<MyLoader />
 				</ProfileHeaderContainer>
 			) : (
-				currentUserPosts.posts.map((post, index) => {
+				posts.posts.map((post, index) => {
 					return <Post key={`post ${index}`} data={post} />;
 				})
 			)}
