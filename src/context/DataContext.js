@@ -16,7 +16,8 @@ export function DataProvider({ children }) {
 	const [navBarLoading, setNavBarLoading] = useState(true);
 	const [following, setFollowing] = useState([]);
 	const [followers, setFollowers] = useState([]);
-
+	const [profileFollowing, setProfileFollowing] = useState([]);
+	const [profileFollowers, setProfileFollowers] = useState([]);
 	const { DownloadImages } = useStorage();
 	const userPic = useRef();
 	async function getData(collectionName, document) {
@@ -91,6 +92,10 @@ export function DataProvider({ children }) {
 		setFollowing,
 		followers,
 		setFollowers,
+		profileFollowing,
+		profileFollowers,
+		setProfileFollowing,
+		setProfileFollowers,
 	};
 
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
