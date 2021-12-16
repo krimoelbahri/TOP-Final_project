@@ -1,12 +1,11 @@
 import React from "react";
 import { ProfileInfoContainer, ProfileBio } from "../Styled/Profile.styled";
-import { useAuth } from "../../context/AuthContext";
 import { useData } from "../../context/DataContext";
 import { StyledLink } from "../Styled/DropDown.styled";
 import { usePosts } from "../../context/PostContaxt";
 
 export default function ProfileInfo({ isCurrentUser }) {
-	const { currentUserData, following, followers } = useData();
+	const { currentUserData, profileFollowing, profileFollowers } = useData();
 	const { currentUserPosts } = usePosts();
 
 	return (
@@ -26,10 +25,10 @@ export default function ProfileInfo({ isCurrentUser }) {
 					<span>{currentUserPosts.posts.length}</span> Posts
 				</li>
 				<li>
-					<span>{followers.length}</span> followers
+					<span>{profileFollowers.length}</span> followers
 				</li>
 				<li>
-					<span>{following.length}</span> following
+					<span>{profileFollowing.length}</span> following
 				</li>
 			</ul>
 			<ProfileBio>
