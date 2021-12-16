@@ -31,7 +31,6 @@ export default function NavBar() {
 		toggleBodyOverflow,
 		setData,
 		getData,
-		following,
 		setFollowing,
 		setFollowers,
 	} = useData();
@@ -66,16 +65,17 @@ export default function NavBar() {
 	};
 	const handleFollow = async function (id) {
 		handleHeart();
-		let arr = following;
+		//handling Following the user
+		let userResult = await getData(currentUser.uid, "User");
+		let arr = userResult.data().Following;
 		if (!arr.includes(id)) {
 			arr.push(id);
 		}
-		setFollowing(arr);
-		let userResult = await getData(currentUser.uid, "User");
 		await setData(currentUser.uid, "User", {
 			...userResult.data(),
 			Following: arr,
 		});
+		//handling adding Followers to the user
 		let result = await getData(id, "User");
 		let userFollowers = result.data().Followers;
 		if (!userFollowers.includes(currentUser.uid)) {
