@@ -19,8 +19,8 @@ export default function Profile() {
 		setCurrentUserData,
 		setEditedData,
 		setProfileLoading,
-		setFollowing,
-		setFollowers,
+		setProfileFollowing,
+		setProfileFollowers,
 		currentUserData,
 	} = useData();
 	const { currentUser } = useAuth();
@@ -28,6 +28,7 @@ export default function Profile() {
 	const params = useParams();
 
 	useEffect(() => {
+		console.log("hi");
 		function fetching() {
 			getData(params.userid, "User")
 				.then((result) => {
@@ -36,8 +37,8 @@ export default function Profile() {
 						setEditedData(result.data());
 						setIsCurrentUser(true);
 					}
-					/*setFollowing(result.data().Following);
-					setFollowers(result.data().Followers);*/
+					setProfileFollowing(result.data().Following);
+					setProfileFollowers(result.data().Followers);
 					setProfileLoading(false);
 				})
 				.catch((error) => {
@@ -46,14 +47,7 @@ export default function Profile() {
 				});
 		}
 		fetching();
-	}, [
-		setEditedData,
-		setCurrentUserData,
-		setProfileLoading,
-		setFollowers,
-		setFollowing,
-		params,
-	]);
+	}, [setEditedData, currentUser, setCurrentUserData, setProfileLoading, params]);
 	useEffect(() => {
 		getData(params.userid, "Posts")
 			.then((result) => {
