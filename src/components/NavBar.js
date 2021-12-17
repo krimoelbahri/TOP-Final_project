@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import Overlay from "./Overlay";
 import styled from "styled-components";
@@ -7,7 +7,6 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useData } from "../context/DataContext";
-import { usePosts } from "../context/PostContaxt";
 import {
 	Container,
 	StyledNavBar,
@@ -16,6 +15,9 @@ import {
 	WrapperChild,
 	Span,
 } from "./Styled/NavBar.styled";
+import { handleFollowing } from "../Functions/handleFollow";
+import { useDispatch } from "react-redux";
+import { follow } from "../states/followers";
 
 export const StyledLink = styled(Link)`
 	color: black;
@@ -26,19 +28,10 @@ export default function NavBar() {
 	const [showProfile, setShowProfile] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
-	const {
-		setIsModalVisible,
-		toggleBodyOverflow,
-		setData,
-		getData,
-		setFollowing,
-		setFollowers,
-	} = useData();
-	const { setPostsLoading, setCurrentUserPosts } = usePosts();
+	const { setIsModalVisible, toggleBodyOverflow, setData, getData } = useData();
+	const dispatch = useDispatch();
 
 	const handleLogOut = () => {
-		setPostsLoading(true);
-		setCurrentUserPosts({ posts: [] });
 		logout();
 	};
 
@@ -65,35 +58,10 @@ export default function NavBar() {
 	};
 	const handleFollow = async function (id) {
 		handleHeart();
-		//handling Following the user
-		let userResult = await getData(currentUser.uid, "User");
-		let arr = userResult.data().Following;
-		if (!arr.includes(id)) {
-			arr.push(id);
-		}
-		await setData(currentUser.uid, "User", {
-			...userResult.data(),
-			Following: arr,
-		});
-		//handling adding Followers to the user
-		let result = await getData(id, "User");
-		let userFollowers = result.data().Followers;
-		if (!userFollowers.includes(currentUser.uid)) {
-			userFollowers.push(currentUser.uid);
-		}
-		await setData(id, "User", {
-			...result.data(),
-			Followers: userFollowers,
-		});
+		const obj = await handleFollowing(id, currentUser.uid, getData, setData);
+		dispatch(follow(obj.following));
 	};
-	useEffect(() => {
-		getData(currentUser.uid, "User").then((result) => {
-			if (result.exists()) {
-				setFollowing(result.data().Following);
-				setFollowers(result.data().Followers);
-			}
-		});
-	}, [currentUser, setFollowing, setFollowers]);
+
 	return (
 		<Container>
 			<StyledNavBar>
@@ -146,11 +114,7 @@ export default function NavBar() {
 							</div>
 						</Span>
 						<Span show={showProfile}>
-							<img
-								onClick={handleProfile}
-								src={currentUser.photoURL}
-								alt='PP'
-							/>
+							<img onClick={handleProfile} src={currentUser.photoURL} alt='PP' />
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
 								<Overlay
 									arrowLeft='155px'
