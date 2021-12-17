@@ -32,6 +32,16 @@ export const ProfilePictureContainer = styled.div`
 		}
 	}
 `;
+export const EditButton = styled.button`
+	margin-right: 15px;
+	padding: 4px 10px;
+	background-color: white;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+`;
+
 export const ProfileInfoContainer = styled.div`
 	width: calc(70% - 30px);
 	min-width: 150px;
@@ -44,10 +54,10 @@ export const ProfileInfoContainer = styled.div`
 		align-items: center;
 		flex: 1;
 		margin-bottom: 16px;
-		h3,
-		button {
+		h3 {
 			margin-right: 15px;
 		}
+
 		li {
 			margin-right: 30px;
 			font-size: medium;
