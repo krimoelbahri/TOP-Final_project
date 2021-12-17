@@ -1,10 +1,5 @@
 import React from "react";
-import {
-	ModalContainer,
-	ModalChildContainer,
-	CloseModal,
-	ModalDiv,
-} from "./Styled/Modal.styled";
+import { ModalContainer, ModalChildContainer, CloseModal, ModalDiv } from "./Styled/Modal.styled";
 
 export default function Modal(props) {
 	const { isModalVisible, handleClose, children } = props;

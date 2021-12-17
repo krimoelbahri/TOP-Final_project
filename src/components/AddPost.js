@@ -16,15 +16,7 @@ import {
 
 export default function AddPost(props) {
 	const [file, setFile] = useState("");
-	const {
-		display,
-		setDisplay,
-		image,
-		setImage,
-		sharing,
-		setSharing,
-		setIsModalVisible,
-	} = props;
+	const { display, setDisplay, image, setImage, sharing, setSharing, setIsModalVisible } = props;
 	return (
 		<div>
 			<PostHeader
@@ -68,11 +60,7 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	return (
 		<AddPostHeader>
 			<h3>Create new post</h3>
-			<StyledSubmitButton
-				onClick={handleSubmit}
-				display={display}
-				fontColor='#0095f6'
-			>
+			<StyledSubmitButton onClick={handleSubmit} display={display} fontColor='#0095f6'>
 				Share
 			</StyledSubmitButton>
 		</AddPostHeader>

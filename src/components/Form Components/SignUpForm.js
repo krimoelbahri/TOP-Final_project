@@ -1,13 +1,6 @@
 import React, { useState, useRef } from "react";
 import Div from "../Styled/Div";
-import {
-	FormConatiner,
-	Logo,
-	FormDiv,
-	Label,
-	OrDiv,
-	LineDiv,
-} from "../Styled/Form.styled";
+import { FormConatiner, Logo, FormDiv, Label, OrDiv, LineDiv } from "../Styled/Form.styled";
 import FormInput from "./FormInput";
 import InputDiv from "./InputDiv";
 import SubmitButton from "./SubmitButton";
@@ -120,8 +113,7 @@ export default function SignUpForm(props) {
 						textAlign: "center",
 					}}
 				>
-					By signing up, you agree to our Terms , Data Policy and Cookies Policy
-					.
+					By signing up, you agree to our Terms , Data Policy and Cookies Policy .
 				</p>
 			</Div>
 		</FormConatiner>

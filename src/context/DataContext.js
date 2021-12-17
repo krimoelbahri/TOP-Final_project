@@ -39,17 +39,7 @@ export function DataProvider({ children }) {
 		Following,
 		Followers,
 	) {
-		return {
-			Bio,
-			Email,
-			Name,
-			PhoneNumber,
-			Username,
-			Website,
-			photoUrl,
-			Following,
-			Followers,
-		};
+		return { Bio, Email, Name, PhoneNumber, Username, Website, photoUrl, Following, Followers };
 	}
 
 	function toggleBodyOverflow() {

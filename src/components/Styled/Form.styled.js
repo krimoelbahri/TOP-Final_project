@@ -37,8 +37,7 @@ export const Input = styled.input`
 `;
 export const Span = styled.span`
 	color: rgba(142, 142, 142, 1);
-	transform: ${(props) =>
-		props.animation ? "scale(.83333) translateY(-10px)" : "none"};
+	transform: ${(props) => (props.animation ? "scale(.83333) translateY(-10px)" : "none")};
 	transition: transform ease-out 0.1s;
 	transform-origin: left;
 	font-family: sans-serif;

@@ -33,11 +33,7 @@ export default function AddComment({ handleSubmitComment }) {
 					<i className='bi bi-emoji-smile'></i>
 				</FormPostIcon>
 			</EmojiDiv>
-			<TextArea
-				onChange={handleComment}
-				value={textValue}
-				placeholder='Add a comment... '
-			/>
+			<TextArea onChange={handleComment} value={textValue} placeholder='Add a comment... ' />
 			<SubmitButton
 				type='submit'
 				fontColor='#0095f6'

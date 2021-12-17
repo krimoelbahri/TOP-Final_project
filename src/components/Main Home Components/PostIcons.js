@@ -7,10 +7,7 @@ export default function PostIcons({ handleLikes, fillHeart, disabled }) {
 			<IconsWraper>
 				<button disabled={disabled} onClick={handleLikes}>
 					{fillHeart ? (
-						<i
-							className='fas fa-heart'
-							style={{ color: "red", opacity: " 0.8" }}
-						></i>
+						<i className='fas fa-heart' style={{ color: "red", opacity: " 0.8" }}></i>
 					) : (
 						<i className='far fa-heart'></i>
 					)}

@@ -14,14 +14,8 @@ export default function MyRoutes() {
 
 	return (
 		<Routes>
-			<Route
-				path='/'
-				element={currentUser ? <Layout /> : <Navigate to={"/login"} />}
-			>
-				<Route
-					path='/'
-					element={currentUser ? <Home /> : <Navigate to={"/login"} />}
-				/>
+			<Route path='/' element={currentUser ? <Layout /> : <Navigate to={"/login"} />}>
+				<Route path='/' element={currentUser ? <Home /> : <Navigate to={"/login"} />} />
 				<Route
 					path='/inbox'
 					element={currentUser ? <Messages /> : <Navigate to={"/login"} />}
@@ -36,14 +30,8 @@ export default function MyRoutes() {
 				/>
 			</Route>
 
-			<Route
-				path='/login'
-				element={!currentUser ? <Login /> : <Navigate to={"/"} />}
-			/>
-			<Route
-				path='/signup'
-				element={!currentUser ? <SignUp /> : <Navigate to={"/"} />}
-			/>
+			<Route path='/login' element={!currentUser ? <Login /> : <Navigate to={"/"} />} />
+			<Route path='/signup' element={!currentUser ? <SignUp /> : <Navigate to={"/"} />} />
 		</Routes>
 	);
 }

@@ -44,11 +44,7 @@ export default function Post({ data }) {
 	async function handleSubmitComment(comment) {
 		let result = await getData(data.userId, "Posts");
 		let editedPost = result.data().posts[data.postId];
-		let commentObj = userComment(
-			editedPost.comments.length,
-			currentUser.uid,
-			comment,
-		);
+		let commentObj = userComment(editedPost.comments.length, currentUser.uid, comment);
 		editedPost.comments.push(commentObj);
 		setComments(editedPost.comments);
 		const newArray = Object.assign([], result.data().posts, {

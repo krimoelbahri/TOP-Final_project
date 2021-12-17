@@ -27,19 +27,15 @@ export default function EditImage(props) {
 		setLoading(true);
 		try {
 			uploadImages(`profilepic/${currentUser.uid}/profile-pic`, image).then(() => {
-				DownloadImages(`profilepic/${currentUser.uid}/profile-pic`).then(
-					(url) => {
-						updateProfileNameAndImage(currentUser.displayName, url).then(
-							() => {
-								setLoading(false);
-								setData(currentUser.uid, "User", {
-									...data,
-									photoUrl: url,
-								});
-							},
-						);
-					},
-				);
+				DownloadImages(`profilepic/${currentUser.uid}/profile-pic`).then((url) => {
+					updateProfileNameAndImage(currentUser.displayName, url).then(() => {
+						setLoading(false);
+						setData(currentUser.uid, "User", {
+							...data,
+							photoUrl: url,
+						});
+					});
+				});
 			});
 		} catch (error) {
 			setLoading(false);

@@ -3,13 +3,7 @@ import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePicture from "./ProfilePicture";
 
-export default function ProfileHeader({
-	followers,
-	following,
-	posts,
-	profilePic,
-	isCurrentUser,
-}) {
+export default function ProfileHeader({ followers, following, posts, profilePic, isCurrentUser }) {
 	return (
 		<ProfileHeaderContainer>
 			<ProfilePicture profilePic={profilePic} />

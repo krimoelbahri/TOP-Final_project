@@ -9,24 +9,11 @@ export function usePosts() {
 export function PostsProvider({ children }) {
 	function userPost(postId, userId, title, photoUrl, likes, comments) {
 		let date = Timestamp.fromDate(new Date());
-		return {
-			postId,
-			userId,
-			title,
-			photoUrl,
-			likes,
-			comments,
-			date,
-		};
+		return { postId, userId, title, photoUrl, likes, comments, date };
 	}
 	function userComment(CommentId, userId, comment) {
 		let date = Timestamp.fromDate(new Date());
-		return {
-			CommentId,
-			userId,
-			comment,
-			date,
-		};
+		return { CommentId, userId, comment, date };
 	}
 
 	const value = {

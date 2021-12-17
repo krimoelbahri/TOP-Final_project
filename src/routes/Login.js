@@ -29,8 +29,7 @@ export default function Login() {
 			<FormConatiner>
 				<div>
 					<p>
-						Don't have an account?{" "}
-						<StyledLink to='/signup'>Sign up</StyledLink>
+						Don't have an account? <StyledLink to='/signup'>Sign up</StyledLink>
 					</p>
 				</div>
 			</FormConatiner>

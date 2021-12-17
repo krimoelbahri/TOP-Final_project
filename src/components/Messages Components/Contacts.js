@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	ContactsContainer,
-	ContactsHeader,
-	ContactsBody,
-} from "../Styled/Message.styled";
+import { ContactsContainer, ContactsHeader, ContactsBody } from "../Styled/Message.styled";
 import { useAuth } from "../../context/AuthContext";
 import ContactsProfiles from "./ContactsProfiles";
 
