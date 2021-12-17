@@ -49,7 +49,7 @@ export default function AddPost(props) {
 function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	const { setData, getData, toggleBodyOverflow } = useData();
 	const { currentUser } = useAuth();
-	const { currentUserPosts, userPost } = usePosts();
+	const { userPost } = usePosts();
 	const { uploadImages, DownloadImages } = useStorage();
 	const navigate = useNavigate();
 
@@ -58,9 +58,7 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
 		let result = await getData(currentUser.uid, "Posts");
 		let posts = result.data();
-		posts.posts.push(
-			userPost(currentUserPosts.posts.length, currentUser.uid, "", url, [], []),
-		);
+		posts.posts.push(userPost(posts.posts.length, currentUser.uid, "", url, [], []));
 		await setData(currentUser.uid, "Posts", posts);
 		navigate("/");
 		setSharing(false);
