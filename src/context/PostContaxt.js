@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Timestamp } from "firebase/firestore";
 const PostContext = React.createContext();
 
@@ -7,9 +7,6 @@ export function usePosts() {
 }
 
 export function PostsProvider({ children }) {
-	const [currentUserPosts, setCurrentUserPosts] = useState({ posts: [] });
-	const [postsLoading, setPostsLoading] = useState(true);
-
 	function userPost(postId, userId, title, photoUrl, likes, comments) {
 		let date = Timestamp.fromDate(new Date());
 		return {
@@ -33,10 +30,6 @@ export function PostsProvider({ children }) {
 	}
 
 	const value = {
-		setPostsLoading,
-		postsLoading,
-		currentUserPosts,
-		setCurrentUserPosts,
 		userPost,
 		userComment,
 	};
