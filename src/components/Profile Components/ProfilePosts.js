@@ -2,7 +2,7 @@ import React from "react";
 import { ProfilePostsContainer, PostsHeader } from "../Styled/Profile.styled";
 import Posts from "./Posts";
 
-export default function ProfilePosts() {
+export default function ProfilePosts({ posts, loading }) {
 	return (
 		<ProfilePostsContainer>
 			<PostsHeader>
@@ -15,7 +15,7 @@ export default function ProfilePosts() {
 					<span>SAVED</span>
 				</div>
 			</PostsHeader>
-			<Posts />
+			<Posts posts={posts} loading={loading} />
 		</ProfilePostsContainer>
 	);
 }
