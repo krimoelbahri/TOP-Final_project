@@ -9,15 +9,11 @@ export function useData() {
 }
 
 export function DataProvider({ children }) {
-	const [profileLoading, setProfileLoading] = useState(true);
 	const [editedData, setEditedData] = useState({});
 	const [currentUserData, setCurrentUserData] = useState({});
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [navBarLoading, setNavBarLoading] = useState(true);
-	const [following, setFollowing] = useState([]);
-	const [followers, setFollowers] = useState([]);
-	const [profileFollowing, setProfileFollowing] = useState([]);
-	const [profileFollowers, setProfileFollowers] = useState([]);
+
 	const { DownloadImages } = useStorage();
 	const userPic = useRef();
 	async function getData(collectionName, document) {
@@ -82,20 +78,10 @@ export function DataProvider({ children }) {
 		setIsModalVisible,
 		userPic,
 		toggleBodyOverflow,
-		profileLoading,
 		editedData,
 		setEditedData,
-		setProfileLoading,
 		navBarLoading,
 		setNavBarLoading,
-		following,
-		setFollowing,
-		followers,
-		setFollowers,
-		profileFollowing,
-		profileFollowers,
-		setProfileFollowing,
-		setProfileFollowers,
 	};
 
 	return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
