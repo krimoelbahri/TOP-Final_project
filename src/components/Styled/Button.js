@@ -23,4 +23,7 @@ export const StyledSubmitButton = styled(Button)`
 	background-color: ${(props) =>
 		props.disabled ? props.disabledBackgroundColor : props.backgroundColor};
 	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+	div {
+		margin: 0 !important;
+	}
 `;
