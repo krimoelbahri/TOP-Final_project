@@ -4,7 +4,7 @@ import InboxConversation from "./InboxConversation";
 import InboxDefault from "./InboxDefault";
 
 export default function Inbox() {
-	const [defaultInbox, setDefaultInbox] = useState(false);
+	const [defaultInbox, setDefaultInbox] = useState(true);
 	return (
 		<InboxContainer>
 			{defaultInbox && <InboxDefault />}
