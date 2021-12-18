@@ -8,11 +8,6 @@ export default function Home() {
 	const { currentUser, updateProfileNameAndImage } = useAuth();
 
 	useEffect(() => {
-		if (!currentUser.displayName) {
-			updateProfileNameAndImage("User", userPic.current);
-		}
-	}, [userPic, currentUser, updateProfileNameAndImage]);
-	useEffect(() => {
 		let id = currentUser.uid;
 		getData("Users", id).then((result) => {
 			if (!result.exists()) {
@@ -21,17 +16,18 @@ export default function Home() {
 		});
 	}, [currentUser, getData, setData]);
 
-	useEffect(() => {
+	useEffect(async () => {
+		if (!currentUser.displayName) {
+			await updateProfileNameAndImage("User", userPic.current);
+		}
 		let id = currentUser.uid;
 		let name = currentUser.displayName;
 		let pic = currentUser.photoURL;
 		let email = currentUser.email;
-
-		getData(id, "User").then((result) => {
-			if (!result.exists()) {
-				setData(id, "User", userData("", name, pic, email, "", "", "", [], []));
-			}
-		});
+		let result = await getData(id, "User");
+		if (!result.exists()) {
+			setData(id, "User", userData("", name, pic, email, "", "", "", [], []));
+		}
 		setNavBarLoading(false);
 	}, [currentUser, getData, setData, userData, setNavBarLoading]);
 
