@@ -23,9 +23,6 @@ export default function Profile() {
 		getData(params.userid, "User")
 			.then((result) => {
 				setCurrentUserData(result.data());
-				if (params.userid === currentUser.uid) {
-					setEditedData(result.data());
-				}
 				dispatch(updateFollowing(result.data().Following));
 				dispatch(updateFollowers(result.data().Followers));
 				setProfileLoading(false);
