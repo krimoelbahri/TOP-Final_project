@@ -3,15 +3,22 @@ import { ProfileInfoContainer, ProfileBio, EditButton } from "../Styled/Profile.
 import { useData } from "../../context/DataContext";
 import { StyledLink } from "../Styled/DropDown.styled";
 import FollowButton from "./FollowButton";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-export default function ProfileInfo({ following, followers, posts, isCurrentUser }) {
+export default function ProfileInfo({ posts }) {
 	const { currentUserData } = useData();
+	const { currentUser } = useAuth();
+	const params = useParams();
+	const following = useSelector((state) => state.followers.following);
+	const followers = useSelector((state) => state.followers.followers);
 
 	return (
 		<ProfileInfoContainer>
 			<div>
 				<h3> {currentUserData.Username} </h3>
-				{isCurrentUser ? (
+				{params.userid === currentUser.uid ? (
 					<StyledLink to='/profile/edit'>
 						<EditButton>Edit profile</EditButton>
 					</StyledLink>
