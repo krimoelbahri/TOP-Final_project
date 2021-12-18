@@ -61,7 +61,7 @@ export default function Post({ data }) {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [data, getData]);
+	}, [data]);
 	useEffect(() => {
 		getData(data.userId, "Posts")
 			.then((result) => {
@@ -75,7 +75,7 @@ export default function Post({ data }) {
 				console.log(error);
 			});
 		setLoading(false);
-	}, [data, getData, currentUser]);
+	}, [data, currentUser]);
 	return (
 		<>
 			{!loading && (

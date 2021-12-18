@@ -17,7 +17,7 @@ export default function Comment({ data }) {
 				console.log(error);
 			});
 		setLoading(false);
-	}, [data, getData]);
+	}, [data]);
 	return (
 		<CommentContainer>
 			{!loading && (
