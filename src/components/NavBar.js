@@ -28,7 +28,7 @@ export default function NavBar() {
 	const [showProfile, setShowProfile] = useState(false);
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
-	const { setIsModalVisible, toggleBodyOverflow, setData, getData } = useData();
+	const { userPic, setIsModalVisible, toggleBodyOverflow, setData, getData } = useData();
 	const dispatch = useDispatch();
 
 	const handleLogOut = () => {
@@ -114,7 +114,11 @@ export default function NavBar() {
 							</div>
 						</Span>
 						<Span show={showProfile}>
-							<img onClick={handleProfile} src={currentUser.photoURL} alt='PP' />
+							{currentUser.photoURL ? (
+								<img onClick={handleProfile} src={currentUser.photoURL} alt='PP' />
+							) : (
+								<img onClick={handleProfile} src={userPic.current} alt='PP' />
+							)}
 							<div style={{ marginLeft: "-150px", top: "10px" }}>
 								<Overlay
 									arrowLeft='155px'
