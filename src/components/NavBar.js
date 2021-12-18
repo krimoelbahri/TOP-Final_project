@@ -17,7 +17,7 @@ import {
 } from "./Styled/NavBar.styled";
 import { handleFollowing } from "../Functions/handleFollow";
 import { useDispatch } from "react-redux";
-import { follow } from "../states/followers";
+import { updateFollowing } from "../states/followers";
 
 export const StyledLink = styled(Link)`
 	color: black;
@@ -59,7 +59,7 @@ export default function NavBar() {
 	const handleFollow = async function (id) {
 		handleHeart();
 		const obj = await handleFollowing(id, currentUser.uid, getData, setData);
-		dispatch(follow(obj.following));
+		dispatch(updateFollowing(obj.following));
 	};
 
 	return (

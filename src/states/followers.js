@@ -6,16 +6,11 @@ export const followersSlice = createSlice({
 		following: [],
 	},
 	reducers: {
-		follow: (state, action) => {
-			state.following = action.payload;
-		},
-		unfollow: (state, action) => {
+		updateFollowing: (state, action) => {
 			state.following = action.payload;
 		},
 	},
 });
 
-// Action creators are generated for each case reducer function
-export const { follow, unfollow } = followersSlice.actions;
-
+export const { updateFollowing } = followersSlice.actions;
 export default followersSlice.reducer;

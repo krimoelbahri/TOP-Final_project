@@ -7,7 +7,7 @@ import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { follow } from "../states/followers";
+import { updateFollowing } from "../states/followers";
 
 export default function Profile() {
 	const [isCurrentUser, setIsCurrentUser] = useState(false);
@@ -31,7 +31,7 @@ export default function Profile() {
 					setEditedData(result.data());
 					setIsCurrentUser(true);
 				}
-				dispatch(follow(result.data().Following));
+				dispatch(updateFollowing(result.data().Following));
 				setProfileFollowers(result.data().Followers);
 				setProfileLoading(false);
 			})
