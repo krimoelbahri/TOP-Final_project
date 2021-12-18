@@ -24,10 +24,22 @@ export const Wrapper = styled.div`
 		line-height: 18px;
 	}
 `;
+export const LoaderWrapper = styled.div`
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% - 20px);
+	margin: 10px;
+	div {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+`;
 export const ProfileIcon = styled.div`
-	width: 50px;
-	height: 50px;
-	margin: 0 10px;
+	width: 30px;
+	height: 30px;
+	margin: 0 5px;
 	border: 1px solid #dbdbdb;
 	border-radius: 50%;
 `;
