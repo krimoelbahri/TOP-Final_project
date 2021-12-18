@@ -6,17 +6,13 @@ import { useAuth } from "../context/AuthContext";
 import ProfileHeader from "../components/Profile Components/ProfileHeader";
 import ProfilePosts from "../components/Profile Components/ProfilePosts";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { updateFollowing } from "../states/followers";
+import { useDispatch } from "react-redux";
+import { updateFollowing, updateFollowers } from "../states/followers";
 
 export default function Profile() {
-	const [isCurrentUser, setIsCurrentUser] = useState(false);
 	const [profileLoading, setProfileLoading] = useState(true);
 	const [postsLoading, setPostsLoading] = useState(true);
 	const [currentUserPosts, setCurrentUserPosts] = useState({ posts: [] });
-	const profileFollowing = useSelector((state) => state.followers.following);
-	//const [profileFollowing, setProfileFollowing] = useState([]);
-	const [profileFollowers, setProfileFollowers] = useState([]);
 
 	const { getData, setCurrentUserData, setEditedData, currentUserData } = useData();
 	const { currentUser } = useAuth();
@@ -29,10 +25,9 @@ export default function Profile() {
 				setCurrentUserData(result.data());
 				if (params.userid === currentUser.uid) {
 					setEditedData(result.data());
-					setIsCurrentUser(true);
 				}
 				dispatch(updateFollowing(result.data().Following));
-				setProfileFollowers(result.data().Followers);
+				dispatch(updateFollowers(result.data().Followers));
 				setProfileLoading(false);
 			})
 			.catch((error) => {
@@ -64,13 +59,7 @@ export default function Profile() {
 					<MyLoader style={{ margin: "0 auto" }} />
 				</ProfileHeaderContainer>
 			) : (
-				<ProfileHeader
-					profilePic={currentUserData.photoUrl}
-					isCurrentUser={isCurrentUser}
-					posts={currentUserPosts}
-					followers={profileFollowers}
-					following={profileFollowing}
-				/>
+				<ProfileHeader profilePic={currentUserData.photoUrl} posts={currentUserPosts} />
 			)}
 			<ProfilePosts loading={postsLoading} posts={currentUserPosts} />
 		</ProfilesContainer>
