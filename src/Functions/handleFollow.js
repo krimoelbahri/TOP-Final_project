@@ -19,7 +19,7 @@ export const handleFollowing = async function (id, userId, getData, setData) {
 		...result.data(),
 		Followers: userFollowers,
 	});
-	return { following };
+	return { following, userFollowers };
 };
 export const handleUnFollowing = async function (id, userId, getData, setData) {
 	//handling unfollowing the user
@@ -48,5 +48,5 @@ export const handleUnFollowing = async function (id, userId, getData, setData) {
 		...result.data(),
 		Followers: userFollowers,
 	});
-	return { following };
+	return { following, userFollowers };
 };
