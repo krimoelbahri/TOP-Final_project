@@ -6,7 +6,7 @@ import { StyledSubmitButton } from "../Styled/Button";
 import Loader from "react-loader-spinner";
 import { handleFollowing, handleUnFollowing } from "../../Functions/handleFollow";
 import { useDispatch } from "react-redux";
-import { updateFollowing } from "../../states/followers";
+import { updateFollowers } from "../../states/followers";
 
 export default function FollowButton() {
 	const [loading, setLoading] = useState(true);
@@ -22,12 +22,12 @@ export default function FollowButton() {
 		if (followButton === "Follow") {
 			const obj = await handleFollowing(params.userid, currentUser.uid, getData, setData);
 			setFollowButton("Unfollow");
-			dispatch(updateFollowing(obj.following));
+			dispatch(updateFollowers(obj.userFollowers));
 		}
 		if (followButton === "Unfollow") {
 			const obj = await handleUnFollowing(params.userid, currentUser.uid, getData, setData);
 			setFollowButton("Follow");
-			dispatch(updateFollowing(obj.following));
+			dispatch(updateFollowers(obj.userFollowers));
 		}
 		setLoading(false);
 	};
@@ -46,7 +46,7 @@ export default function FollowButton() {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [currentUser, params, getData]);
+	}, [currentUser, params]);
 	return (
 		<>
 			{!loading ? (
