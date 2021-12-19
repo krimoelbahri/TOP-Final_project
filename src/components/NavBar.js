@@ -57,7 +57,6 @@ export default function NavBar() {
 		toggleBodyOverflow();
 	};
 	const handleFollow = async function (id) {
-		handleHeart();
 		const obj = await handleFollowing(id, currentUser.uid, getData, setData);
 		dispatch(updateFollowing(obj.following));
 	};
@@ -108,7 +107,10 @@ export default function NavBar() {
 									handleClick={handleHeart}
 								>
 									{showSuggestions && (
-										<PeopleSuggestion handleFollow={handleFollow} />
+										<PeopleSuggestion
+											handleHeart={handleHeart}
+											handleFollow={handleFollow}
+										/>
 									)}
 								</Overlay>
 							</div>
