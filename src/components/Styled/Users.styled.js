@@ -3,16 +3,17 @@ import styled from "styled-components";
 
 export const UsersContainer = styled.div`
 	align-self: center;
+	align-items: center;
+	overflow: auto;
 	height: 100%;
 	width: 100%;
-	max-width: 600px;
 	padding: 30px 15px 0 15px;
 `;
 export const Wrapper = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	width: calc(100% - 20px);
+	width: calc(600px - 20px);
 	margin: 10px;
 	div {
 		flex-direction: row;
@@ -23,6 +24,9 @@ export const Wrapper = styled.div`
 		color: #8e8e8e;
 		font-size: 14px;
 		line-height: 18px;
+	}
+	@media (max-width: 600px) {
+		width: calc(100% - 20px);
 	}
 `;
 export const LoaderWrapper = styled.div`
@@ -38,11 +42,15 @@ export const LoaderWrapper = styled.div`
 	}
 `;
 export const ProfileIcon = styled.div`
-	width: 30px;
-	height: 30px;
-	margin: 0 5px;
+	width: 50px;
+	height: 50px;
+	margin: 0 30px;
 	border: 1px solid #dbdbdb;
 	border-radius: 50%;
+	@media (max-width: 500px) {
+		width: 30px;
+		height: 30px;
+	}
 `;
 export const Image = styled.img`
 	border-radius: 50% !important;
