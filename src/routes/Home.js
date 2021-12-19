@@ -16,20 +16,31 @@ export default function Home() {
 		});
 	}, [currentUser, getData, setData]);
 
-	useEffect(async () => {
-		if (!currentUser.displayName) {
-			await updateProfileNameAndImage("User", userPic.current);
+	useEffect(() => {
+		async function fetching() {
+			if (!currentUser.displayName) {
+				await updateProfileNameAndImage("User", userPic.current);
+			}
+			let id = currentUser.uid;
+			let name = currentUser.displayName;
+			let pic = currentUser.photoURL;
+			let email = currentUser.email;
+			let result = await getData(id, "User");
+			if (!result.exists()) {
+				setData(id, "User", userData("", name, pic, email, "", "", "", [], []));
+			}
+			setNavBarLoading(false);
 		}
-		let id = currentUser.uid;
-		let name = currentUser.displayName;
-		let pic = currentUser.photoURL;
-		let email = currentUser.email;
-		let result = await getData(id, "User");
-		if (!result.exists()) {
-			setData(id, "User", userData("", name, pic, email, "", "", "", [], []));
-		}
-		setNavBarLoading(false);
-	}, [currentUser, getData, setData, userData, setNavBarLoading]);
+		fetching();
+	}, [
+		currentUser,
+		getData,
+		setData,
+		updateProfileNameAndImage,
+		userData,
+		userPic,
+		setNavBarLoading,
+	]);
 
 	return <Main />;
 }
