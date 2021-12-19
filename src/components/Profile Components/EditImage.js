@@ -6,8 +6,8 @@ import {
 	EditImageContainer,
 	ProfilePictureContainer,
 	UploadImageContainer,
+	SubmitImageButton,
 } from "../Styled/EditProfile.styled";
-import { StyledSubmitButton } from "../Styled/Button";
 
 export default function EditImage(props) {
 	const { data } = props;
@@ -58,13 +58,13 @@ export default function EditImage(props) {
 			<UploadImageContainer>
 				<h3> {currentUser.displayName} </h3>
 				<label htmlFor='image-upload'>
-					<StyledSubmitButton
+					<SubmitImageButton
 						onClick={handleImageUpload}
 						style={{ padding: 0 }}
 						fontColor='#0095f6'
 					>
 						Change Profile Photo
-					</StyledSubmitButton>
+					</SubmitImageButton>
 					<input
 						id='image-upload'
 						style={{ display: "none" }}
