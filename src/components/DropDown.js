@@ -14,37 +14,44 @@ import { useAuth } from "../context/AuthContext";
 import Loader from "react-loader-spinner";
 import filterSuggestions from "../Functions/arrayHelpers";
 
-export function PeopleSuggestion({ handleFollow }) {
+export function PeopleSuggestion({ handleFollow, handleHeart }) {
 	const [loading, setloading] = useState(true);
 	const [users, setUsers] = useState([]);
 	const { getDocuments, getData } = useData();
 	const { currentUser } = useAuth();
 
-	useEffect(async () => {
-		let result = await getDocuments("Users");
-		result.forEach((doc) => {
-			let id = doc.data().id;
-			if (id === currentUser.uid) return;
-			getData(currentUser.uid, "User").then((result) => {
-				if (result.data().Following.includes(id)) {
-					return;
-				} else {
-					getData(id, "User").then((result) => {
-						let obj = { ...result.data(), id };
-						setUsers((u) => [...u, obj]);
-					});
-				}
+	useEffect(() => {
+		async function fetching() {
+			let result = await getDocuments("Users");
+			result.forEach((doc) => {
+				let id = doc.data().id;
+				if (id === currentUser.uid) return;
+				getData(currentUser.uid, "User").then((result) => {
+					if (result.data().Following.includes(id)) {
+						return;
+					} else {
+						getData(id, "User").then((result) => {
+							let obj = { ...result.data(), id };
+							setUsers((u) => [...u, obj]);
+						});
+					}
+				});
 			});
-		});
 
-		setloading(false);
-	}, [getDocuments, getData]);
+			setloading(false);
+		}
+		fetching();
+	}, [getDocuments, currentUser]);
 
 	return (
 		<PeopleSuggestionContainer>
 			<Wrapper>
 				<p>Suggestions for you</p>
-				<StyledLink style={{ fontSize: "14px", fontWeight: "bold" }} to='/'>
+				<StyledLink
+					onClick={handleHeart}
+					style={{ fontSize: "14px", fontWeight: "bold" }}
+					to='/users'
+				>
 					See All
 				</StyledLink>
 			</Wrapper>
@@ -52,14 +59,19 @@ export function PeopleSuggestion({ handleFollow }) {
 				filterSuggestions(users).map((user, index) => {
 					return (
 						<Wrapper key={`suggestion${index}`}>
-							<div>
-								<ProfileIcon>
-									<Image src={user.photoUrl} alt='pp' />
-								</ProfileIcon>
-								<p>{user.Username}</p>
-							</div>
+							<StyledLink onClick={handleHeart} to={`/profile/${user.id}`}>
+								<div>
+									<ProfileIcon>
+										<Image src={user.photoUrl} alt='pp' />
+									</ProfileIcon>
+									<p>{user.Username}</p>
+								</div>
+							</StyledLink>
 							<StyledSubmitButton
-								onClick={() => handleFollow(user.id)}
+								onClick={() => {
+									handleHeart();
+									handleFollow(user.id);
+								}}
 								fontColor='#0095f6'
 							>
 								Follow
