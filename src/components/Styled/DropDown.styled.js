@@ -80,4 +80,8 @@ export const StyledLink = styled(Link)`
 		font-size: 14px;
 		margin-right: 10px;
 	}
+	p {
+		color: black;
+		font-weight: bold;
+	}
 `;
