@@ -1,7 +1,7 @@
 function randomNumber(number) {
 	return Math.floor(Math.random() * number);
 }
-function filterArray(array, index) {
+/*function filterArray(array, index) {
 	let j = randomNumber(array.length);
 	let returnedArray = [];
 	for (let i = 0; i < index; i++) {
@@ -11,8 +11,8 @@ function filterArray(array, index) {
 		returnedArray.push(array[j]);
 	}
 	return returnedArray;
-}
-function shuffleArray(array) {
+}*/
+export function shuffleArray(array) {
 	let j = randomNumber(array.length);
 	let indexes = [];
 	let returnedArray = [];
