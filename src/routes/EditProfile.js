@@ -27,10 +27,13 @@ export default function EditProfile() {
 		});
 		navigate(`/profile/${currentUser.uid}`);
 	}
-	useEffect(async () => {
-		let result = await getData(currentUser.uid, "User");
-		setCurrentUserData(result.data());
-		setEditedData(result.data());
+	useEffect(() => {
+		async function fetching() {
+			let result = await getData(currentUser.uid, "User");
+			setCurrentUserData(result.data());
+			setEditedData(result.data());
+		}
+		fetching();
 	}, [setEditedData, currentUser]);
 	return (
 		<MainContainer>
