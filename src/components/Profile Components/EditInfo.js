@@ -1,9 +1,10 @@
 import React from "react";
 import { StyledSubmitButton } from "../Styled/Button";
 import { EditInfoContainer } from "../Styled/EditProfile.styled";
+import Loader from "react-loader-spinner";
 
 export default function EditInfo(props) {
-	const { handleSubmit, handleChange, data } = props;
+	const { handleSubmit, handleChange, data, loading } = props;
 
 	return (
 		<EditInfoContainer>
@@ -20,6 +21,7 @@ export default function EditInfo(props) {
 			/>
 			<StyledSubmitButton
 				backgroundColor='#0095f6'
+				disabledBackgroundColor='#0095f6'
 				onClick={handleSubmit}
 				fontColor='#fff'
 				style={{
@@ -27,8 +29,9 @@ export default function EditInfo(props) {
 					alignSelf: "center",
 				}}
 				type='submit'
+				disabled={loading}
 			>
-				Submit
+				{!loading ? "Submit" : <Loader type='Oval' color='white' height={20} width={50} />}
 			</StyledSubmitButton>
 		</EditInfoContainer>
 	);
