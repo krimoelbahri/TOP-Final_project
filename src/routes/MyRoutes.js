@@ -5,9 +5,12 @@ import Home from "./Home";
 import Messages from "./Messages";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+import Users from "./Users";
+import Error from "./Error";
+import Layout from "./Layout";
+import NotFound from "./NotFound";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Layout from "./Layout";
 
 export default function MyRoutes() {
 	const { currentUser } = useAuth();
@@ -28,10 +31,15 @@ export default function MyRoutes() {
 					path='/profile/edit'
 					element={currentUser ? <EditProfile /> : <Navigate to={"/login"} />}
 				/>
+				<Route
+					path='/users'
+					element={currentUser ? <Users /> : <Navigate to={"/login"} />}
+				/>
 			</Route>
-
 			<Route path='/login' element={!currentUser ? <Login /> : <Navigate to={"/"} />} />
 			<Route path='/signup' element={!currentUser ? <SignUp /> : <Navigate to={"/"} />} />
+			<Route path='/error' element={<Error />} />
+			<Route path='*' element={<NotFound />} />
 		</Routes>
 	);
 }
