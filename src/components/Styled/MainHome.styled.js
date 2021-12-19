@@ -27,6 +27,10 @@ export const ProfileDiv = styled.div`
 	flex-direction: row;
 	margin-left: 20px;
 	align-items: center;
+	a {
+		color: black;
+		font-weight: bold;
+	}
 `;
 export const PostHeaderIcon = styled.div`
 	width: 30px;
