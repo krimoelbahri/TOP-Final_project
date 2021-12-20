@@ -1,7 +1,7 @@
 function randomNumber(number) {
 	return Math.floor(Math.random() * number);
 }
-function compareSort(a, b, value) {
+function sortByValue(a, b, value) {
 	if (a.toUpperCase() === value.toUpperCase()) {
 		return -1;
 	}
@@ -23,6 +23,9 @@ function compareSort(a, b, value) {
 		}
 	}
 	return scoreB - scoreA;
+}
+function sortByAge(a, b) {
+	return b.toDate() - a.toDate();
 }
 /*function filterArray(array, index) {
 	let j = randomNumber(array.length);
@@ -48,10 +51,15 @@ export function shuffleArray(array) {
 	}
 	return returnedArray;
 }
-export function sortArray(array, value) {
-	return array.sort(function (a, b) {
-		return compareSort(a.Username, b.Username, value);
-	});
+export function sortArray(array, type, value) {
+	if (type === "value")
+		return array.sort(function (a, b) {
+			return sortByValue(a.Username, b.Username, value);
+		});
+	if (type === "age")
+		return array.sort(function (a, b) {
+			return sortByAge(a.date, b.date);
+		});
 }
 export default (array, shuffle) => {
 	shuffle ? (array = shuffleArray(array)) : (array = array);

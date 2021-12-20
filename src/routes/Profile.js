@@ -47,7 +47,7 @@ export default function Profile() {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [getData, setCurrentUserPosts, params]);
+	}, [setCurrentUserPosts, params]);
 
 	return (
 		<ProfilesContainer>

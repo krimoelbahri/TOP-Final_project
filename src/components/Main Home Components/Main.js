@@ -5,6 +5,7 @@ import { MyLoader } from "../Loaders";
 import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
+import { sortArray } from "../../Functions/arrayHelpers";
 
 export default function Main() {
 	const { getData } = useData();
@@ -37,7 +38,7 @@ export default function Main() {
 				});
 		});
 		setPostsLoading(false);
-	}, [getData, currentUser, following]);
+	}, [currentUser, following]);
 	return (
 		<MainContainer>
 			{postsLoading ? (
@@ -45,7 +46,7 @@ export default function Main() {
 					<MyLoader />
 				</ProfileHeaderContainer>
 			) : (
-				posts.posts.map((post, index) => {
+				sortArray(posts.posts, "age").map((post, index) => {
 					return <Post key={`post ${index}`} data={post} />;
 				})
 			)}

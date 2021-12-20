@@ -131,9 +131,9 @@ export function NavBarSearch({ value, handleShowSearch }) {
 		fetching();
 	}, []);
 	useEffect(() => {
-		if (users) {
+		if (users && value) {
 			setloading(true);
-			setSearchedUsers(sortArray(users, value));
+			setSearchedUsers(sortArray(users, "value", value));
 			setloading(false);
 		}
 	}, [value]);
