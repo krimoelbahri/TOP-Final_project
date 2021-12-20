@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 import Overlay from "./Overlay";
 import styled from "styled-components";
-import { PeopleSuggestion, NavBarProfile } from "./DropDown";
+import { PeopleSuggestion, NavBarProfile, NavBarSearch } from "./DropDown";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -26,6 +26,8 @@ export default function NavBar() {
 	const [heart, setHeart] = useState(false);
 	const [showSuggestions, setShowSuggestions] = useState(false);
 	const [showProfile, setShowProfile] = useState(false);
+	const [showSearch, setShowSearch] = useState(false);
+	const [searchValue, setSearchValue] = useState("");
 	const location = useLocation();
 	const { currentUser, logout } = useAuth();
 	const { userPic, setIsModalVisible, toggleBodyOverflow, setData, getData } = useData();
@@ -34,7 +36,12 @@ export default function NavBar() {
 	const handleLogOut = () => {
 		logout();
 	};
-
+	const handleShowSearch = () => {
+		setShowSearch(!showSearch);
+	};
+	const handleSearch = (value) => {
+		setSearchValue(value);
+	};
 	//this will handle filling heart icon and showing suggestion dropdown
 	const handleHeart = () => {
 		setHeart(!heart);
@@ -67,9 +74,27 @@ export default function NavBar() {
 				<Wraper justifyContent='flex-start' className='header-logo'>
 					<StyledLink to='/'>Fakegram</StyledLink>
 				</Wraper>
-				<StyledSearch>
-					<SearchInput />
-				</StyledSearch>
+				<>
+					<StyledSearch onClick={handleShowSearch}>
+						<SearchInput handleSearch={handleSearch} />
+					</StyledSearch>
+					<div style={{ position: "absolute", marginLeft: "35%", top: "55px" }}>
+						<Overlay
+							arrowLeft='125px'
+							arrowTop='-5px'
+							show={showSearch}
+							handleClick={handleShowSearch}
+						>
+							{showSearch && (
+								<NavBarSearch
+									handleShowSearch={handleShowSearch}
+									value={searchValue}
+								/>
+							)}
+						</Overlay>
+					</div>
+				</>
+
 				<Wraper justifyContent='flex-end' className='header-icons'>
 					<WrapperChild>
 						<Span>
