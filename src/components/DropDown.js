@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
 	PeopleSuggestionContainer,
 	ProfileContainer,
+	SearchContainer,
 	StyledLink,
 	ProfileIcon,
 	Image,
@@ -12,7 +13,7 @@ import { StyledSubmitButton } from "./Styled/Button";
 import { useData } from "../context/DataContext";
 import { useAuth } from "../context/AuthContext";
 import Loader from "react-loader-spinner";
-import filterSuggestions from "../Functions/arrayHelpers";
+import filterSuggestions, { sortArray } from "../Functions/arrayHelpers";
 
 export function PeopleSuggestion({ handleFollow, handleHeart }) {
 	const [loading, setloading] = useState(true);
@@ -56,7 +57,7 @@ export function PeopleSuggestion({ handleFollow, handleHeart }) {
 				</StyledLink>
 			</Wrapper>
 			{!loading ? (
-				filterSuggestions(users).map((user, index) => {
+				filterSuggestions(users, true).map((user, index) => {
 					return (
 						<Wrapper key={`suggestion${index}`}>
 							<StyledLink onClick={handleHeart} to={`/profile/${user.id}`}>
@@ -107,5 +108,58 @@ export function NavBarProfile(props) {
 				<p>Log Out</p>
 			</div>
 		</ProfileContainer>
+	);
+}
+export function NavBarSearch({ value, handleShowSearch }) {
+	const [loading, setloading] = useState(true);
+	const [users, setUsers] = useState([]);
+	const [searchedUsers, setSearchedUsers] = useState([]);
+
+	const { getDocuments, getData } = useData();
+
+	useEffect(() => {
+		async function fetching() {
+			let result = await getDocuments("Users");
+			result.forEach((doc) => {
+				let id = doc.data().id;
+				getData(id, "User").then((result) => {
+					let obj = { ...result.data(), id };
+					setUsers((u) => [...u, obj]);
+				});
+			});
+		}
+		fetching();
+	}, []);
+	useEffect(() => {
+		if (users) {
+			setloading(true);
+			setSearchedUsers(sortArray(users, value));
+			setloading(false);
+		}
+	}, [value]);
+
+	return (
+		<SearchContainer>
+			{!loading ? (
+				filterSuggestions(searchedUsers, false).map((user, index) => {
+					return (
+						<Wrapper key={`suggestion${index}`}>
+							<StyledLink onClick={handleShowSearch} to={`/profile/${user.id}`}>
+								<div>
+									<ProfileIcon>
+										<Image src={user.photoUrl} alt='pp' />
+									</ProfileIcon>
+									<p>{user.Username}</p>
+								</div>
+							</StyledLink>
+						</Wrapper>
+					);
+				})
+			) : (
+				<LoaderWrapper>
+					<Loader type='Oval' color='black' height={20} width={50} />
+				</LoaderWrapper>
+			)}
+		</SearchContainer>
 	);
 }
