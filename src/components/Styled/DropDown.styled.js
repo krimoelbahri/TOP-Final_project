@@ -85,3 +85,12 @@ export const StyledLink = styled(Link)`
 		font-weight: bold;
 	}
 `;
+export const SearchContainer = styled.div`
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 250px;
+	max-height: 300px;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 10px 0;
+`;
