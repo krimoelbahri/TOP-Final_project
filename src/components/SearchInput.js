@@ -2,12 +2,13 @@ import React, { useState, useRef } from "react";
 import { Input, Span } from "./Styled/SearchInput.styled";
 
 export default function SearchInput(props) {
-	const { children } = props;
+	const { children, handleSearch } = props;
 	const [searching, setSearching] = useState(false);
 	const [inputvalue, setInputvalue] = useState("");
 	const inputRef = useRef();
 	function handleInputChange() {
 		setInputvalue(inputRef.current.value);
+		handleSearch(inputRef.current.value);
 	}
 	return (
 		<>
