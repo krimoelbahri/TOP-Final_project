@@ -1,6 +1,29 @@
 function randomNumber(number) {
 	return Math.floor(Math.random() * number);
 }
+function compareSort(a, b, value) {
+	if (a.toUpperCase() === value.toUpperCase()) {
+		return -1;
+	}
+	if (b.toUpperCase() === value.toUpperCase()) {
+		return 1;
+	}
+	let scoreA = 0;
+	let scoreB = 0;
+	let arrayA = a.toUpperCase().split("");
+	let arrayB = b.toUpperCase().split("");
+	let arrayValue = value.toUpperCase().split("");
+
+	for (let i = 0; i < arrayValue.length; i++) {
+		if (arrayA[i]) {
+			if (arrayValue[i] === arrayA[i]) scoreA++;
+		}
+		if (arrayB[i]) {
+			if (arrayValue[i] === arrayB[i]) scoreB++;
+		}
+	}
+	return scoreB - scoreA;
+}
 /*function filterArray(array, index) {
 	let j = randomNumber(array.length);
 	let returnedArray = [];
@@ -25,8 +48,13 @@ export function shuffleArray(array) {
 	}
 	return returnedArray;
 }
-export default (array) => {
-	let shuffled = shuffleArray(array);
-	if (shuffled.length < 5) return shuffled;
-	return [shuffled[0], shuffled[1], shuffled[2], shuffled[3], shuffled[4]];
+export function sortArray(array, value) {
+	return array.sort(function (a, b) {
+		return compareSort(a.Username, b.Username, value);
+	});
+}
+export default (array, shuffle) => {
+	shuffle ? (array = shuffleArray(array)) : (array = array);
+	if (array.length < 5) return array;
+	return [array[0], array[1], array[2], array[3], array[4]];
 };
