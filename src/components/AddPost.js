@@ -46,7 +46,7 @@ function PostHeader({ display, file, setIsModalVisible, setSharing, caption }) {
 	const [loading, setLoading] = useState(false);
 	const { setData, getData, toggleBodyOverflow } = useData();
 	const { currentUser } = useAuth();
-	const { userPost } = usePosts();
+	const { userPost, userComment } = usePosts();
 	const { uploadImages, DownloadImages } = useStorage();
 	const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ function PostHeader({ display, file, setIsModalVisible, setSharing, caption }) {
 		try {
 			setLoading(true);
 			let comment;
-			caption ? (comment = [caption]) : (comment = []);
+			caption ? (comment = [userComment(0, currentUser.uid, caption)]) : (comment = []);
 			await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
 			let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
 			let result = await getData(currentUser.uid, "Posts");
