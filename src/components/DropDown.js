@@ -136,7 +136,7 @@ export function NavBarSearch({ value, handleShowSearch }) {
 			setSearchedUsers(sortArray(users, "value", value));
 			setloading(false);
 		}
-	}, [value]);
+	}, [value, users]);
 
 	return (
 		<SearchContainer>
