@@ -7,9 +7,9 @@ export function usePosts() {
 }
 
 export function PostsProvider({ children }) {
-	function userPost(postId, userId, title, photoUrl, likes, comments) {
+	function userPost(postId, userId, photoUrl, likes, comments) {
 		let date = Timestamp.fromDate(new Date());
-		return { postId, userId, title, photoUrl, likes, comments, date };
+		return { postId, userId, photoUrl, likes, comments, date };
 	}
 	function userComment(CommentId, userId, comment) {
 		let date = Timestamp.fromDate(new Date());

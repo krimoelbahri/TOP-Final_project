@@ -13,9 +13,12 @@ import {
 	CaptionContainer,
 	CaptionProfile,
 } from "./Styled/Modal.styled";
+import Loader from "react-loader-spinner";
 
 export default function AddPost(props) {
 	const [file, setFile] = useState("");
+	const [caption, setCaption] = useState("");
+
 	const { display, setDisplay, image, setImage, sharing, setSharing, setIsModalVisible } = props;
 	return (
 		<div>
@@ -23,6 +26,7 @@ export default function AddPost(props) {
 				display={display}
 				setSharing={setSharing}
 				file={file}
+				caption={caption}
 				setIsModalVisible={setIsModalVisible}
 			/>
 			{!sharing && (
@@ -33,12 +37,13 @@ export default function AddPost(props) {
 					setDisplay={setDisplay}
 				/>
 			)}
-			{sharing && <ShareBody image={image} />}
+			{sharing && <ShareBody setCaption={setCaption} image={image} />}
 		</div>
 	);
 }
 
-function PostHeader({ display, file, setIsModalVisible, setSharing }) {
+function PostHeader({ display, file, setIsModalVisible, setSharing, caption }) {
+	const [loading, setLoading] = useState(false);
 	const { setData, getData, toggleBodyOverflow } = useData();
 	const { currentUser } = useAuth();
 	const { userPost } = usePosts();
@@ -46,23 +51,37 @@ function PostHeader({ display, file, setIsModalVisible, setSharing }) {
 	const navigate = useNavigate();
 
 	async function handleSubmit() {
-		await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
-		let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
-		let result = await getData(currentUser.uid, "Posts");
-		let posts = result.data();
-		posts.posts.push(userPost(posts.posts.length, currentUser.uid, "", url, [], []));
-		await setData(currentUser.uid, "Posts", posts);
-		navigate("/");
-		setSharing(false);
-		setIsModalVisible(false);
-		toggleBodyOverflow();
+		try {
+			setLoading(true);
+			let comment;
+			caption ? (comment = [caption]) : (comment = []);
+			await uploadImages(`postepic/${currentUser.uid}/${file.name}`, file);
+			let url = await DownloadImages(`postepic/${currentUser.uid}/${file.name}`);
+			let result = await getData(currentUser.uid, "Posts");
+			let posts = result.data();
+			posts.posts.push(userPost(posts.posts.length, currentUser.uid, url, [], comment));
+			await setData(currentUser.uid, "Posts", posts);
+			navigate("/");
+			setSharing(false);
+			setIsModalVisible(false);
+			toggleBodyOverflow();
+			setLoading(false);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 	return (
 		<AddPostHeader>
 			<h3>Create new post</h3>
-			<StyledSubmitButton onClick={handleSubmit} display={display} fontColor='#0095f6'>
-				Share
-			</StyledSubmitButton>
+			{!loading ? (
+				<StyledSubmitButton onClick={handleSubmit} display={display} fontColor='#0095f6'>
+					Share
+				</StyledSubmitButton>
+			) : (
+				<StyledSubmitButton display={display} fontColor='#0095f6'>
+					<Loader type='Oval' color='black' height={20} width={50} />
+				</StyledSubmitButton>
+			)}
 		</AddPostHeader>
 	);
 }
@@ -107,7 +126,7 @@ function PostBody({ setImage, setSharing, setDisplay, setFile }) {
 		</AddPostBody>
 	);
 }
-function ShareBody({ image }) {
+function ShareBody({ image, setCaption }) {
 	const { currentUser } = useAuth();
 
 	return (
@@ -122,7 +141,10 @@ function ShareBody({ image }) {
 					</div>
 					<p> {currentUser.displayName}</p>
 				</CaptionProfile>
-				<textarea placeholder='Write a caption'></textarea>
+				<textarea
+					onChange={(e) => setCaption(e.target.value)}
+					placeholder='Write a caption'
+				></textarea>
 			</CaptionContainer>
 		</SharePostBody>
 	);
