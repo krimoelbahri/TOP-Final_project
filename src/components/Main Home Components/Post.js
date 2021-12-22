@@ -10,15 +10,16 @@ import PostImage from "./PostImage";
 import PostStats from "./PostStats";
 
 export default function Post({ data }) {
+	const { currentUser } = useAuth();
+	const { getData, setData } = useData();
+	const { userComment } = usePosts();
+
 	const [loading, setLoading] = useState(true);
 	const [userInfo, setUserInfo] = useState({ photoUrl: "", Username: "" });
-	const [likes, setLikes] = useState([]);
-	const [comments, setComments] = useState([]);
-	const [fillHeart, setfillHeart] = useState(false);
+	const [likes, setLikes] = useState(data.likes);
+	const [comments, setComments] = useState(data.comments);
+	const [fillHeart, setfillHeart] = useState(data.likes.includes(currentUser.uid) ? true : false);
 	const [disabled, setDisabled] = useState(false);
-	const { getData, setData } = useData();
-	const { currentUser } = useAuth();
-	const { userComment } = usePosts();
 
 	async function handleLikes() {
 		setDisabled(true);
@@ -57,25 +58,13 @@ export default function Post({ data }) {
 		getData(data.userId, "User")
 			.then((result) => {
 				setUserInfo(result.data());
+				setLoading(false);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, [data]);
-	useEffect(() => {
-		getData(data.userId, "Posts")
-			.then((result) => {
-				setLikes(result.data().posts[data.postId].likes);
-				setComments(result.data().posts[data.postId].comments);
-				if (result.data().posts[data.postId].likes.includes(currentUser.uid)) {
-					setfillHeart(true);
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		setLoading(false);
-	}, [data, currentUser]);
+
 	return (
 		<>
 			{!loading && (
@@ -84,6 +73,7 @@ export default function Post({ data }) {
 						userPhoto={userInfo.photoUrl}
 						userName={userInfo.Username}
 						userid={data.userId}
+						post={data}
 					/>
 					<PostImage postImgUrl={data.photoUrl} />
 					<PostIcons
