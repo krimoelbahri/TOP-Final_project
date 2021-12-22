@@ -6,8 +6,6 @@ import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
 import { sortArray } from "../../Functions/arrayHelpers";
-import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase";
 
 export default function Main() {
 	const { getData } = useData();
@@ -41,14 +39,7 @@ export default function Main() {
 		});
 		setPostsLoading(false);
 	}, [currentUser, following]);
-	useEffect(() => {
-		const unsub = onSnapshot(doc(db, currentUser.uid, "Posts"), (doc) => {
-			setPosts(doc.data());
-		});
-		return () => {
-			unsub();
-		};
-	}, [currentUser]);
+
 	return (
 		<MainContainer>
 			{postsLoading ? (
