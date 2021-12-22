@@ -12,7 +12,6 @@ export default function EditInfo(props) {
 			<InfoInput onChange={handleChange} type='text' info='Username' value={data.Username} />
 			<InfoInput onChange={handleChange} type='text' info='Website' value={data.Website} />
 			<InfoTextarea onChange={handleChange} info='Bio' value={data.Bio} />
-			<InfoInput onChange={handleChange} type='text' info='Email' value={data.Email} />
 			<InfoInput
 				onChange={handleChange}
 				type='text'
