@@ -94,3 +94,22 @@ export const SearchContainer = styled.div`
 	background-color: #fff;
 	padding: 10px 0;
 `;
+export const RemoveContainer = styled.div`
+	justify-content: space-between;
+	align-items: center;
+	width: 100px;
+	border-radius: 5px;
+	background-color: #fff;
+	div {
+		padding: 10px 15px;
+		text-align: center;
+		height: 50%;
+		width: 100%;
+		p {
+			font-size: 15px;
+			font-weight: bold;
+			line-height: 15px;
+			cursor: pointer;
+		}
+	}
+`;
