@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/TOP-Final_project/static/css/main.92837435.chunk.css",
-    "main.js": "/TOP-Final_project/static/js/main.0d089b63.chunk.js",
-    "main.js.map": "/TOP-Final_project/static/js/main.0d089b63.chunk.js.map",
+    "main.js": "/TOP-Final_project/static/js/main.bb665d31.chunk.js",
+    "main.js.map": "/TOP-Final_project/static/js/main.bb665d31.chunk.js.map",
     "runtime-main.js": "/TOP-Final_project/static/js/runtime-main.a58d61c0.js",
     "runtime-main.js.map": "/TOP-Final_project/static/js/runtime-main.a58d61c0.js.map",
-    "static/js/2.961c0004.chunk.js": "/TOP-Final_project/static/js/2.961c0004.chunk.js",
-    "static/js/2.961c0004.chunk.js.map": "/TOP-Final_project/static/js/2.961c0004.chunk.js.map",
+    "static/js/2.78df3885.chunk.js": "/TOP-Final_project/static/js/2.78df3885.chunk.js",
+    "static/js/2.78df3885.chunk.js.map": "/TOP-Final_project/static/js/2.78df3885.chunk.js.map",
     "index.html": "/TOP-Final_project/index.html",
-    "precache-manifest.cd959a23fac7005756cafc6bff3109f5.js": "/TOP-Final_project/precache-manifest.cd959a23fac7005756cafc6bff3109f5.js",
+    "precache-manifest.e87324cf8b436eef67d93a457194d897.js": "/TOP-Final_project/precache-manifest.e87324cf8b436eef67d93a457194d897.js",
     "service-worker.js": "/TOP-Final_project/service-worker.js",
     "static/css/main.92837435.chunk.css.map": "/TOP-Final_project/static/css/main.92837435.chunk.css.map",
-    "static/js/2.961c0004.chunk.js.LICENSE.txt": "/TOP-Final_project/static/js/2.961c0004.chunk.js.LICENSE.txt",
+    "static/js/2.78df3885.chunk.js.LICENSE.txt": "/TOP-Final_project/static/js/2.78df3885.chunk.js.LICENSE.txt",
     "static/media/index.css": "/TOP-Final_project/static/media/Fontspring-DEMO-blue_vinyl_regular_ps_ot.ba6c16ea.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.a58d61c0.js",
-    "static/js/2.961c0004.chunk.js",
+    "static/js/2.78df3885.chunk.js",
     "static/css/main.92837435.chunk.css",
-    "static/js/main.0d089b63.chunk.js"
+    "static/js/main.bb665d31.chunk.js"
   ]
 }
