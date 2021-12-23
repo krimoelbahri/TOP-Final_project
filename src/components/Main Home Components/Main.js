@@ -5,7 +5,6 @@ import { MyLoader } from "../Loaders";
 import { ProfileHeaderContainer } from "../Styled/Profile.styled";
 import { useData } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
-import { sortArray } from "../../Functions/arrayHelpers";
 
 export default function Main() {
 	const { getData } = useData();
@@ -13,6 +12,7 @@ export default function Main() {
 
 	const [postsLoading, setPostsLoading] = useState(true);
 	const [posts, setPosts] = useState({ posts: [] });
+	const [sortedPosts, setSortedPosts] = useState([]);
 	const [following, setFollowing] = useState([]);
 	useEffect(() => {
 		getData(currentUser.uid, "User").then((result) => {
@@ -22,8 +22,9 @@ export default function Main() {
 		});
 	}, [currentUser, setFollowing]);
 	useEffect(() => {
+		let idArray = [...following, currentUser.uid];
 		let arr = [];
-		following.forEach((id) => {
+		idArray.forEach((id) => {
 			getData(id, "Posts")
 				.then((result) => {
 					if (result.exists()) {
@@ -37,9 +38,12 @@ export default function Main() {
 					console.log(error);
 				});
 		});
-		setPostsLoading(false);
 	}, [currentUser, following]);
-
+	useEffect(() => {
+		setSortedPosts(posts.posts.sort((a, b) => b.date - a.date));
+		setPostsLoading(false);
+	}, [posts]);
+	console.log(sortedPosts);
 	return (
 		<MainContainer>
 			{postsLoading ? (
@@ -47,7 +51,7 @@ export default function Main() {
 					<MyLoader />
 				</ProfileHeaderContainer>
 			) : (
-				sortArray(posts.posts, "age").map((post, index) => {
+				sortedPosts.map((post, index) => {
 					return <Post key={`post ${index}`} data={post} />;
 				})
 			)}

@@ -62,7 +62,7 @@ export function sortArray(array, type, value) {
 		});
 }
 export default (array, shuffle) => {
-	shuffle ? (array = shuffleArray(array)) : (array = array);
+	if (shuffle) array = shuffleArray(array);
 	if (array.length < 5) return array;
 	return [array[0], array[1], array[2], array[3], array[4]];
 };

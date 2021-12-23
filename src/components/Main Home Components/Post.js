@@ -58,13 +58,13 @@ export default function Post({ data }) {
 		getData(data.userId, "User")
 			.then((result) => {
 				setUserInfo(result.data());
-				setLoading(false);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, [data]);
-	/*useEffect(() => {
+	useEffect(() => {
+		console.log("likes");
 		getData(data.userId, "Posts")
 			.then((result) => {
 				setLikes(result.data().posts[data.postId].likes);
@@ -77,7 +77,7 @@ export default function Post({ data }) {
 				console.log(error);
 			});
 		setLoading(false);
-	}, [data, currentUser]);*/
+	}, [data, currentUser]);
 	return (
 		<>
 			{!loading && (

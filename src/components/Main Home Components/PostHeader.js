@@ -21,7 +21,6 @@ export default function PostHeader({ userid, userPhoto, userName, post }) {
 			arr.forEach((post, index) => {
 				post.postId = index;
 			});
-			console.log(arr);
 			await setData(userid, "Posts", { posts: arr });
 			navigate(`/profile/${userid}`);
 		} catch (error) {
