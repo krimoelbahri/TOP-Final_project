@@ -13,7 +13,7 @@ const Image = styled.img`
 export default function PostImage({ postImgUrl }) {
 	return (
 		<Container>
-			<Image src={postImgUrl} alt='sample-img'></Image>
+			<Image src={postImgUrl} alt='sample-img' loading='lazy'></Image>
 		</Container>
 	);
 }
