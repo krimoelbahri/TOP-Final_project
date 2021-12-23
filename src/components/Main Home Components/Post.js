@@ -64,7 +64,6 @@ export default function Post({ data }) {
 			});
 	}, [data]);
 	useEffect(() => {
-		console.log("likes");
 		getData(data.userId, "Posts")
 			.then((result) => {
 				setLikes(result.data().posts[data.postId].likes);

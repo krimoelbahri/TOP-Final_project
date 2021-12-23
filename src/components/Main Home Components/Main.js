@@ -43,7 +43,6 @@ export default function Main() {
 		setSortedPosts(posts.posts.sort((a, b) => b.date - a.date));
 		setPostsLoading(false);
 	}, [posts]);
-	console.log(sortedPosts);
 	return (
 		<MainContainer>
 			{postsLoading ? (
