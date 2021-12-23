@@ -3,7 +3,6 @@ import {
 	PeopleSuggestionContainer,
 	ProfileContainer,
 	SearchContainer,
-	RemoveContainer,
 	StyledLink,
 	ProfileIcon,
 	Image,
@@ -162,24 +161,5 @@ export function NavBarSearch({ value, handleShowSearch }) {
 				</LoaderWrapper>
 			)}
 		</SearchContainer>
-	);
-}
-export function RemovePost(props) {
-	const { handleShowRemovePost, handleRemovePost, userid } = props;
-	const { currentUser } = useAuth();
-	return (
-		<RemoveContainer>
-			{currentUser.uid === userid && (
-				<div
-					onClick={handleRemovePost}
-					style={{ color: "#ed4956", borderBottom: "1px solid black" }}
-				>
-					<p>Delete</p>
-				</div>
-			)}
-			<div onClick={handleShowRemovePost}>
-				<p>Cancel</p>
-			</div>
-		</RemoveContainer>
 	);
 }
