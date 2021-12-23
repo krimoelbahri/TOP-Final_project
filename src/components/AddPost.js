@@ -61,13 +61,14 @@ function PostHeader({ display, file, setIsModalVisible, setSharing, caption }) {
 			let posts = result.data();
 			posts.posts.push(userPost(posts.posts.length, currentUser.uid, url, [], comment));
 			await setData(currentUser.uid, "Posts", posts);
-			navigate("/");
 			setSharing(false);
+			setLoading(false);
 			setIsModalVisible(false);
 			toggleBodyOverflow();
-			setLoading(false);
+			navigate(`/profile/${currentUser.uid}`);
 		} catch (error) {
 			console.log(error);
+			navigate(`/error`);
 		}
 	}
 	return (
