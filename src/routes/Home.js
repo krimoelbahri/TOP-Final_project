@@ -29,6 +29,10 @@ export default function Home() {
 			if (!result.exists()) {
 				setData(id, "User", userData("", name, pic, email, "", "", "", [], []));
 			}
+			let postResult = await getData(id, "Posts");
+			if (!postResult.exists()) {
+				setData(id, "Posts", { posts: [] });
+			}
 			setNavBarLoading(false);
 		}
 		fetching();

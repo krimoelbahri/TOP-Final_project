@@ -64,7 +64,20 @@ export default function Post({ data }) {
 				console.log(error);
 			});
 	}, [data]);
-
+	/*useEffect(() => {
+		getData(data.userId, "Posts")
+			.then((result) => {
+				setLikes(result.data().posts[data.postId].likes);
+				setComments(result.data().posts[data.postId].comments);
+				if (result.data().posts[data.postId].likes.includes(currentUser.uid)) {
+					setfillHeart(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		setLoading(false);
+	}, [data, currentUser]);*/
 	return (
 		<>
 			{!loading && (
