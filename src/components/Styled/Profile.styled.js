@@ -107,31 +107,31 @@ export const PostsContainer = styled.div`
 	width: 100%;
 	flex-direction: row;
 	flex-wrap: wrap;
-	div {
-		width: calc(100% / 3 - 10px);
-		height: calc(900px / 3 - 10px);
-		margin: 5px;
-		@media (max-width: 930px) {
-			height: calc(850px / 3 - 25px);
-		}
-		@media (max-width: 830px) {
-			height: calc(700px / 3 - 25px);
-		}
-		@media (max-width: 730px) {
-			height: calc(600px / 3 - 25px);
-		}
-		@media (max-width: 630px) {
-			height: calc(500px / 3 - 25px);
-		}
-		@media (max-width: 530px) {
-			height: calc(400px / 3 - 25px);
-		}
-		@media (max-width: 430px) {
-			height: calc(300px / 3 - 25px);
-		}
-		img {
-			min-width: 100%;
-			height: 100%;
-		}
+`;
+export const RatioContainer = styled.div`
+	width: calc(100% / 3 - 10px);
+	margin: 5px;
+
+	/*@media (max-width: 930px) {
+		height: calc(850px / 3 - 25px);
 	}
+	@media (max-width: 830px) {
+		height: calc(700px / 3 - 25px);
+	}
+	@media (max-width: 730px) {
+		height: calc(600px / 3 - 25px);
+	}
+	@media (max-width: 630px) {
+		height: calc(500px / 3 - 25px);
+	}
+	@media (max-width: 530px) {
+		height: calc(400px / 3 - 25px);
+	}
+	@media (max-width: 430px) {
+		height: calc(300px / 3 - 25px);
+	}
+	img {
+		min-width: 100%;
+		height: 100%;
+	}*/
 `;

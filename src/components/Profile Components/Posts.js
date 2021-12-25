@@ -1,16 +1,18 @@
 import React from "react";
 import { sortArray } from "../../Functions/arrayHelpers";
-import { PostsContainer } from "../Styled/Profile.styled";
-
+import { PostsContainer, RatioContainer } from "../Styled/Profile.styled";
+import { AspectRatio } from "@chakra-ui/react";
 export default function Posts({ posts, loading }) {
 	return (
 		<PostsContainer>
 			{!loading ? (
 				sortArray(posts.posts, "age").map((post, index) => {
 					return (
-						<div key={`image ${index}`}>
-							<img src={post.photoUrl} alt='sample-img'></img>
-						</div>
+						<RatioContainer key={`image${index}`}>
+							<AspectRatio maxW='100%' ratio={1}>
+								<img src={post.photoUrl} alt='sample-img'></img>
+							</AspectRatio>
+						</RatioContainer>
 					);
 				})
 			) : (
